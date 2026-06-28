@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="KCDPA Compliance for Kentucky Car Dealers">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b1d30"/>
+      <stop offset="50%" stop-color="#1a3a5c"/>
+      <stop offset="100%" stop-color="#2e86de"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="1050" cy="120" r="180" fill="#ffffff" opacity="0.04"/>
+  <circle cx="150" cy="520" r="120" fill="#ffffff" opacity="0.04"/>
+  <text x="80" y="120" fill="#f39c12" font-family="Segoe UI, system-ui, sans-serif" font-size="28" font-weight="600" letter-spacing="2">KENTUCKY CAR DEALER PROTECTION ACT</text>
+  <text x="80" y="220" fill="#ffffff" font-family="Segoe UI, system-ui, sans-serif" font-size="64" font-weight="700">Audit-Ready Compliance</text>
+  <text x="80" y="300" fill="#f39c12" font-family="Segoe UI, system-ui, sans-serif" font-size="52" font-weight="700">in 6 Weeks  Not 6 Months</text>
+  <text x="80" y="380" fill="#d0dbe8" font-family="Segoe UI, system-ui, sans-serif" font-size="30">Fixed-fee packages for Kentucky car dealerships · From $2,500/yr</text>
+  <rect x="80" y="430" width="420" height="64" rx="32" fill="#f39c12"/>
+  <text x="290" y="472" fill="#0b1d30" font-family="Segoe UI, system-ui, sans-serif" font-size="28" font-weight="700" text-anchor="middle">Steven Gabbard · ITAKY Consulting</text>
+  <g transform="translate(900,420)">
+    <rect width="180" height="90" rx="12" fill="#ffffff" opacity="0.12"/>
+    <path d="M20 55c15-25 35-35 70-35s55 10 70 35" fill="none" stroke="#f39c12" stroke-width="4" stroke-linecap="round"/>
+    <rect x="35" y="25" width="110" height="35" rx="8" fill="#54a0ff"/>
+    <circle cx="55" cy="62" r="8" fill="#f0f4f8"/>
+    <circle cx="125" cy="62" r="8" fill="#f0f4f8"/>
+  </g>
+</svg>
