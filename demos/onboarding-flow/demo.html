@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Employee Onboarding Flow — ITAKY Demo</title>
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../shared/demo.css">
+</head>
+<body>
+
+<nav class="demo-nav">
+  <a class="nav-brand" href="../index.html">ITAKY Technology</a>
+  <div style="display:flex;align-items:center;gap:0.75rem;">
+    <span class="demo-tag">Demo 1 · Onboarding</span>
+    <a href="../index.html">All demos</a>
+  </div>
+</nav>
+
+<div class="demo-header">
+  <h1>Employee onboarding automation <span class="status-pill idle" data-status>Ready</span></h1>
+  <p>New hire form submission triggers manager checklist, IT provisioning tasks, and audit logging — without manual copy-paste between systems.</p>
+</div>
+
+<main class="demo-layout">
+  <section class="panel" id="formPanel">
+    <div class="panel-head">
+      <h2>Trigger · New hire form</h2>
+      <p>Simulates Microsoft Forms or Google Forms webhook</p>
+    </div>
+    <div class="panel-body">
+      <div class="field">
+        <label for="name">Employee name</label>
+        <input id="name" value="Jordan Smith" autocomplete="off">
+      </div>
+      <div class="field">
+        <label for="dept">Department</label>
+        <select id="dept">
+          <option>Office Admin</option>
+          <option>Sales</option>
+          <option>Service</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="start">Start date</label>
+        <input id="start" type="date">
+      </div>
+      <div class="field">
+        <label for="manager">Manager email</label>
+        <input id="manager" value="manager@acme-office.demo" autocomplete="off">
+      </div>
+      <button class="btn-primary" id="run" type="button" data-run data-action>Submit and run workflow</button>
+
+      <div class="completion-card" id="completion">
+        <h3>Onboarding workflow completed</h3>
+        <dl></dl>
+        <div data-completion-body class="footnote"></div>
+        <div class="reset-row"><button type="button" data-reset>Reset demo for another walkthrough</button></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head">
+      <h2>Automation pipeline</h2>
+      <p>Five actions · n8n or Power Automate in production</p>
+    </div>
+    <div class="panel-body">
+      <div class="pipeline" id="pipeline">
+        <div class="step" data-step="0">
+          <div class="step-marker">1</div>
+          <div class="step-body">
+            <h3>Form submitted</h3>
+            <p>Webhook receives structured new-hire payload</p>
+            <div class="step-meta" data-meta></div>
+          </div>
+        </div>
+        <div class="step" data-step="1">
+          <div class="step-marker">2</div>
+          <div class="step-body">
+            <h3>Manager checklist email</h3>
+            <p>Outlook or Gmail: desk, keys, first-week schedule</p>
+            <div class="step-meta" data-meta></div>
+          </div>
+        </div>
+        <div class="step" data-step="2">
+          <div class="step-marker">3</div>
+          <div class="step-body">
+            <h3>IT task list created</h3>
+            <p>M365 account, workstation prep, MFA, asset tag</p>
+            <div class="step-meta" data-meta></div>
+          </div>
+        </div>
+        <div class="step" data-step="3">
+          <div class="step-marker">4</div>
+          <div class="step-body">
+            <h3>Teams notification</h3>
+            <p>IT queue alerted with start date and owner</p>
+            <div class="step-meta" data-meta></div>
+          </div>
+        </div>
+        <div class="step" data-step="4">
+          <div class="step-marker">5</div>
+          <div class="step-body">
+            <h3>Audit log updated</h3>
+            <p>Row appended to SharePoint list or Google Sheet</p>
+            <div class="step-meta" data-meta></div>
+          </div>
+        </div>
+      </div>
+      <div class="activity-log">
+        <div class="activity-log-head">Activity log</div>
+        <div class="activity-log-body" id="log"><div class="info">Waiting for form submission.</div></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="demo-footer">
+  ITAKY Technology · Portfolio demonstration · Not connected to live systems · <a href="https://itaky.net/">itaky.net</a>
+</footer>
+
+<script src="../shared/demo.js"></script>
+<script>
+(function () {
+  const D = window.DemoRunner;
+  const formPanel = document.getElementById('formPanel');
+  const runBtn = document.getElementById('run');
+  const log = document.getElementById('log');
+  const completion = document.getElementById('completion');
+  const steps = [...document.querySelectorAll('.step')];
+  const statusPill = document.querySelector('[data-status]');
+
+  document.getElementById('start').valueAsDate = new Date(Date.now() + 7 * 86400000);
+  D.bindReset(document.querySelector('[data-reset]'));
+
+  const stepLogs = [
+    () => 'POST /webhooks/onboarding — payload validated',
+    () => 'Email queued → ' + document.getElementById('manager').value,
+    () => 'Planner tasks: AD account, laptop, MFA enrollment',
+    () => 'Teams message → #it-onboarding',
+    () => 'SharePoint list OnboardingTracker — row appended',
+  ];
+
+  const stepMeta = [
+    () => 'employee=' + document.getElementById('name').value,
+    () => 'template=manager-checklist-v2',
+    () => 'tasks=3 · due=' + document.getElementById('start').value,
+    () => 'channel=it-onboarding',
+    () => 'status=complete',
+  ];
+
+  if (D.init('onboarding')) {
+    const record = D.getRecord();
+    D.restoreCompleted(formPanel, completion, record,
+      'Estimated manual time saved: <strong>~3.5 hours</strong> per new hire.<br>Production stack: n8n or Power Automate · ITAKY Starter from <strong>$2,500</strong>.');
+    return;
+  }
+
+  runBtn.addEventListener('click', async () => {
+    if (D.isComplete()) return;
+
+    const name = document.getElementById('name').value.trim();
+    const dept = document.getElementById('dept').value;
+    const refId = D.refId('ONB');
+
+    runBtn.disabled = true;
+    D.setStatus(statusPill, 'running');
+    completion.classList.remove('show');
+    log.innerHTML = '';
+    steps.forEach(s => { s.classList.remove('active', 'done'); s.querySelector('[data-meta]').textContent = ''; });
+
+    D.addLog(log, 'Workflow ' + refId + ' started — ' + name + ' (' + dept + ')', 'info');
+
+    await D.animateSteps(steps, async (i) => {
+      steps[i].querySelector('[data-meta]').textContent = stepMeta[i]();
+      D.addLog(log, stepLogs[i](), i === steps.length - 1 ? 'ok' : '');
+    });
+
+    D.addLog(log, 'Workflow complete — 5 actions, 0 manual handoffs', 'ok');
+
+    const record = {
+      'Reference': refId,
+      'Employee': name,
+      'Department': dept,
+      'Actions run': '5',
+    };
+
+    D.markComplete(record);
+    D.setStatus(statusPill, 'complete');
+    D.lockForm(formPanel);
+    D.showCompletion(completion, record,
+      'Estimated manual time saved: <strong>~3.5 hours</strong> per new hire.<br>Production stack: n8n or Power Automate · ITAKY Starter from <strong>$2,500</strong>.');
+  });
+})();
+</script>
+</body>
+</html>
