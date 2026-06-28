@@ -6,21 +6,22 @@
 <title>ITAKY Technology — Local IT Support + AI Automation | Stanton, KY</title>
 <meta name="description" content="ITAKY Technology — local IT support and workflow automation for small businesses. Based in Stanton, KY. Essentials retainer from $597/mo. Call (859) 404-1261.">
 <meta name="author" content="Steven Gabbard, ITAKY Technology">
-<meta name="theme-color" content="#1a365d">
+<meta name="theme-color" content="#050810">
 <link rel="canonical" href="https://itaky.net/">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://itaky.net/">
 <meta property="og:title" content="ITAKY Technology — Local IT Support + AI Automation">
 <meta property="og:description" content="Based in Stanton, KY. Fixed-fee IT support and workflow automation for Kentucky small businesses.">
-<meta property="og:image" content="https://itaky.net/assets/og-kcdpa.svg">
+<meta property="og:image" content="https://itaky.net/assets/itaky-logo.jpg">
 <style>
   :root {
-    --primary: #1a365d;
-    --accent: #2f855a;
-    --accent-dark: #276949;
-    --dark: #0b1d30;
-    --light: #fafafa;
+    --primary: #0d2137;
+    --accent: #00a8ff;
+    --accent-dark: #0088cc;
+    --accent-glow: #00d4ff;
+    --dark: #050810;
+    --light: #f4f7fb;
     --white: #ffffff;
     --gray: #4a5568;
     --muted: #718096;
@@ -32,11 +33,13 @@
   body { font-family:'Segoe UI',system-ui,-apple-system,sans-serif; color:#2d3748; background:var(--light); line-height:1.6; font-size:16px; }
 
   nav {
-    background:var(--dark); padding:0.75rem 1.5rem; position:sticky; top:0; z-index:100;
+    background:var(--dark); padding:0.6rem 1.5rem; position:sticky; top:0; z-index:100;
     display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem;
-    border-bottom:3px solid var(--accent);
+    border-bottom:2px solid var(--accent);
+    box-shadow:0 0 20px rgba(0,168,255,0.15);
   }
-  .nav-brand { color:white; font-size:1.35rem; font-weight:800; text-decoration:none; letter-spacing:0.5px; }
+  .nav-brand { display:flex; align-items:center; text-decoration:none; }
+  .nav-brand img { height:42px; width:auto; display:block; }
   .nav-right { display:flex; align-items:center; gap:1.25rem; flex-wrap:wrap; }
   .nav-links { display:flex; gap:1.25rem; align-items:center; flex-wrap:wrap; }
   .nav-links a { color:#b0c4de; text-decoration:none; font-size:0.9rem; }
@@ -45,27 +48,31 @@
     color:white; font-weight:700; text-decoration:none; font-size:0.95rem;
     display:flex; align-items:center; gap:0.35rem;
   }
-  .nav-phone:hover { color:#9ae6b4; }
+  .nav-phone:hover { color:var(--accent-glow); }
   .nav-cta {
     background:var(--accent); color:white !important; padding:0.45rem 1rem; border-radius:6px; font-weight:600; font-size:0.9rem;
   }
   .nav-cta:hover { background:var(--accent-dark); color:white; }
 
   .hero {
-    background:linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
-    color:white; padding:4.5rem 1.5rem 4rem; text-align:center; position:relative; overflow:hidden;
+    background:linear-gradient(160deg, #050810 0%, var(--primary) 45%, #0a2744 100%);
+    color:white; padding:3rem 1.5rem 4rem; text-align:center; position:relative; overflow:hidden;
   }
   .hero::before {
-    content:""; position:absolute; top:-40%; right:-15%; width:480px; height:480px;
-    background:radial-gradient(circle, rgba(47,133,90,0.18) 0%, transparent 70%); border-radius:50%;
+    content:""; position:absolute; top:-30%; right:-10%; width:520px; height:520px;
+    background:radial-gradient(circle, rgba(0,168,255,0.12) 0%, transparent 70%); border-radius:50%;
+  }
+  .hero-logo {
+    max-width:min(420px, 92vw); height:auto; margin:0 auto 1.5rem; display:block;
+    filter:drop-shadow(0 0 24px rgba(0,168,255,0.35));
   }
   .hero-content { max-width:780px; margin:0 auto; position:relative; z-index:1; }
   .hero-location {
     display:inline-block; font-size:0.85rem; text-transform:uppercase; letter-spacing:1.5px;
-    color:#9ae6b4; margin-bottom:1rem; font-weight:600;
+    color:var(--accent-glow); margin-bottom:1rem; font-weight:600;
   }
   .hero h1 { font-size:clamp(1.85rem, 5vw, 2.75rem); font-weight:800; line-height:1.15; margin-bottom:1rem; }
-  .hero h1 .accent { color:#68d391; }
+  .hero h1 .accent { color:var(--accent-glow); }
   .hero p { font-size:1.1rem; color:#a0b8d0; max-width:580px; margin:0 auto 1.75rem; }
   .hero-buttons { display:flex; gap:0.75rem; justify-content:center; flex-wrap:wrap; }
   .btn-primary {
@@ -103,7 +110,7 @@
   }
   .service-card.featured { border-top-color:var(--primary); box-shadow:0 4px 20px rgba(26,54,93,0.12); }
   .service-badge {
-    display:inline-block; background:#e6fffa; color:var(--accent-dark); font-size:0.75rem;
+    display:inline-block; background:#e6f6ff; color:var(--accent-dark); font-size:0.75rem;
     font-weight:700; padding:0.2rem 0.6rem; border-radius:4px; margin-bottom:0.75rem; text-transform:uppercase;
   }
   .service-card h3 { font-size:1.2rem; color:var(--dark); margin-bottom:0.6rem; }
@@ -115,7 +122,7 @@
   table.pricing { width:100%; border-collapse:collapse; background:white; font-size:0.95rem; }
   table.pricing th, table.pricing td { padding:1rem 1.25rem; text-align:left; border-bottom:1px solid var(--border); }
   table.pricing th { background:var(--dark); color:white; font-weight:600; }
-  table.pricing tr.highlight td { background:#f0fff4; font-weight:600; }
+  table.pricing tr.highlight td { background:#e6f6ff; font-weight:600; }
   table.pricing .price { color:var(--accent); font-weight:700; white-space:nowrap; }
   .pricing-note { text-align:center; margin-top:1rem; font-size:0.9rem; color:var(--muted); }
 
@@ -162,14 +169,14 @@
   .contact-inner h2 { font-size:1.75rem; margin-bottom:0.75rem; }
   .contact-inner > p { color:#a0b8d0; margin-bottom:1.5rem; }
   .contact-details { display:flex; flex-wrap:wrap; justify-content:center; gap:2rem; margin-bottom:2rem; }
-  .contact-item a { color:#68d391; text-decoration:none; font-weight:700; font-size:1.15rem; }
+  .contact-item a { color:var(--accent-glow); text-decoration:none; font-weight:700; font-size:1.15rem; }
   .contact-item a:hover { color:white; }
   .contact-item p { font-size:0.85rem; color:#7a9cc0; margin-top:0.25rem; }
 
   footer {
     background:#071018; color:#7a9cc0; text-align:center; padding:2rem 1.5rem; font-size:0.85rem;
   }
-  footer a { color:#68d391; text-decoration:none; }
+  footer a { color:var(--accent-glow); text-decoration:none; }
   footer a:hover { color:white; }
   footer .footer-links { margin:1rem 0; display:flex; justify-content:center; flex-wrap:wrap; gap:1.25rem; }
 
@@ -184,7 +191,7 @@
 <body>
 
 <nav>
-  <a href="/" class="nav-brand">ITAKY</a>
+  <a href="/" class="nav-brand"><img src="assets/itaky-logo.jpg" alt="ITAKY — Information Technology Associates Kentucky"></a>
   <div class="nav-right">
     <div class="nav-links">
       <a href="#services">Services</a>
@@ -199,6 +206,7 @@
 
 <div class="hero">
   <div class="hero-content">
+    <img src="assets/itaky-logo.jpg" alt="ITAKY — Information Technology Associates Kentucky" class="hero-logo" width="420" height="auto">
     <p class="hero-location">Stanton, Kentucky · Serving Eastern KY &amp; Bowling Green</p>
     <h1>I fix what's broken<br>and <span class="accent">build what's next.</span></h1>
     <p>Local IT support and workflow automation for small businesses. One call, fixed fees, no jargon — just work that gets done.</p>
