@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invoice Approval Flow — ITAKY Demo</title>
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../shared/demo.css">
+</head>
+<body>
+
+<nav class="demo-nav">
+  <a class="nav-brand" href="../index.html">ITAKY Technology</a>
+  <div style="display:flex;align-items:center;gap:0.75rem;">
+    <span class="demo-tag">Demo 2 · Invoice approval</span>
+    <a href="../index.html">All demos</a>
+  </div>
+</nav>
+
+<div class="demo-header">
+  <h1>Invoice approval automation <span class="status-pill idle" data-status>Ready</span></h1>
+  <p>Incoming invoice email routes to the right approver, logs the decision, and updates accounting — without chasing signatures in email threads.</p>
+</div>
+
+<main class="demo-layout">
+  <section class="panel" id="formPanel">
+    <div class="panel-head">
+      <h2>Trigger · Invoice received</h2>
+      <p>Email rule or n8n trigger on PDF attachment</p>
+    </div>
+    <div class="panel-body">
+      <div class="email-card">
+        <div class="row"><span>From</span><span>billing@acmesupply.demo</span></div>
+        <div class="row"><span>To</span><span>ap@acme-office.demo</span></div>
+        <div class="row"><span>Attach</span><span>INV-2847.pdf (142 KB)</span></div>
+        <div class="subject">Invoice #INV-2847 — Acme Supply Co.</div>
+      </div>
+
+      <div class="field">
+        <label for="vendor">Vendor</label>
+        <input id="vendor" value="Acme Supply Co." autocomplete="off">
+      </div>
+      <div class="field">
+        <label for="amount">Amount (USD)</label>
+        <input id="amount" value="1240.00" autocomplete="off">
+      </div>
+      <div class="field">
+        <label for="approver">Approver</label>
+        <input id="approver" value="owner@acme-office.demo" autocomplete="off">
+      </div>
+      <button class="btn-primary" id="submit" type="button" data-run data-action>Route for approval</button>
+
+      <div class="approval-card" id="approval">
+        <h4>Approval request sent</h4>
+        <p>Adaptive card delivered to <strong id="approverShow"></strong>. Choose an action to continue the workflow.</p>
+        <div class="approval-actions">
+          <button type="button" class="btn-approve" id="approve" data-action>Approve</button>
+          <button type="button" class="btn-reject" id="reject" data-action>Reject</button>
+        </div>
+      </div>
+
+      <div class="completion-card" id="completion">
+        <h3>Approval workflow completed</h3>
+        <dl></dl>
+        <div data-completion-body class="footnote"></div>
+        <div class="reset-row"><button type="button" data-reset>Reset demo for another walkthrough</button></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head">
+      <h2>Approval pipeline</h2>
+      <p>Routing, decision log, AP handoff, timeout escalation</p>
+    </div>
+    <div class="panel-body">
+      <div class="pipeline" id="pipeline">
+        <div class="step" data-i="0">
+          <div class="step-marker">1</div>
+          <div class="step-body">
+            <h3>Invoice detected</h3>
+            <p>Email rule extracts vendor, amount, due date</p>
+            <div class="step-meta" data-meta></div>
+          </div>
+        </div>
+        <div class="step" data-i="1">
+          <div class="step-marker">2</div>
+          <div class="step-body">
+            <h3>Approval request sent</h3>
+            <p>Outlook or Teams adaptive card to owner</p>
+            <div class="step-meta" data-meta></div>
+          </div>
+        </div>
+        <div class="step" data-i="2">
+          <div class="step-marker">3</div>
+          <div class="step-body">
+            <h3>Decision logged</h3>
+            <p>SharePoint or Sheet audit row with timestamp</p>
+            <div class="step-meta" data-meta></div>
+          </div>
+        </div>
+        <div class="step" data-i="3">
+          <div class="step-marker">4</div>
+          <div class="step-body">
+            <h3>Accounting notified</h3>
+            <p>AP queue updated for payment scheduling</p>
+            <div class="step-meta" data-meta></div>
+          </div>
+        </div>
+        <div class="step" data-i="4">
+          <div class="step-marker">5</div>
+          <div class="step-body">
+            <h3>Timeout monitor armed</h3>
+            <p>Escalation if no reply within 48 hours</p>
+            <div class="step-meta" data-meta></div>
+          </div>
+        </div>
+      </div>
+      <div class="activity-log">
+        <div class="activity-log-head">Activity log</div>
+        <div class="activity-log-body" id="log"><div class="info">Waiting for invoice routing.</div></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="demo-footer">
+  ITAKY Technology · Portfolio demonstration · Not connected to live systems · <a href="https://itaky.net/">itaky.net</a>
+</footer>
+
+<script src="../shared/demo.js"></script>
+<script>
+(function () {
+  const D = window.DemoRunner;
+  const formPanel = document.getElementById('formPanel');
+  const submitBtn = document.getElementById('submit');
+  const approval = document.getElementById('approval');
+  const completion = document.getElementById('completion');
+  const log = document.getElementById('log');
+  const steps = [...document.querySelectorAll('.step')];
+  const statusPill = document.querySelector('[data-status]');
+  let refId = '';
+  let routed = false;
+
+  D.bindReset(document.querySelector('[data-reset]'));
+
+  function summaryHtml(decision) {
+    if (decision === 'approved') {
+      return 'Estimated time saved: <strong>~2 hours/week</strong> chasing signatures.<br>ITAKY Starter automation · <strong>$2,500</strong> fixed.';
+    }
+    return 'Vendor notified · full audit trail retained.<br>ITAKY Starter automation · <strong>$2,500</strong> fixed.';
+  }
+
+  if (D.init('invoice')) {
+    const record = D.getRecord();
+    steps.forEach((s, i) => {
+      if (record.stepsDone > i || record.decision) s.classList.add('done');
+      if (i === 0 && record['Invoice']) s.querySelector('[data-meta]').textContent = record['Invoice'];
+    });
+    if (record.decision === 'approved') {
+      steps.slice(2).forEach(s => s.classList.add('done'));
+    } else if (record.decision === 'rejected') {
+      steps[2].classList.add('done');
+    }
+    D.restoreCompleted(formPanel, completion, record, summaryHtml(record.decision));
+    return;
+  }
+
+  async function runSteps(from, to, logs) {
+    for (let i = from; i <= to; i++) {
+      steps[i].classList.add('active');
+      if (logs && logs[i - from]) {
+        steps[i].querySelector('[data-meta]').textContent = logs[i - from].meta || '';
+        D.addLog(log, logs[i - from].msg, logs[i - from].type || '');
+      }
+      await new Promise(r => setTimeout(r, 750));
+      steps[i].classList.remove('active');
+      steps[i].classList.add('done');
+    }
+  }
+
+  function finish(decision) {
+    const vendor = document.getElementById('vendor').value.trim();
+    const amount = document.getElementById('amount').value.trim();
+    const record = {
+      'Reference': refId,
+      'Vendor': vendor,
+      'Amount': '$' + amount,
+      'Decision': decision === 'approved' ? 'Approved' : 'Rejected',
+      decision,
+      stepsDone: decision === 'approved' ? 5 : 3,
+    };
+    D.markComplete(record);
+    D.setStatus(statusPill, 'complete');
+    approval.classList.remove('show');
+    D.lockForm(formPanel);
+    document.getElementById('approve').disabled = true;
+    document.getElementById('reject').disabled = true;
+    D.showCompletion(completion, record, summaryHtml(decision));
+  }
+
+  submitBtn.addEventListener('click', async () => {
+    if (D.isComplete() || routed) return;
+
+    refId = D.refId('INV');
+    routed = true;
+    submitBtn.disabled = true;
+    D.setStatus(statusPill, 'running');
+    completion.classList.remove('show');
+    approval.classList.remove('show');
+    log.innerHTML = '';
+    steps.forEach(s => { s.classList.remove('active', 'done'); s.querySelector('[data-meta]').textContent = ''; });
+
+    const vendor = document.getElementById('vendor').value.trim();
+    const amount = document.getElementById('amount').value.trim();
+    const approver = document.getElementById('approver').value.trim();
+
+    D.addLog(log, refId + ' — ' + vendor + ' · $' + amount, 'info');
+
+    await runSteps(0, 1, [
+      { msg: 'PDF parsed · INV-2847 · due in 15 days', meta: 'invoice=INV-2847' },
+      { msg: 'Approval card → ' + approver, meta: 'awaiting=owner', type: 'info' },
+    ]);
+
+    document.getElementById('approverShow').textContent = approver;
+    approval.classList.add('show');
+    submitBtn.textContent = 'Awaiting approver action';
+  });
+
+  document.getElementById('approve').addEventListener('click', async () => {
+    if (D.isComplete()) return;
+    D.addLog(log, 'Decision: APPROVED by owner', 'ok');
+    await runSteps(2, 4, [
+      { msg: 'Audit row saved · SharePoint/AP_Log', meta: 'decision=approved' },
+      { msg: 'QuickBooks AP queue updated', meta: 'status=scheduled' },
+      { msg: '48h timeout monitor armed', meta: 'escalation=disabled', type: 'ok' },
+    ]);
+    finish('approved');
+  });
+
+  document.getElementById('reject').addEventListener('click', async () => {
+    if (D.isComplete()) return;
+    D.addLog(log, 'Decision: REJECTED — vendor notification queued', 'info');
+    steps[2].classList.add('active');
+    steps[2].querySelector('[data-meta]').textContent = 'decision=rejected';
+    await new Promise(r => setTimeout(r, 600));
+    steps[2].classList.remove('active');
+    steps[2].classList.add('done');
+    finish('rejected');
+  });
+})();
+</script>
+</body>
+</html>
