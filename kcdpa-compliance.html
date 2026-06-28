@@ -3,7 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KCDPA Compliance — Steven Gabbard IT Consulting</title>
+<title>KCDPA Compliance for Kentucky Car Dealers — Steven Gabbard IT Consulting</title>
+<meta name="description" content="Audit-ready KCDPA compliance for Kentucky car dealerships in 6 weeks. Fixed-fee packages from $2,500/yr — privacy notices, DPAs, consumer rights SOPs, and staff training.">
+<meta name="author" content="Steven Gabbard, ITAKY Consulting">
+<meta name="theme-color" content="#1a3a5c">
+<link rel="canonical" href="https://itaky.net/kcdpa-compliance.html">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/favicon.svg">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://itaky.net/kcdpa-compliance.html">
+<meta property="og:title" content="KCDPA Compliance for Kentucky Car Dealers — ITAKY Consulting">
+<meta property="og:description" content="Audit-ready consumer data privacy compliance in 6 weeks. Essentials from $2,500/yr. MFA, data inventories, privacy notices, and remediation roadmaps.">
+<meta property="og:image" content="https://itaky.net/assets/og-kcdpa.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="KCDPA Compliance for Kentucky Car Dealers">
+<meta name="twitter:description" content="Fixed-fee KCDPA readiness packages for Kentucky car dealerships. Audit-ready in 6 weeks.">
+<meta name="twitter:image" content="https://itaky.net/assets/og-kcdpa.svg">
 <style>
   :root {
     --primary: #1a3a5c;
@@ -18,7 +33,8 @@
     --border-radius: 12px;
   }
   * { margin:0; padding:0; box-sizing:border-box; }
-  body { font-family:'Segoe UI',system-ui,-apple-system,sans-serif; color:#333; background:var(--light); line-height:1.6; }
+  html { scroll-behavior:smooth; scroll-padding-top:24px; }
+  body { font-family:'Segoe UI',system-ui,-apple-system,sans-serif; color:#333; background:var(--light); line-height:1.6; overflow-x:hidden; }
 
   /* ── Hero Banner ── */
   .hero {
@@ -103,8 +119,8 @@
   .btn-tier-filled:hover { background:#e67e22;transform:translateY(-2px);box-shadow:0 6px 20px rgba(243,156,18,.3); }
 
   /* ── What's Included Detail Table ── */
-  .detail-table-wrap { max-width:900px;margin:40px auto 0; }
-  .detail-table { width:100%;border-collapse:separate;border-spacing:0;background:var(--white);border-radius:var(--border-radius);overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.06); }
+  .detail-table-wrap { max-width:900px;margin:40px auto 0;overflow-x:auto;-webkit-overflow-scrolling:touch; }
+  .detail-table { width:100%;min-width:560px;border-collapse:separate;border-spacing:0;background:var(--white);border-radius:var(--border-radius);overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.06); }
   .detail-table thead th { background:var(--primary);color:var(--white);padding:16px 18px;font-size:.9rem;text-align:left; }
   .detail-table tbody td { padding:13px 18px;border-bottom:1px solid #eef2f7;font-size:.9rem;color:#4a5568;vertical-align:top; }
   .detail-table tbody tr:last-child td { border-bottom:none; }
@@ -152,13 +168,28 @@
 
   /* ── Responsive ── */
   @media(max-width:768px) {
-    .hero h1 { font-size:1.9rem; }
-    .section { padding:40px 18px; }
-    .tier-card { padding:28px 22px; }
-    .law-alert ul { flex-direction:column;align-items:center;gap:10px; }
-    .timeline { padding-left:32px; }
-    .tl-dot { left:-41px;width:24px;height:24px;font-size:.6rem; }
-    .value-grid { grid-template-columns:1fr 1fr; }
+    .hero { padding:48px 18px 56px; }
+    .hero h1 { font-size:1.75rem; }
+    .hero p { font-size:1rem; }
+    .hero-cta { flex-direction:column;align-items:stretch; }
+    .hero-cta a { width:100%;text-align:center; }
+    .section { padding:40px 16px; }
+    .section-title h2 { font-size:1.55rem; }
+    .tier-card { padding:28px 20px; }
+    .tier-price { font-size:2.2rem; }
+    .law-alert { margin:-28px 16px 0;padding:28px 18px; }
+    .law-alert ul { flex-direction:column;align-items:flex-start;gap:10px; }
+    .timeline { padding-left:28px;padding-right:4px; }
+    .tl-dot { left:-37px;width:22px;height:22px;font-size:.55rem; }
+    .value-grid { grid-template-columns:1fr; }
+    .addons-grid { grid-template-columns:1fr; }
+    .contact-links { flex-direction:column;align-items:stretch; }
+    .contact-link { justify-content:center; }
+    .detail-table thead th, .detail-table tbody td { padding:12px 14px;font-size:.82rem; }
+  }
+  @media(max-width:380px) {
+    .hero h1 { font-size:1.55rem; }
+    .tier-card.recommended::before { font-size:.65rem;padding:4px 12px; }
   }
 </style>
 </head>
@@ -344,14 +375,14 @@
     <div class="contact-links">
       <a href="mailto:stevengabbard80@gmail.com" class="contact-link">📧 stevengabbard80@gmail.com</a>
       <a href="tel:+18594041261" class="contact-link">📞 (859) 404-1261</a>
-      <a href="https://reyarzz.github.io/steven-gabbard-consulting" class="contact-link" target="_blank" rel="noopener">🌐 Visit ITAKY.com</a>
+      <a href="https://itaky.net/" class="contact-link" target="_blank" rel="noopener noreferrer">🌐 Visit ITAKY.net</a>
     </div>
   </div>
 </section>
 
 <!-- ═══ FOOTER ═══ -->
 <footer>
-  <p>&copy; 2026 Steven Gabbard — ITAKY Consulting. All rights reserved. | <a href="https://reyarzz.github.io/steven-gabbard-consulting">reyarzz.github.io/steven-gabbard-consulting</a></p>
+  <p>&copy; 2026 Steven Gabbard — ITAKY Consulting. All rights reserved. | <a href="https://itaky.net/">itaky.net</a></p>
   <p style="margin-top:6px;">Not legal advice. Privacy notice templates recommended for attorney review.</p>
 </footer>
 
