@@ -108,8 +108,7 @@ window.DemoRunner = {
     const log = root.querySelector('.activity-log-body');
     if (log) {
       log.innerHTML = '';
-      this.addLog(log, 'Session restored — workflow already completed this visit.', 'info');
-      this.addLog(log, 'Record ' + (record.refId || record.id || 'on file') + ' · no re-run needed.', 'ok');
+      this.addLog(log, (record.refId || record.id || 'Record') + ' · complete', 'ok');
     }
     this.showCompletion(card, record, summaryHtml);
   },
