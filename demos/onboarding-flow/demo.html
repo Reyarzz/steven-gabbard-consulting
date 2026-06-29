@@ -19,106 +19,92 @@
 
 <div class="demo-header">
   <h1>Employee onboarding automation <span class="status-pill idle" data-status>Ready</span></h1>
-  <p>New hire form submission triggers manager checklist, IT provisioning tasks, and audit logging — without manual copy-paste between systems.</p>
+  <p>New hire submission routes by department — manager checklist, IT tasks, HR escalation if start date is under 5 business days.</p>
 </div>
+
+<section class="run-history">
+  <h2>Recent onboardings</h2>
+  <table>
+    <thead><tr><th>Ref</th><th>Employee</th><th>Dept</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td class="mono">ONB-48291</td><td>Maria Chen</td><td>Office Admin</td><td><span class="pill ok">Complete</span></td></tr>
+      <tr><td class="mono">ONB-48102</td><td>Tyler Brooks</td><td>Service</td><td><span class="pill ok">Complete</span></td></tr>
+      <tr><td class="mono">ONB-47988</td><td>—</td><td>Sales</td><td><span class="pill pending">In progress</span></td></tr>
+    </tbody>
+  </table>
+</section>
 
 <main class="demo-layout">
   <section class="panel" id="formPanel">
     <div class="panel-head">
-      <h2>Trigger · New hire form</h2>
-      <p>New hire form</p>
+      <h2>Microsoft Forms — New hire</h2>
+      <p>Incoming submission</p>
     </div>
     <div class="panel-body">
-      <div class="field">
-        <label for="name">Employee name</label>
-        <input id="name" value="Jordan Smith" autocomplete="off">
+      <div class="form-app-chrome">
+        <div class="bar">HR Intake · Acme Office LLC</div>
+        <div class="inner">
+          <div class="field">
+            <label for="name">Employee name</label>
+            <input id="name" value="Jordan Smith" autocomplete="off">
+          </div>
+          <div class="field">
+            <label for="dept">Department</label>
+            <select id="dept">
+              <option>Office Admin</option>
+              <option>Sales</option>
+              <option>Service</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="start">Start date</label>
+            <input id="start" type="date">
+          </div>
+          <div class="field">
+            <label for="manager">Manager email</label>
+            <input id="manager" value="manager@acme-office.demo" autocomplete="off">
+          </div>
+        </div>
       </div>
-      <div class="field">
-        <label for="dept">Department</label>
-        <select id="dept">
-          <option>Office Admin</option>
-          <option>Sales</option>
-          <option>Service</option>
-        </select>
+      <div class="rules-box" id="rulesBox">
+        <strong>Routing rules:</strong> Sales → CRM + phone provision · Service → safety cert + keys · Start &lt; 5 days → HR escalation
       </div>
-      <div class="field">
-        <label for="start">Start date</label>
-        <input id="start" type="date">
-      </div>
-      <div class="field">
-        <label for="manager">Manager email</label>
-        <input id="manager" value="manager@acme-office.demo" autocomplete="off">
-      </div>
+      <div class="escalation" id="escalation">Start date within 5 business days — HR notified automatically.</div>
       <button class="btn-primary" id="run" type="button" data-run data-action>Submit and run workflow</button>
 
       <div class="completion-card" id="completion">
         <h3>Onboarding workflow completed</h3>
         <dl></dl>
         <div data-completion-body class="footnote"></div>
-        <div class="reset-row"><button type="button" data-reset>Reset</button></div>
+        <div class="reset-row"><button type="button" data-reset>Reset demo</button></div>
       </div>
     </div>
   </section>
 
   <section class="panel">
     <div class="panel-head">
-      <h2>Automation pipeline</h2>
-      <p>What runs automatically</p>
+      <h2>Automation run</h2>
+      <p>Actions executed</p>
     </div>
     <div class="panel-body">
-      <div class="pipeline" id="pipeline">
-        <div class="step" data-step="0">
-          <div class="step-marker">1</div>
-          <div class="step-body">
-            <h3>Form submitted</h3>
-            <p>Webhook receives structured new-hire payload</p>
-            <div class="step-meta" data-meta></div>
-          </div>
-        </div>
-        <div class="step" data-step="1">
-          <div class="step-marker">2</div>
-          <div class="step-body">
-            <h3>Manager checklist email</h3>
-            <p>Outlook or Gmail: desk, keys, first-week schedule</p>
-            <div class="step-meta" data-meta></div>
-          </div>
-        </div>
-        <div class="step" data-step="2">
-          <div class="step-marker">3</div>
-          <div class="step-body">
-            <h3>IT task list created</h3>
-            <p>M365 account, workstation prep, MFA, asset tag</p>
-            <div class="step-meta" data-meta></div>
-          </div>
-        </div>
-        <div class="step" data-step="3">
-          <div class="step-marker">4</div>
-          <div class="step-body">
-            <h3>Teams notification</h3>
-            <p>IT queue alerted with start date and owner</p>
-            <div class="step-meta" data-meta></div>
-          </div>
-        </div>
-        <div class="step" data-step="4">
-          <div class="step-marker">5</div>
-          <div class="step-body">
-            <h3>Audit log updated</h3>
-            <p>Row appended to SharePoint list or Google Sheet</p>
-            <div class="step-meta" data-meta></div>
-          </div>
-        </div>
-      </div>
-      <div class="activity-log">
-        <div class="activity-log-head">Activity log</div>
-        <div class="activity-log-body" id="log"></div>
+      <ul class="checklist" id="checklist">
+        <li data-i="0"><span class="dot"></span><div><strong>Form validated</strong><span>Webhook payload accepted</span></div><span class="meta"></span></li>
+        <li data-i="1"><span class="dot"></span><div><strong>Manager checklist</strong><span>Dept-specific tasks emailed</span></div><span class="meta"></span></li>
+        <li data-i="2"><span class="dot"></span><div><strong>IT provisioning</strong><span>Planner tasks created</span></div><span class="meta"></span></li>
+        <li data-i="3"><span class="dot"></span><div><strong>Teams alert</strong><span>#it-onboarding notified</span></div><span class="meta"></span></li>
+        <li data-i="4"><span class="dot"></span><div><strong>Audit log</strong><span>SharePoint row appended</span></div><span class="meta"></span></li>
+      </ul>
+      <div class="log-scroll" style="max-height:140px;overflow-y:auto;">
+        <table class="log-table">
+          <thead><tr><th>Time</th><th>Event</th><th>Status</th></tr></thead>
+          <tbody id="log"></tbody>
+        </table>
       </div>
     </div>
   </section>
 </main>
 
-<footer class="demo-footer">
-  ITAKY Technology · <a href="https://itaky.net/">itaky.net</a>
-</footer>
+<footer class="demo-footer">ITAKY Technology · <a href="https://itaky.net/">itaky.net</a></footer>
 
 <script src="../shared/demo.js"></script>
 <script>
@@ -127,33 +113,36 @@
   const formPanel = document.getElementById('formPanel');
   const runBtn = document.getElementById('run');
   const log = document.getElementById('log');
+  const checklist = document.getElementById('checklist');
   const completion = document.getElementById('completion');
-  const steps = [...document.querySelectorAll('.step')];
   const statusPill = document.querySelector('[data-status]');
+  const escalation = document.getElementById('escalation');
+  const startInput = document.getElementById('start');
 
-  document.getElementById('start').valueAsDate = new Date(Date.now() + 7 * 86400000);
+  startInput.valueAsDate = new Date(Date.now() + 7 * 86400000);
   D.bindReset(document.querySelector('[data-reset]'));
 
-  const stepLogs = [
-    () => 'POST /webhooks/onboarding — payload validated',
-    () => 'Email queued → ' + document.getElementById('manager').value,
-    () => 'Planner tasks: AD account, laptop, MFA enrollment',
-    () => 'Teams message → #it-onboarding',
-    () => 'SharePoint list OnboardingTracker — row appended',
-  ];
+  function daysUntilStart() {
+    const d = new Date(startInput.value);
+    const now = new Date();
+    return Math.ceil((d - now) / 86400000);
+  }
 
-  const stepMeta = [
-    () => 'employee=' + document.getElementById('name').value,
-    () => 'template=manager-checklist-v2',
-    () => 'tasks=3 · due=' + document.getElementById('start').value,
-    () => 'channel=it-onboarding',
-    () => 'status=complete',
-  ];
+  startInput.addEventListener('change', () => {
+    escalation.classList.toggle('show', daysUntilStart() < 5);
+  });
+
+  function deptExtras(dept) {
+    if (dept === 'Sales') return 'CRM seat + desk phone';
+    if (dept === 'Service') return 'safety cert + truck keys';
+    return 'desk + building access';
+  }
 
   if (D.init('onboarding')) {
     const record = D.getRecord();
+    checklist.querySelectorAll('li').forEach(li => li.classList.add('done'));
     D.restoreCompleted(formPanel, completion, record,
-      'Estimated manual time saved: <strong>~3.5 hours</strong> per new hire.<br>Production stack: n8n or Power Automate · ITAKY Starter from <strong>$2,500</strong>.');
+      'Est. manual time saved: <strong>~3.5 hrs</strong> per hire · ITAKY Starter from <strong>$2,500</strong>.');
     return;
   }
 
@@ -163,34 +152,37 @@
     const name = document.getElementById('name').value.trim();
     const dept = document.getElementById('dept').value;
     const refId = D.refId('ONB');
+    const urgent = daysUntilStart() < 5;
 
     runBtn.disabled = true;
     D.setStatus(statusPill, 'running');
     completion.classList.remove('show');
     log.innerHTML = '';
-    steps.forEach(s => { s.classList.remove('active', 'done'); s.querySelector('[data-meta]').textContent = ''; });
+    checklist.querySelectorAll('li').forEach(li => { li.classList.remove('active', 'done'); li.querySelector('.meta').textContent = ''; });
 
-    D.addLog(log, 'Workflow ' + refId + ' started — ' + name + ' (' + dept + ')', 'info');
+    D.addLogRow(log, refId + ' started — ' + name, 'info');
 
-    await D.animateSteps(steps, async (i) => {
-      steps[i].querySelector('[data-meta]').textContent = stepMeta[i]();
-      D.addLog(log, stepLogs[i](), i === steps.length - 1 ? 'ok' : '');
-    });
+    const steps = [
+      { meta: 'payload=valid', msg: 'POST /webhooks/onboarding' },
+      { meta: deptExtras(dept), msg: 'Email → ' + document.getElementById('manager').value },
+      { meta: 'tasks=3', msg: 'Planner: AD, laptop, MFA' },
+      { meta: urgent ? 'HR escalated' : 'standard', msg: 'Teams → #it-onboarding' },
+      { meta: 'row=appended', msg: 'SharePoint OnboardingTracker' },
+    ];
 
-    D.addLog(log, 'Workflow complete — 5 actions, 0 manual handoffs', 'ok');
+    for (let i = 0; i < steps.length; i++) {
+      D.setChecklistItem(checklist, i, 'active', steps[i].meta);
+      await new Promise(r => setTimeout(r, 700));
+      D.addLogRow(log, steps[i].msg, i === steps.length - 1 ? 'ok' : 'info');
+      D.setChecklistItem(checklist, i, 'done', steps[i].meta);
+    }
 
-    const record = {
-      'Reference': refId,
-      'Employee': name,
-      'Department': dept,
-      'Actions run': '5',
-    };
-
+    const record = { Reference: refId, Employee: name, Department: dept, Actions: urgent ? '6 (incl. HR)' : '5' };
     D.markComplete(record);
     D.setStatus(statusPill, 'complete');
     D.lockForm(formPanel);
     D.showCompletion(completion, record,
-      'Estimated manual time saved: <strong>~3.5 hours</strong> per new hire.<br>Production stack: n8n or Power Automate · ITAKY Starter from <strong>$2,500</strong>.');
+      'Est. manual time saved: <strong>~3.5 hrs</strong> per hire · ITAKY Starter from <strong>$2,500</strong>.');
   });
 })();
 </script>
