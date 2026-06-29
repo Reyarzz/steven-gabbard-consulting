@@ -83,12 +83,33 @@ window.DemoRunner = {
     logEl.scrollTop = logEl.scrollHeight;
   },
 
+  addLogRow(tableBody, msg, status) {
+    if (!tableBody) return;
+    const tr = document.createElement('tr');
+    tr.innerHTML =
+      '<td class="ts">' + this.ts() + '</td>' +
+      '<td class="msg">' + msg + '</td>' +
+      '<td class="st ' + (status || 'info') + '">' + (status === 'ok' ? 'OK' : status === 'warn' ? 'WARN' : '—') + '</td>';
+    tableBody.appendChild(tr);
+    const wrap = tableBody.closest('.log-scroll');
+    if (wrap) wrap.scrollTop = wrap.scrollHeight;
+  },
+
+  setChecklistItem(list, index, state, meta) {
+    const li = list.querySelectorAll('li')[index];
+    if (!li) return;
+    li.classList.remove('active', 'done');
+    if (state) li.classList.add(state);
+    const metaEl = li.querySelector('.meta');
+    if (metaEl && meta) metaEl.textContent = meta;
+  },
+
   showCompletion(card, record, html) {
     card.classList.add('show');
     const dl = card.querySelector('dl');
     if (dl && record) {
       dl.innerHTML = Object.entries(record)
-        .filter(([k]) => k !== 'completedAt')
+        .filter(([k]) => k !== 'completedAt' && k !== 'decision' && k !== 'stepsDone')
         .map(([k, v]) => '<dt>' + k + '</dt><dd>' + v + '</dd>')
         .join('');
     }
@@ -102,13 +123,16 @@ window.DemoRunner = {
 
   restoreCompleted(root, card, record, summaryHtml) {
     this.lockForm(root);
-    root.querySelectorAll('.step').forEach(s => s.classList.add('done'));
+    root.querySelectorAll('.checklist li, .step').forEach(s => s.classList.add('done'));
     const pill = document.querySelector('[data-status]');
     this.setStatus(pill, 'complete');
-    const log = root.querySelector('.activity-log-body');
-    if (log) {
+    const log = document.querySelector('#log');
+    if (log && log.tagName === 'TBODY') {
       log.innerHTML = '';
-      this.addLog(log, (record.refId || record.id || 'Record') + ' · complete', 'ok');
+      this.addLogRow(log, (record.Reference || record.refId || 'Record') + ' · complete', 'ok');
+    } else if (log) {
+      log.innerHTML = '';
+      this.addLog(log, (record.Reference || 'Record') + ' · complete', 'ok');
     }
     this.showCompletion(card, record, summaryHtml);
   },
