@@ -6,248 +6,59 @@
 <title>ITAKY Technology — Local IT Support + AI Automation | Stanton, KY</title>
 <meta name="description" content="ITAKY Technology — local IT support and workflow automation for small businesses. Based in Stanton, KY. Essentials retainer from $597/mo. Call (859) 404-1261.">
 <meta name="author" content="Steven Gabbard, ITAKY Technology">
-<meta name="theme-color" content="#050810">
+<meta name="theme-color" content="#0f172a">
 <link rel="canonical" href="https://itaky.net/">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/itaky-shared.css">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://itaky.net/">
 <meta property="og:title" content="ITAKY Technology — Local IT Support + AI Automation">
 <meta property="og:description" content="Based in Stanton, KY. Fixed-fee IT support and workflow automation for Kentucky small businesses.">
 <meta property="og:image" content="https://itaky.net/assets/itaky-logo.jpg">
-<style>
-  :root {
-    --primary: #0d2137;
-    --accent: #00a8ff;
-    --accent-dark: #0088cc;
-    --accent-glow: #00d4ff;
-    --dark: #050810;
-    --light: #f4f7fb;
-    --white: #ffffff;
-    --gray: #4a5568;
-    --muted: #718096;
-    --border: #e2e8f0;
-    --card-bg: #ffffff;
-  }
-  * { margin:0; padding:0; box-sizing:border-box; }
-  html { scroll-behavior:smooth; scroll-padding-top:72px; }
-  body { font-family:'Segoe UI',system-ui,-apple-system,sans-serif; color:#2d3748; background:var(--light); line-height:1.6; font-size:16px; }
-
-  nav {
-    background:var(--dark); padding:0.6rem 1.5rem; position:sticky; top:0; z-index:100;
-    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem;
-    border-bottom:2px solid var(--accent);
-    box-shadow:0 0 20px rgba(0,168,255,0.15);
-  }
-  .nav-brand { display:flex; align-items:center; text-decoration:none; }
-  .nav-brand img { height:42px; width:auto; display:block; }
-  .nav-right { display:flex; align-items:center; gap:1.25rem; flex-wrap:wrap; }
-  .nav-links { display:flex; gap:1.25rem; align-items:center; flex-wrap:wrap; }
-  .nav-links a { color:#b0c4de; text-decoration:none; font-size:0.9rem; }
-  .nav-links a:hover { color:white; }
-  .nav-phone {
-    color:white; font-weight:700; text-decoration:none; font-size:0.95rem;
-    display:flex; align-items:center; gap:0.35rem;
-  }
-  .nav-phone:hover { color:var(--accent-glow); }
-  .nav-cta {
-    background:var(--accent); color:white !important; padding:0.45rem 1rem; border-radius:6px; font-weight:600; font-size:0.9rem;
-  }
-  .nav-cta:hover { background:var(--accent-dark); color:white; }
-
-  .hero {
-    background:linear-gradient(160deg, #050810 0%, var(--primary) 45%, #0a2744 100%);
-    color:white; padding:3rem 1.5rem 4rem; text-align:center; position:relative; overflow:hidden;
-  }
-  .hero::before {
-    content:""; position:absolute; top:-30%; right:-10%; width:520px; height:520px;
-    background:radial-gradient(circle, rgba(0,168,255,0.12) 0%, transparent 70%); border-radius:50%;
-  }
-  .hero-logo {
-    max-width:min(420px, 92vw); height:auto; margin:0 auto 1.5rem; display:block;
-    filter:drop-shadow(0 0 24px rgba(0,168,255,0.35));
-  }
-  .hero-content { max-width:780px; margin:0 auto; position:relative; z-index:1; }
-  .hero-location {
-    display:inline-block; font-size:0.85rem; text-transform:uppercase; letter-spacing:1.5px;
-    color:var(--accent-glow); margin-bottom:1rem; font-weight:600;
-  }
-  .hero h1 { font-size:clamp(1.85rem, 5vw, 2.75rem); font-weight:800; line-height:1.15; margin-bottom:1rem; }
-  .hero h1 .accent { color:var(--accent-glow); }
-  .hero p { font-size:1.1rem; color:#a0b8d0; max-width:580px; margin:0 auto 1.75rem; }
-  .hero-buttons { display:flex; gap:0.75rem; justify-content:center; flex-wrap:wrap; }
-  .btn-primary {
-    background:var(--accent); color:white; padding:0.85rem 1.75rem; border-radius:8px;
-    text-decoration:none; font-weight:600; font-size:1rem; display:inline-block;
-  }
-  .btn-primary:hover { background:var(--accent-dark); }
-  .btn-secondary {
-    background:transparent; color:white; padding:0.85rem 1.75rem; border-radius:8px;
-    text-decoration:none; font-weight:600; font-size:1rem; border:2px solid #4a7c9b;
-  }
-  .btn-secondary:hover { border-color:white; }
-
-  .trust-strip {
-    background:var(--white); border-bottom:1px solid var(--border);
-    padding:1rem 1.5rem; display:flex; justify-content:center; flex-wrap:wrap; gap:1.5rem 2.5rem;
-  }
-  .trust-item { text-align:center; font-size:0.85rem; color:var(--gray); }
-  .trust-item strong { display:block; color:var(--dark); font-size:0.95rem; margin-bottom:0.15rem; }
-
-  section { padding:3.5rem 1.5rem; max-width:1100px; margin:0 auto; }
-  .section-label {
-    text-transform:uppercase; font-size:0.8rem; font-weight:700; color:var(--accent);
-    letter-spacing:1.5px; margin-bottom:0.4rem; text-align:center;
-  }
-  .section-title {
-    font-size:clamp(1.5rem, 4vw, 2rem); font-weight:800; color:var(--dark);
-    margin-bottom:2rem; text-align:center; letter-spacing:-0.5px;
-  }
-
-  .services-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:1.5rem; }
-  .service-card {
-    background:var(--card-bg); border-radius:12px; padding:2rem;
-    box-shadow:0 2px 12px rgba(0,0,0,0.06); border-top:4px solid var(--accent);
-  }
-  .service-card.featured { border-top-color:var(--primary); box-shadow:0 4px 20px rgba(26,54,93,0.12); }
-  .service-badge {
-    display:inline-block; background:#e6f6ff; color:var(--accent-dark); font-size:0.75rem;
-    font-weight:700; padding:0.2rem 0.6rem; border-radius:4px; margin-bottom:0.75rem; text-transform:uppercase;
-  }
-  .service-card h3 { font-size:1.2rem; color:var(--dark); margin-bottom:0.6rem; }
-  .service-card p { color:var(--gray); font-size:0.95rem; margin-bottom:1rem; }
-  .service-price { font-size:1.5rem; font-weight:800; color:var(--accent); }
-  .service-price span { font-size:0.9rem; font-weight:500; color:var(--muted); }
-
-  .pricing-table-wrap { overflow-x:auto; border-radius:12px; box-shadow:0 2px 12px rgba(0,0,0,0.06); }
-  table.pricing { width:100%; border-collapse:collapse; background:white; font-size:0.95rem; }
-  table.pricing th, table.pricing td { padding:1rem 1.25rem; text-align:left; border-bottom:1px solid var(--border); }
-  table.pricing th { background:var(--dark); color:white; font-weight:600; }
-  table.pricing tr.highlight td { background:#e6f6ff; font-weight:600; }
-  table.pricing .price { color:var(--accent); font-weight:700; white-space:nowrap; }
-  .pricing-note { text-align:center; margin-top:1rem; font-size:0.9rem; color:var(--muted); }
-
-  .steps { display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1.5rem; }
-  .step { text-align:center; padding:1.5rem 1rem; }
-  .step-num {
-    width:44px; height:44px; background:var(--accent); color:white; border-radius:50%;
-    display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1.1rem;
-    margin:0 auto 1rem;
-  }
-  .step h3 { font-size:1.05rem; margin-bottom:0.5rem; color:var(--dark); }
-  .step p { font-size:0.9rem; color:var(--gray); }
-
-  .proof-box {
-    background:white; border-radius:12px; padding:2rem; border:2px dashed var(--border); text-align:center;
-  }
-  .proof-box h3 { color:var(--dark); margin-bottom:0.75rem; }
-  .proof-box p { color:var(--gray); max-width:520px; margin:0 auto; font-size:0.95rem; }
-  .proof-list { text-align:left; max-width:480px; margin:1.25rem auto 0; list-style:none; }
-  .proof-list li { padding:0.4rem 0; padding-left:1.5rem; position:relative; font-size:0.95rem; color:var(--gray); }
-  .proof-list li::before { content:"✓"; position:absolute; left:0; color:var(--accent); font-weight:700; }
-
-  .about-grid { display:grid; grid-template-columns:auto 1fr; gap:2rem; align-items:start; max-width:800px; margin:0 auto; }
-  .avatar {
-    width:100px; height:100px; border-radius:50%; flex-shrink:0; object-fit:cover;
-    border:3px solid var(--accent); box-shadow:0 4px 16px rgba(0,0,0,0.15);
-  }
-  .avatar-fallback {
-    width:100px; height:100px; border-radius:50%; background:linear-gradient(135deg, var(--primary), var(--accent));
-    display:flex; align-items:center; justify-content:center; color:white; font-size:1.75rem; font-weight:800; flex-shrink:0;
-  }
-  .about-text blockquote { border-left:4px solid var(--accent); padding-left:1.25rem; color:var(--gray); font-style:italic; margin-top:1rem; }
-  .about-text p { margin-bottom:0.75rem; color:var(--gray); }
-
-  .area-box {
-    background:white; border-radius:12px; padding:2rem; box-shadow:0 2px 12px rgba(0,0,0,0.06);
-    display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:1.5rem;
-  }
-  .area-box h3 { font-size:1rem; color:var(--dark); margin-bottom:0.5rem; }
-  .area-box p { font-size:0.9rem; color:var(--gray); }
-
-  .contact-section { background:var(--dark); color:white; padding:3.5rem 1.5rem; max-width:100%; }
-  .contact-inner { max-width:700px; margin:0 auto; text-align:center; }
-  .contact-inner h2 { font-size:1.75rem; margin-bottom:0.75rem; }
-  .contact-inner > p { color:#a0b8d0; margin-bottom:1.5rem; }
-  .contact-details { display:flex; flex-wrap:wrap; justify-content:center; gap:2rem; margin-bottom:2rem; }
-  .contact-item a { color:var(--accent-glow); text-decoration:none; font-weight:700; font-size:1.15rem; }
-  .contact-item a:hover { color:white; }
-  .contact-item p { font-size:0.85rem; color:#7a9cc0; margin-top:0.25rem; }
-
-  footer {
-    background:#071018; color:#7a9cc0; text-align:center; padding:2rem 1.5rem; font-size:0.85rem;
-  }
-  footer a { color:var(--accent-glow); text-decoration:none; }
-  footer a:hover { color:white; }
-  footer .footer-links { margin:1rem 0; display:flex; justify-content:center; flex-wrap:wrap; gap:1.25rem; }
-
-  @media (max-width:768px) {
-    .nav-links { display:none; }
-    .about-grid { grid-template-columns:1fr; text-align:center; }
-    .avatar { margin:0 auto; }
-    .about-text blockquote { text-align:left; }
-  }
-</style>
 </head>
 <body>
 
 <nav>
-  <a href="/" class="nav-brand"><img src="assets/itaky-logo.jpg" alt="ITAKY — Information Technology Associates Kentucky"></a>
+  <a href="/" class="nav-brand"><img src="assets/itaky-logo.jpg" alt="ITAKY Technology"></a>
   <div class="nav-right">
     <div class="nav-links">
-      <a href="#services">Services</a>
       <a href="#pricing">Pricing</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
+      <a href="https://itaky.net/demos/">Demos</a>
     </div>
-    <a href="tel:+18594041261" class="nav-phone">📞 (859) 404-1261</a>
-    <a href="#contact" class="nav-cta">Free Consult</a>
+    <a href="tel:+18594041261" class="nav-phone">(859) 404-1261</a>
+    <a href="#contact" class="nav-cta">Free consult</a>
   </div>
 </nav>
 
 <div class="hero">
   <div class="hero-content">
-    <img src="assets/itaky-logo.jpg" alt="ITAKY — Information Technology Associates Kentucky" class="hero-logo" width="420" height="auto">
-    <p class="hero-location">Stanton, Kentucky · Serving Eastern KY &amp; Bowling Green</p>
-    <h1>I fix what's broken<br>and <span class="accent">build what's next.</span></h1>
-    <p>Local IT support and workflow automation for small businesses. One call, fixed fees, no jargon — just work that gets done.</p>
+    <img src="assets/itaky-logo.jpg" alt="ITAKY Technology" class="hero-logo" width="320" height="auto">
+    <p class="hero-location">Stanton · Powell County · Bowling Green area</p>
+    <h1>IT support and workflow automation for small businesses in Central Kentucky</h1>
+    <p>One call, fixed fees, no jargon. I fix what's broken and build automations that save real hours.</p>
     <div class="hero-buttons">
-      <a href="tel:+18594041261" class="btn-primary">Call (859) 404-1261</a>
-      <a href="#pricing" class="btn-secondary">See Pricing</a>
+      <a href="tel:+18594041261" class="btn-primary">Call now</a>
+      <a href="https://itaky.net/demos/" class="btn-secondary">See workflow demos</a>
     </div>
   </div>
 </div>
 
 <div class="trust-strip">
-  <div class="trust-item"><strong>10+ Years</strong>ITAKY legacy in Kentucky</div>
-  <div class="trust-item"><strong>Stanton, KY</strong>Powell County home base</div>
-  <div class="trust-item"><strong>Mon–Fri 8–6 ET</strong>Business hours support</div>
-  <div class="trust-item"><strong>Fixed Fees</strong>No surprise hourly bills</div>
+  <div class="trust-item"><strong>15+ years</strong>ITAKY legacy in Kentucky</div>
+  <div class="trust-item"><strong>Stanton, KY</strong>Local home base</div>
+  <div class="trust-item"><strong>Mon–Fri 8–6 ET</strong>Business hours</div>
+  <div class="trust-item"><strong>Fixed fees</strong>No surprise bills</div>
 </div>
 
-<section id="services">
-  <p class="section-label">What I Do</p>
-  <h2 class="section-title">Two Ways I Help Small Businesses</h2>
-  <div class="services-grid">
-    <div class="service-card featured">
-      <span class="service-badge">Launch offer</span>
-      <h3>Ongoing IT Support</h3>
-      <p>Your local IT guy on retainer — remote troubleshooting, vendor calls, new user setup, and the "just call someone" problems that keep your office running.</p>
-      <div class="service-price">$597<span>/mo</span></div>
-      <p style="margin-top:0.5rem;font-size:0.85rem;color:var(--muted);">Essentials tier · 5 users, 8 devices, 3 hrs/mo</p>
-    </div>
-    <div class="service-card">
-      <span class="service-badge">High impact</span>
-      <h3>Workflow Automation</h3>
-      <p>I automate the busywork — invoice routing, onboarding checklists, lead follow-ups, data entry between systems. Fixed price, documented handoff.</p>
-      <div class="service-price">$2,500<span>+</span></div>
-      <p style="margin-top:0.5rem;font-size:0.85rem;color:var(--muted);">Starter package · one workflow</p>
-    </div>
-  </div>
-</section>
-
 <section id="pricing">
-  <p class="section-label">Transparent Pricing</p>
-  <h2 class="section-title">Know What You're Paying Before You Call</h2>
+  <p class="section-label">Services &amp; pricing</p>
+  <h2 class="section-title">Know what you're paying before you call</h2>
+  <div class="services-intro">
+    <p><strong>Ongoing IT support</strong> — your local guy on retainer. Remote troubleshooting, vendor calls, new user setup.</p>
+    <p><strong>Workflow automation</strong> — invoice routing, onboarding, lead follow-up. Fixed price, documented handoff. Starter projects from <span class="mono">$2,500</span>.</p>
+  </div>
   <div class="pricing-table-wrap">
     <table class="pricing">
       <thead>
@@ -255,17 +66,17 @@
       </thead>
       <tbody>
         <tr class="highlight">
-          <td><strong>Essentials Retainer</strong> ⭐</td>
+          <td><strong>Essentials retainer</strong></td>
           <td class="price">$597/mo</td>
           <td>5 users, 8 devices, 3 hrs/mo included</td>
         </tr>
         <tr>
-          <td>Standard Retainer</td>
+          <td>Standard retainer</td>
           <td class="price">$997/mo</td>
           <td>15 users, 20 devices, 6 hrs/mo</td>
         </tr>
         <tr>
-          <td>Plus Retainer</td>
+          <td>Plus retainer</td>
           <td class="price">$1,497/mo</td>
           <td>25 users, 35 devices, 10 hrs/mo</td>
         </tr>
@@ -275,54 +86,42 @@
           <td>Remote support, 1 hr minimum</td>
         </tr>
         <tr>
-          <td>Automation Starter</td>
+          <td>Automation starter</td>
           <td class="price">$2,500</td>
           <td>One workflow or simple FAQ bot</td>
         </tr>
         <tr>
-          <td>Automation Growth</td>
+          <td>Automation growth</td>
           <td class="price">$5,500</td>
           <td>2–3 workflows + doc processing</td>
         </tr>
         <tr>
-          <td>IT Health Check</td>
+          <td>IT health check</td>
           <td class="price">$750</td>
           <td>2-page assessment, top 3 fixes</td>
         </tr>
       </tbody>
     </table>
   </div>
-  <p class="pricing-note">3-month minimum on retainers, then month-to-month. Overage billed at $135/hr. All quotes in writing before work starts.</p>
+  <p class="pricing-note">3-month minimum on retainers, then month-to-month. Overage at $135/hr. All quotes in writing before work starts.</p>
 </section>
 
 <section id="how">
-  <p class="section-label">Simple Process</p>
-  <h2 class="section-title">How It Works</h2>
-  <div class="steps">
-    <div class="step">
-      <div class="step-num">1</div>
-      <h3>Free Consultation</h3>
-      <p>20-minute call. Tell me what's broken or eating your time. No pressure, no jargon.</p>
-    </div>
-    <div class="step">
-      <div class="step-num">2</div>
-      <h3>Fixed Quote</h3>
-      <p>I send scope and price in writing. You know exactly what you're getting before anything starts.</p>
-    </div>
-    <div class="step">
-      <div class="step-num">3</div>
-      <h3>I Build / Fix It</h3>
-      <p>Work gets done, documented, and handed off. Optional retainer if you want me in your corner ongoing.</p>
-    </div>
-  </div>
+  <p class="section-label">How it works</p>
+  <h2 class="section-title">Simple process</h2>
+  <ol class="process-list">
+    <li><strong>Free consultation</strong><span>20-minute call. Tell me what's broken or eating your time.</span></li>
+    <li><strong>Fixed quote</strong><span>Scope and price in writing before anything starts.</span></li>
+    <li><strong>I build or fix it</strong><span>Documented handoff. Optional retainer if you want ongoing support.</span></li>
+  </ol>
 </section>
 
 <section id="proof">
-  <p class="section-label">Results</p>
-  <h2 class="section-title">What You Get</h2>
+  <p class="section-label">Proof</p>
+  <h2 class="section-title">Try the workflows</h2>
   <div class="proof-box">
-    <h3>Live workflow demos</h3>
-    <p>Try two interactive examples — onboarding automation and invoice approval. <a href="https://itaky.net/demos/" style="color:var(--accent);font-weight:600;">itaky.net/demos</a></p>
+    <h3>Live interactive demos</h3>
+    <p>Onboarding automation and invoice approval — <a href="https://itaky.net/demos/">itaky.net/demos</a></p>
     <ul class="proof-list">
       <li>Written scope and fixed price before work starts</li>
       <li>Documentation you can hand to any future IT person</li>
@@ -334,34 +133,32 @@
 
 <section id="about">
   <p class="section-label">About</p>
-  <h2 class="section-title">The Next Chapter of ITAKY</h2>
+  <h2 class="section-title">The next chapter of ITAKY</h2>
   <div class="about-grid">
-    <img src="assets/steven-headshot.jpg" alt="Steven Gabbard, ITAKY Technology" class="avatar" width="100" height="100">
+    <img src="assets/steven-headshot.jpg" alt="Steven Gabbard" class="avatar" width="96" height="96">
     <div class="about-text">
-      <p><strong>I'm Steven Gabbard.</strong> I spent four years running operations at ITAKY — client management, tech support, admin workflows, the unglamorous work that keeps a business moving.</p>
-      <p>My father, <strong>Anthony Gabbard</strong>, built ITAKY over a decade ago in Kentucky on trust, competence, and showing up when things broke. I'm carrying his legacy forward from Stanton with modern tools — old-school support plus automation that saves real hours.</p>
-      <blockquote>
-        ITAKY isn't buzzwords. It's getting work done right, for real people who run real businesses.
-      </blockquote>
+      <p><strong>I'm Steven Gabbard.</strong> Four years running operations at ITAKY — client management, tech support, admin workflows.</p>
+      <p>My father <strong>Anthony Gabbard</strong> built ITAKY over a decade ago in Kentucky on trust and showing up when things broke. I'm carrying that forward from Stanton with modern automation that saves real hours.</p>
+      <blockquote>ITAKY isn't buzzwords. It's getting work done right, for real people who run real businesses.</blockquote>
     </div>
   </div>
 </section>
 
 <section id="area">
-  <p class="section-label">Service Area</p>
-  <h2 class="section-title">Where I Work</h2>
+  <p class="section-label">Service area</p>
+  <h2 class="section-title">Where I work</h2>
   <div class="area-box">
     <div>
-      <h3>🏠 Home Base</h3>
-      <p>Stanton, Powell County, KY — on-site available locally.</p>
+      <h3>Home base</h3>
+      <p>Stanton, Powell County — on-site available locally.</p>
     </div>
     <div>
-      <h3>📍 Eastern Kentucky</h3>
+      <h3>Eastern Kentucky</h3>
       <p>Powell, Montgomery, Clark, Estill, Wolfe and surrounding counties.</p>
     </div>
     <div>
-      <h3>🚗 Bowling Green &amp; South-Central</h3>
-      <p>Remote support + scheduled on-site visits by appointment.</p>
+      <h3>Bowling Green</h3>
+      <p>Remote support + scheduled on-site by appointment.</p>
     </div>
   </div>
 </section>
@@ -369,7 +166,7 @@
 <div class="contact-section" id="contact">
   <div class="contact-inner">
     <h2>Ready to stop wasting time on busywork?</h2>
-    <p>Free consultation. Call, text, or email — I pick up during business hours.</p>
+    <p>Free consultation. Call, text, or email during business hours.</p>
     <div class="contact-details">
       <div class="contact-item">
         <a href="tel:+18594041261">(859) 404-1261</a>
@@ -377,29 +174,26 @@
       </div>
       <div class="contact-item">
         <a href="mailto:itakysupport@gmail.com">itakysupport@gmail.com</a>
-        <p>Email anytime</p>
+        <p>Email</p>
       </div>
     </div>
-    <a href="tel:+18594041261" class="btn-primary">Call Now →</a>
-    <p style="margin-top:1.25rem;font-size:0.85rem;color:#7a9cc0;">Mon–Fri, 8:00 AM – 6:00 PM ET<br><span style="opacity:0.9;">Rebuilding ITAKY in Stanton — founding client rates on your free consult.</span></p>
+    <a href="tel:+18594041261" class="btn-primary">Call now</a>
+    <p class="contact-note">Mon–Fri, 8:00 AM – 6:00 PM ET · Founding client rates on your free consult.</p>
   </div>
 </div>
 
 <footer>
-  <p><strong style="color:white;">ITAKY Technology</strong> · Stanton, KY</p>
+  <p><strong style="color:#f1f5f9;">ITAKY Technology</strong> · Stanton, KY</p>
   <div class="footer-links">
-    <a href="#services">Services</a>
     <a href="#pricing">Pricing</a>
     <a href="#about">About</a>
     <a href="#contact">Contact</a>
-    <a href="kcdpa-compliance.html">KCDPA Compliance</a>
+    <a href="https://itaky.net/demos/">Demos</a>
+    <a href="kcdpa-compliance.html">KCDPA</a>
   </div>
-  <p style="margin-top:0.75rem;">
-    <a href="mailto:itakysupport@gmail.com">itakysupport@gmail.com</a> ·
-    <a href="tel:+18594041261">(859) 404-1261</a>
-  </p>
-  <p style="margin-top:0.75rem;">Founded by Anthony Gabbard · Continued by Steven Gabbard</p>
-  <p style="margin-top:0.75rem;">&copy; 2026 ITAKY Technology. All rights reserved.</p>
+  <p><a href="mailto:itakysupport@gmail.com">itakysupport@gmail.com</a> · <a href="tel:+18594041261">(859) 404-1261</a></p>
+  <p style="margin-top:0.5rem;">Founded by Anthony Gabbard · Continued by Steven Gabbard</p>
+  <p style="margin-top:0.5rem;">&copy; 2026 ITAKY Technology</p>
 </footer>
 
 </body>
