@@ -26,7 +26,7 @@
   <section class="panel" id="formPanel">
     <div class="panel-head">
       <h2>Trigger · Invoice received</h2>
-      <p>Email rule or n8n trigger on PDF attachment</p>
+      <p>Invoice received</p>
     </div>
     <div class="panel-body">
       <div class="email-card">
@@ -52,7 +52,7 @@
 
       <div class="approval-card" id="approval">
         <h4>Approval request sent</h4>
-        <p>Adaptive card delivered to <strong id="approverShow"></strong>. Choose an action to continue the workflow.</p>
+        <p>Sent to <strong id="approverShow"></strong></p>
         <div class="approval-actions">
           <button type="button" class="btn-approve" id="approve" data-action>Approve</button>
           <button type="button" class="btn-reject" id="reject" data-action>Reject</button>
@@ -63,7 +63,7 @@
         <h3>Approval workflow completed</h3>
         <dl></dl>
         <div data-completion-body class="footnote"></div>
-        <div class="reset-row"><button type="button" data-reset>Reset demo for another walkthrough</button></div>
+        <div class="reset-row"><button type="button" data-reset>Reset</button></div>
       </div>
     </div>
   </section>
@@ -71,7 +71,7 @@
   <section class="panel">
     <div class="panel-head">
       <h2>Approval pipeline</h2>
-      <p>Routing, decision log, AP handoff, timeout escalation</p>
+      <p>What runs automatically</p>
     </div>
     <div class="panel-body">
       <div class="pipeline" id="pipeline">
@@ -118,14 +118,14 @@
       </div>
       <div class="activity-log">
         <div class="activity-log-head">Activity log</div>
-        <div class="activity-log-body" id="log"><div class="info">Waiting for invoice routing.</div></div>
+        <div class="activity-log-body" id="log"></div>
       </div>
     </div>
   </section>
 </main>
 
 <footer class="demo-footer">
-  ITAKY Technology · Portfolio demonstration · Not connected to live systems · <a href="https://itaky.net/">itaky.net</a>
+  ITAKY Technology · <a href="https://itaky.net/">itaky.net</a>
 </footer>
 
 <script src="../shared/demo.js"></script>
