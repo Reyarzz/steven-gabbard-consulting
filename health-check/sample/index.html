@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>IT Health Check — Sample Report (Redacted) — ITAKY Technology</title>
+<meta name="robots" content="noindex">
+<style>
+  @page { size: letter; margin: 0.6in; }
+  @media print {
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; padding: 0; }
+    .no-print { display: none; }
+    tr { page-break-inside: avoid; }
+    h2 { page-break-after: avoid; }
+  }
+  :root { --navy: #1a365d; --green: #2f855a; --gray: #4a5568; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    color: #2d3748;
+    line-height: 1.45;
+    font-size: 10.5pt;
+    max-width: 7.3in;
+    margin: 0 auto;
+    padding: 0.4in;
+  }
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    border-bottom: 3px solid var(--green);
+    padding-bottom: 12px;
+    margin-bottom: 16px;
+  }
+  .brand { font-size: 17pt; font-weight: 800; color: var(--navy); flex: 1; }
+  .brand small { display: block; font-size: 9pt; font-weight: 500; color: var(--gray); margin-top: 4px; }
+  .meta { text-align: right; font-size: 9pt; color: var(--gray); flex-shrink: 0; }
+  .sample-banner {
+    background: #fffaf0;
+    border: 1px solid #ed8936;
+    color: #744210;
+    padding: 8px 12px;
+    font-size: 9pt;
+    margin-bottom: 12px;
+    border-radius: 4px;
+  }
+  h1 { font-size: 15pt; color: var(--navy); margin-bottom: 4px; }
+  .subtitle { font-size: 9.5pt; color: var(--gray); margin-bottom: 16px; }
+  h2 {
+    font-size: 10.5pt;
+    color: var(--navy);
+    margin: 14px 0 6px;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 4px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 9.5pt; margin-bottom: 10px; }
+  th, td { border: 1px solid #cbd5e0; padding: 7px 8px; text-align: left; vertical-align: top; }
+  th { background: #f7fafc; width: 34%; font-weight: 600; }
+  .status-fail { color: #c53030; font-weight: 700; }
+  .status-partial { color: #b7791f; font-weight: 700; }
+  .status-pass { color: var(--green); font-weight: 700; }
+  .findings {
+    background: #f0fff4;
+    border-left: 4px solid var(--green);
+    padding: 10px 12px;
+    margin: 10px 0;
+  }
+  .findings ol { margin-left: 20px; }
+  .findings li { margin-bottom: 8px; }
+  footer {
+    margin-top: 18px;
+    padding-top: 10px;
+    border-top: 1px solid #e2e8f0;
+    font-size: 8.5pt;
+    color: var(--gray);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .price-box {
+    background: var(--navy);
+    color: white;
+    padding: 10px 12px;
+    border-radius: 6px;
+    font-size: 9.5pt;
+    margin-top: 12px;
+  }
+  .price-box strong { color: #9ae6b4; }
+  .no-print {
+    margin-bottom: 16px;
+    padding: 12px;
+    background: #ebf8ff;
+    border-radius: 6px;
+    font-size: 10pt;
+  }
+</style>
+</head>
+<body>
+
+<div class="no-print">
+  <strong>SAMPLE ONLY — fictional client for sales demos</strong> · Ctrl+P → Save as PDF<br>
+  Blank template: <code>itaky-health-check.html</code>
+</div>
+
+<div class="sample-banner">SAMPLE REPORT — Redacted fictional business · Not a real client assessment</div>
+
+<header>
+  <div class="brand">
+    ITAKY
+    <small>ITAKY Technology · Stanton, KY · (859) 404-1261 · itaky.net</small>
+  </div>
+  <div class="meta">
+    <strong>IT Health Check</strong><br>
+    Date: 06/15/2026<br>
+    Assessor: Steven Gabbard
+  </div>
+</header>
+
+<h1>IT Health Check Report</h1>
+<p class="subtitle">2-page assessment for small business IT readiness · Not a penetration test or legal compliance audit</p>
+
+<h2>Client Information</h2>
+<table>
+  <tr><th>Business name</th><td>Blue Ridge Office Supply <em>(sample)</em></td></tr>
+  <tr><th>Contact / title</th><td>Office Manager</td></tr>
+  <tr><th>Phone / email</th><td>Redacted · on file</td></tr>
+  <tr><th>Location</th><td>Montgomery County, KY</td></tr>
+  <tr><th>Staff count / devices</th><td>8 staff · 11 devices (6 PCs, 3 laptops, 2 printers)</td></tr>
+  <tr><th>Primary systems</th><td>Microsoft 365 Business Basic · QuickBooks Desktop · shared Dropbox folder</td></tr>
+</table>
+
+<h2>Assessment Summary</h2>
+<table>
+  <tr><th>Multi-factor authentication (MFA)</th><td class="status-partial">Partial — owner has MFA; 3 staff accounts without</td></tr>
+  <tr><th>Backup — last verified restore</th><td class="status-fail">Fail — backup runs nightly; restore never tested (last attempt 2023)</td></tr>
+  <tr><th>Windows / patch status</th><td class="status-partial">Partial — 2 PCs on Windows 10 past support; updates deferred</td></tr>
+  <tr><th>Admin accounts / shared passwords</th><td class="status-fail">Fail — QuickBooks shared login; Wi-Fi password on sticky note</td></tr>
+  <tr><th>Email security (SPF/DKIM if known)</th><td class="status-pass">Pass — SPF/DKIM configured on domain</td></tr>
+  <tr><th>Wi-Fi / guest network separation</th><td class="status-fail">Fail — single SSID for staff and visitors</td></tr>
+  <tr><th>Antivirus / endpoint protection</th><td class="status-partial">Partial — Defender on some PCs; no central dashboard</td></tr>
+  <tr><th>Documented IT contact / vendor list</th><td class="status-fail">Fail — no vendor list; previous IT contact outdated</td></tr>
+</table>
+
+<h2>Top 3 Recommended Fixes</h2>
+<div class="findings">
+  <ol>
+    <li><strong>Enable MFA on all M365 accounts</strong> — especially admin and QuickBooks users. Estimated 2 hrs with Essentials retainer onboarding.</li>
+    <li><strong>Verify backup restore this quarter</strong> — run test restore to spare folder; document date. Prevents silent backup failure.</li>
+    <li><strong>Separate guest Wi-Fi</strong> — isolate visitor traffic from office PCs and printers. Router config or $200 AP add-on.</li>
+  </ol>
+</div>
+
+<h2>Optional Upsell Paths</h2>
+<table>
+  <tr><th>Essentials Retainer</th><td>$597/mo — ongoing support (5 users, 8 devices, 3 hrs/mo)</td></tr>
+  <tr><th>Security Baseline Project</th><td>$1,200–$1,800 — MFA rollout, backup verification, admin audit</td></tr>
+  <tr><th>Automation Starter</th><td>$2,500 — invoice approval workflow (matches itaky.net/demos)</td></tr>
+</table>
+
+<div class="price-box">
+  <strong>This assessment:</strong> $750 fixed · Includes on-site or remote review, written report, and prioritized action list.<br>
+  Founded by Anthony Gabbard · Continued by Steven Gabbard
+</div>
+
+<footer>
+  <span>© ITAKY Technology · SAMPLE — not confidential client data</span>
+  <span>itaky.net · itakysupport@gmail.com</span>
+</footer>
+
+</body>
+</html>
