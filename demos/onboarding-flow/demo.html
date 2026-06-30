@@ -142,7 +142,7 @@
     const record = D.getRecord();
     checklist.querySelectorAll('li').forEach(li => li.classList.add('done'));
     D.restoreCompleted(formPanel, completion, record,
-      'Est. manual time saved: <strong>~3.5 hrs</strong> per hire · ITAKY Starter from <strong>$2,500</strong>.');
+      'Est. manual time saved: <strong>~3.5 hrs</strong> per hire.');
     return;
   }
 
@@ -182,7 +182,7 @@
     D.setStatus(statusPill, 'complete');
     D.lockForm(formPanel);
     D.showCompletion(completion, record,
-      'Est. manual time saved: <strong>~3.5 hrs</strong> per hire · ITAKY Starter from <strong>$2,500</strong>.');
+      'Est. manual time saved: <strong>~3.5 hrs</strong> per hire.');
   });
 })();
 </script>
