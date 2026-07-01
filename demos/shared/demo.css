@@ -308,6 +308,15 @@ nav.demo-nav .nav-brand img.demo-logo {
   border-radius: var(--radius-md);
 }
 .approval-card.show { display: block; }
+.approval-card.attention {
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.45);
+  animation: approval-pulse 1.2s ease-in-out 2;
+}
+@keyframes approval-pulse {
+  0%, 100% { box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.45); }
+  50% { box-shadow: 0 0 0 6px rgba(245, 158, 11, 0.25); }
+}
+.status-pill.awaiting { background: #fef3c7; color: #92400e; border-color: #fde68a; }
 .approval-card h4 { font-size: 0.8rem; margin-bottom: 0.3rem; }
 .approval-card p { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.5rem; }
 .approval-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }
