@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Expense Approval — ITAKY Demo</title>
 <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/demos/shared/demo.css?v=3">
+<link rel="stylesheet" href="/demos/shared/demo.css?v=4">
 <script src="/assets/ga4-config.js"></script>
 <script src="/assets/ga4.js"></script>
 </head>
@@ -84,10 +84,8 @@
           <input type="checkbox" id="hasReceipt" checked> Receipt attached
         </label>
       </div>
-      <button class="btn-primary" id="submit" type="button" data-run data-action>Submit expense</button>
-
       <div class="approval-card" id="approval">
-        <h4>Manager approval</h4>
+        <h4>Manager approval — action required</h4>
         <p>Routed to <strong id="managerShow"></strong><span id="ownerNote"></span></p>
         <p id="policyNote" class="footnote"></p>
         <div class="approval-actions">
@@ -95,6 +93,8 @@
           <button type="button" class="btn-reject" id="reject" data-action>Reject</button>
         </div>
       </div>
+
+      <button class="btn-primary" id="submit" type="button" data-run data-action>Submit expense</button>
 
       <div class="completion-card" id="completion">
         <h3>Workflow completed</h3>
@@ -266,6 +266,7 @@
     if (autoApprove) {
       D.setChecklistItem(checklist, 1, 'done', 'auto ≤$50');
       D.addLogRow(log, 'Policy: auto-approve (under threshold)', 'ok');
+      D.addLogRow(log, 'Manager step skipped — under $50 policy', 'info');
       D.setChecklistItem(checklist, 2, 'active');
       await new Promise(r => setTimeout(r, 400));
       D.setChecklistItem(checklist, 2, 'done', 'logged');
@@ -289,8 +290,9 @@
       ? 'Note: $' + perPerson.toFixed(2) + '/person exceeds $50 meal cap — manager review required.'
       : '';
 
-    approval.classList.add('show');
-    submitBtn.textContent = 'Awaiting manager';
+    D.setStatus(statusPill, 'awaiting');
+    D.showApproval(approval);
+    submitBtn.textContent = 'Awaiting manager — use card above';
   });
 
   document.getElementById('approve').addEventListener('click', async () => {
