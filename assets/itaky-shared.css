@@ -45,7 +45,7 @@ nav {
   border-bottom: 1px solid var(--border-strong);
 }
 .nav-brand { display: flex; align-items: center; text-decoration: none; }
-.nav-brand img { height: 40px; width: auto; display: block; }
+.nav-brand img { height: 40px; max-height: 40px; width: auto; max-width: 120px; object-fit: contain; display: block; }
 .nav-right { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
 .nav-links { display: flex; gap: 1.25rem; align-items: center; flex-wrap: wrap; }
 .nav-links a { color: var(--text-on-dark-muted); text-decoration: none; font-size: 0.9rem; }
@@ -76,10 +76,13 @@ nav {
 }
 .hero-content { max-width: 720px; margin: 0 auto; }
 .hero-logo {
+  width: min(320px, 85vw);
   max-width: min(320px, 85vw);
   height: auto;
+  max-height: 320px;
   margin: 0 auto 1.25rem;
   display: block;
+  object-fit: contain;
 }
 .hero-location {
   font-size: 0.9rem;
