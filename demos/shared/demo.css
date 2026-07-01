@@ -48,8 +48,25 @@ nav.demo-nav {
 }
 nav.demo-nav a { color: #94a3b8; text-decoration: none; font-size: 0.85rem; }
 nav.demo-nav a:hover { color: white; }
-.nav-brand { font-weight: 700; font-size: 0.95rem; color: white !important; }
-.nav-brand img { height: 36px; width: auto; display: block; }
+nav.demo-nav .nav-brand {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  line-height: 0;
+  max-height: 44px;
+  overflow: hidden;
+  color: white !important;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+nav.demo-nav .nav-brand img {
+  height: 36px;
+  max-height: 36px;
+  width: auto;
+  max-width: 120px;
+  object-fit: contain;
+  display: block;
+}
 .demo-nav-links { display: flex; align-items: center; gap: 0.85rem; flex-wrap: wrap; }
 .demo-nav-links a.nav-home { color: white; font-weight: 600; }
 
