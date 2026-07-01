@@ -62,7 +62,19 @@ window.DemoRunner = {
   setStatus(pill, state) {
     if (!pill) return;
     pill.className = 'status-pill ' + state;
-    pill.textContent = state === 'running' ? 'Running' : state === 'complete' ? 'Complete' : 'Ready';
+    const labels = {
+      running: 'Running',
+      complete: 'Complete',
+      awaiting: 'Awaiting approval',
+    };
+    pill.textContent = labels[state] || 'Ready';
+  },
+
+  showApproval(card) {
+    if (!card) return;
+    card.classList.add('show', 'attention');
+    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    window.setTimeout(() => card.classList.remove('attention'), 2800);
   },
 
   async animateSteps(steps, onStep, delayMs = 850) {
