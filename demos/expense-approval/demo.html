@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Expense Approval — ITAKY Demo</title>
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/demos/shared/demo.css?v=3">
+<script src="/assets/ga4-config.js"></script>
+<script src="/assets/ga4.js"></script>
+</head>
+<body>
+
+<nav class="demo-nav">
+  <a class="nav-brand" href="https://itaky.net/"><img class="demo-logo" src="/assets/itaky-logo.jpg" alt="ITAKY Technology" width="52" height="52" style="width:52px;height:52px;max-width:52px;max-height:52px;object-fit:contain"></a>
+  <div class="demo-nav-links">
+    <a class="nav-home" href="https://itaky.net/">Home</a>
+    <a href="https://itaky.net/demos/">All demos</a>
+    <span class="demo-tag">Demo 3 · Expense approval</span>
+  </div>
+</nav>
+
+<div class="demo-header">
+  <h1>Expense approval automation <span class="status-pill idle" data-status>Ready</span></h1>
+  <p>Receipt captured from field — policy rules route by category and amount, manager approves, reimbursement queue updates.</p>
+</div>
+
+<section class="run-history">
+  <h2>Last 5 expenses</h2>
+  <table>
+    <thead><tr><th>Ref</th><th>Employee</th><th>Category</th><th>Amount</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td class="mono">EXP-4412</td><td>Maria Chen</td><td>Supplies</td><td class="mono">$84</td><td><span class="pill ok">Approved</span></td></tr>
+      <tr><td class="mono">EXP-4408</td><td>Jake Field</td><td>Meals</td><td class="mono">$38</td><td><span class="pill ok">Auto-approved</span></td></tr>
+      <tr><td class="mono">EXP-4401</td><td>Dana Brooks</td><td>Travel</td><td class="mono">$1,240</td><td><span class="pill ok">Approved</span></td></tr>
+      <tr><td class="mono">EXP-4395</td><td>Chris Holt</td><td>Travel</td><td class="mono">$620</td><td><span class="pill pending">On hold</span></td></tr>
+      <tr><td class="mono">EXP-4388</td><td>Jake Field</td><td>Meals</td><td class="mono">$112</td><td><span class="pill reject">Rejected</span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<main class="demo-layout">
+  <section class="panel" id="formPanel">
+    <div class="panel-head">
+      <h2>Teams — Expense submit</h2>
+      <p>New receipt from mobile</p>
+    </div>
+    <div class="panel-body">
+      <div class="email-card">
+        <div class="row"><span>Employee</span><span id="empShow">Jake Field · Service</span></div>
+        <div class="row"><span>Submitted</span><span>Today · mobile capture</span></div>
+        <div class="row"><span>Receipt</span><span id="receiptShow">fuel-receipt-0629.jpg (248 KB)</span></div>
+        <div class="subject">Expense pending policy check</div>
+      </div>
+      <div class="rules-box">
+        <strong>Policy:</strong> Meals ≤$50 → auto · $50–$500 → manager · &gt;$500 → manager + owner · Travel requires receipt · Meals &gt;$50/person → flag
+      </div>
+      <div class="field">
+        <label for="employee">Employee</label>
+        <input id="employee" value="Jake Field" autocomplete="off">
+      </div>
+      <div class="field">
+        <label for="category">Category</label>
+        <select id="category">
+          <option value="Meals">Meals</option>
+          <option value="Travel">Travel</option>
+          <option value="Supplies">Supplies</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="amount">Amount USD</label>
+        <input id="amount" value="142.50" autocomplete="off">
+      </div>
+      <div class="field">
+        <label for="attendees">Meal attendees (if Meals)</label>
+        <input id="attendees" type="number" min="1" value="3" autocomplete="off">
+      </div>
+      <div class="field">
+        <label for="manager">Manager</label>
+        <input id="manager" value="sarah.manager@acme-office.demo" autocomplete="off" readonly>
+      </div>
+      <div class="field">
+        <label>
+          <input type="checkbox" id="hasReceipt" checked> Receipt attached
+        </label>
+      </div>
+      <button class="btn-primary" id="submit" type="button" data-run data-action>Submit expense</button>
+
+      <div class="approval-card" id="approval">
+        <h4>Manager approval</h4>
+        <p>Routed to <strong id="managerShow"></strong><span id="ownerNote"></span></p>
+        <p id="policyNote" class="footnote"></p>
+        <div class="approval-actions">
+          <button type="button" class="btn-approve" id="approve" data-action>Approve</button>
+          <button type="button" class="btn-reject" id="reject" data-action>Reject</button>
+        </div>
+      </div>
+
+      <div class="completion-card" id="completion">
+        <h3>Workflow completed</h3>
+        <dl></dl>
+        <div data-completion-body class="footnote"></div>
+        <div class="reset-row"><button type="button" data-reset>Reset demo</button></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head">
+      <h2>Expense automation log</h2>
+      <p>Policy + audit trail</p>
+    </div>
+    <div class="panel-body">
+      <ul class="checklist" id="checklist">
+        <li data-i="0"><span class="dot"></span><div><strong>Receipt validated</strong><span>OCR amount + category</span></div><span class="meta"></span></li>
+        <li data-i="1"><span class="dot"></span><div><strong>Policy engine</strong><span>Threshold + category rules</span></div><span class="meta"></span></li>
+        <li data-i="2"><span class="dot"></span><div><strong>Decision recorded</strong><span>Expense_Log row</span></div><span class="meta"></span></li>
+        <li data-i="3"><span class="dot"></span><div><strong>Reimbursement queue</strong><span>Payroll / QB export</span></div><span class="meta"></span></li>
+      </ul>
+      <div class="log-scroll" style="max-height:160px;overflow-y:auto;">
+        <table class="log-table">
+          <thead><tr><th>Time</th><th>Event</th><th>Status</th></tr></thead>
+          <tbody id="log"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="demo-footer">ITAKY Technology · <a href="https://itaky.net/">itaky.net</a></footer>
+
+<script src="../shared/demo.js"></script>
+<script>
+(function () {
+  const D = window.DemoRunner;
+  const formPanel = document.getElementById('formPanel');
+  const submitBtn = document.getElementById('submit');
+  const approval = document.getElementById('approval');
+  const completion = document.getElementById('completion');
+  const log = document.getElementById('log');
+  const checklist = document.getElementById('checklist');
+  const statusPill = document.querySelector('[data-status]');
+  let refId = '';
+  let routed = false;
+  let needsManager = true;
+
+  D.bindReset(document.querySelector('[data-reset]'));
+
+  function parseAmount() {
+    return parseFloat(String(document.getElementById('amount').value).replace(/[^0-9.]/g, '')) || 0;
+  }
+
+  function perPersonMeal(amt, attendees) {
+    return amt / Math.max(1, attendees);
+  }
+
+  function summaryHtml(decision, auto) {
+    if (decision === 'approved') {
+      return auto
+        ? 'Under policy — <strong>auto-approved</strong>. Est. <strong>~4 hrs/month</strong> saved vs email shoebox.'
+        : 'Est. <strong>~4 hrs/month</strong> saved on expense routing + month-end chase.';
+    }
+    return 'Employee notified · policy note logged · no reimbursement queued.';
+  }
+
+  if (D.init('expense')) {
+    const record = D.getRecord();
+    checklist.querySelectorAll('li').forEach((li, i) => {
+      if (record.decision === 'approved' || record.decision === 'auto') {
+        li.classList.add('done');
+      } else if (record.decision === 'rejected' && i <= 2) {
+        li.classList.add('done');
+      }
+    });
+    D.restoreCompleted(formPanel, completion, record, summaryHtml(record.decision, record.auto));
+    return;
+  }
+
+  function finish(decision, auto) {
+    const employee = document.getElementById('employee').value.trim();
+    const amount = document.getElementById('amount').value.trim();
+    const category = document.getElementById('category').value;
+    const record = {
+      Reference: refId,
+      Employee: employee,
+      Category: category,
+      Amount: '$' + amount,
+      Decision: auto ? 'Auto-approved' : (decision === 'approved' ? 'Approved' : 'Rejected'),
+      decision: auto ? 'auto' : decision,
+      auto: !!auto,
+    };
+    D.markComplete(record);
+    D.setStatus(statusPill, 'complete');
+    approval.classList.remove('show');
+    D.lockForm(formPanel);
+    document.getElementById('approve').disabled = true;
+    document.getElementById('reject').disabled = true;
+    D.showCompletion(completion, record, summaryHtml(decision, auto));
+  }
+
+  submitBtn.addEventListener('click', async () => {
+    if (D.isComplete() || routed) return;
+
+    const category = document.getElementById('category').value;
+    const amt = parseAmount();
+    const attendees = parseInt(document.getElementById('attendees').value, 10) || 1;
+    const hasReceipt = document.getElementById('hasReceipt').checked;
+    refId = D.refId('EXP');
+
+    document.getElementById('empShow').textContent = document.getElementById('employee').value.trim() + ' · Service';
+    document.getElementById('receiptShow').textContent = hasReceipt
+      ? 'receipt-' + refId.toLowerCase() + '.jpg'
+      : '— missing —';
+
+    if (category === 'Travel' && !hasReceipt) {
+      D.addLogRow(log, refId + ' — travel without receipt', 'warn');
+      D.setChecklistItem(checklist, 0, 'done', 'hold=missing receipt');
+      D.setChecklistItem(checklist, 1, 'done', 'policy block');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Held — receipt required';
+      D.setStatus(statusPill, 'complete');
+      D.markComplete({
+        Reference: refId,
+        Employee: document.getElementById('employee').value.trim(),
+        Category: category,
+        Amount: '$' + amt,
+        Decision: 'On hold',
+        decision: 'hold',
+      });
+      completion.classList.add('show');
+      completion.querySelector('dl').innerHTML =
+        '<dt>Reference</dt><dd>' + refId + '</dd>' +
+        '<dt>Issue</dt><dd>Travel expense — receipt required</dd>';
+      completion.querySelector('[data-completion-body]').innerHTML =
+        'Routed to employee for upload · manager notified when attached.';
+      D.lockForm(formPanel);
+      return;
+    }
+
+    routed = true;
+    submitBtn.disabled = true;
+    D.setStatus(statusPill, 'running');
+    completion.classList.remove('show');
+    approval.classList.remove('show');
+    log.innerHTML = '';
+    checklist.querySelectorAll('li').forEach(li => {
+      li.classList.remove('active', 'done');
+      li.querySelector('.meta').textContent = '';
+    });
+
+    D.addLogRow(log, refId + ' — ' + document.getElementById('employee').value + ' · ' + category + ' $' + amt, 'info');
+
+    D.setChecklistItem(checklist, 0, 'active');
+    await new Promise(r => setTimeout(r, 550));
+    D.setChecklistItem(checklist, 0, 'done', 'OCR match');
+    D.addLogRow(log, 'Receipt OCR validated', 'info');
+
+    const needsOwner = amt > 500;
+    const perPerson = category === 'Meals' ? perPersonMeal(amt, attendees) : 0;
+    const mealFlag = category === 'Meals' && perPerson > 50;
+    const autoApprove = category === 'Meals' && amt <= 50 && !mealFlag;
+
+    D.setChecklistItem(checklist, 1, 'active');
+    await new Promise(r => setTimeout(r, 500));
+
+    if (autoApprove) {
+      D.setChecklistItem(checklist, 1, 'done', 'auto ≤$50');
+      D.addLogRow(log, 'Policy: auto-approve (under threshold)', 'ok');
+      D.setChecklistItem(checklist, 2, 'active');
+      await new Promise(r => setTimeout(r, 400));
+      D.setChecklistItem(checklist, 2, 'done', 'logged');
+      D.setChecklistItem(checklist, 3, 'active');
+      await new Promise(r => setTimeout(r, 400));
+      D.setChecklistItem(checklist, 3, 'done', 'queued');
+      D.addLogRow(log, 'Reimbursement queue updated', 'ok');
+      finish('approved', true);
+      return;
+    }
+
+    needsManager = true;
+    let policyMeta = needsOwner ? 'owner+manager' : 'manager';
+    if (mealFlag) policyMeta += ' · meal cap flagged';
+    D.setChecklistItem(checklist, 1, 'done', policyMeta);
+    D.addLogRow(log, 'Routed per policy rules', 'info');
+
+    document.getElementById('managerShow').textContent = document.getElementById('manager').value;
+    document.getElementById('ownerNote').textContent = needsOwner ? ' + owner (parallel)' : '';
+    document.getElementById('policyNote').textContent = mealFlag
+      ? 'Note: $' + perPerson.toFixed(2) + '/person exceeds $50 meal cap — manager review required.'
+      : '';
+
+    approval.classList.add('show');
+    submitBtn.textContent = 'Awaiting manager';
+  });
+
+  document.getElementById('approve').addEventListener('click', async () => {
+    if (D.isComplete()) return;
+    D.addLogRow(log, 'Decision: APPROVED', 'ok');
+    D.setChecklistItem(checklist, 2, 'done', 'approved');
+    D.setChecklistItem(checklist, 3, 'active');
+    await new Promise(r => setTimeout(r, 500));
+    D.setChecklistItem(checklist, 3, 'done', 'queued');
+    D.addLogRow(log, 'Payroll reimbursement queue updated', 'ok');
+    finish('approved', false);
+  });
+
+  document.getElementById('reject').addEventListener('click', async () => {
+    if (D.isComplete()) return;
+    D.addLogRow(log, 'Decision: REJECTED · employee notified', 'warn');
+    D.setChecklistItem(checklist, 2, 'done', 'rejected');
+    finish('rejected', false);
+  });
+})();
+</script>
+</body>
+</html>
