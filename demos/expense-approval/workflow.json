@@ -1,0 +1,144 @@
+{
+  "name": "ITAKY Demo — Expense Approval Flow",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Expense Submission",
+        "formFields": {
+          "values": [
+            { "fieldLabel": "Employee", "fieldType": "text", "requiredField": true },
+            { "fieldLabel": "Amount", "fieldType": "number", "requiredField": true },
+            {
+              "fieldLabel": "Category",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  { "option": "Meals" },
+                  { "option": "Travel" },
+                  { "option": "Supplies" }
+                ]
+              }
+            },
+            { "fieldLabel": "Manager Email", "fieldType": "email", "requiredField": true },
+            { "fieldLabel": "Receipt Attached", "fieldType": "boolean", "requiredField": false }
+          ]
+        }
+      },
+      "id": "expense-form",
+      "name": "Expense Form",
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.Category === 'Travel' && !$json['Receipt Attached'] }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "policy-receipt",
+      "name": "Travel — Receipt Required?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json['Manager Email'] }}",
+        "subject": "Receipt required — {{ $json.Employee }} travel expense",
+        "message": "Travel expense ${{ $json.Amount }} is on hold until a receipt is attached.\n\n— ITAKY automation demo"
+      },
+      "id": "hold-missing-receipt",
+      "name": "Hold — Missing Receipt",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2,
+      "position": [680, 420]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $json.Amount }}",
+              "operation": "smallerEqual",
+              "value2": 50
+            }
+          ]
+        }
+      },
+      "id": "policy-auto",
+      "name": "Meals — Auto Approve ≤$50?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [680, 200]
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json['Manager Email'] }}",
+        "subject": "Approve expense — {{ $json.Employee }} ${{ $json.Amount }}",
+        "message": "Expense requires approval.\n\nCategory: {{ $json.Category }}\n\nReply APPROVE or REJECT.\n\n— ITAKY automation demo"
+      },
+      "id": "route-manager",
+      "name": "Route to Manager",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2,
+      "position": [900, 120]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": { "__rl": true, "value": "SAMPLE_SHEET_ID", "mode": "id" },
+        "sheetName": { "__rl": true, "value": "Expense Log", "mode": "name" },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "At": "={{ $now.toISO() }}",
+            "Employee": "={{ $json.Employee }}",
+            "Category": "={{ $json.Category }}",
+            "Amount": "={{ $json.Amount }}",
+            "Status": "={{ $json.Amount <= 50 ? 'Auto-approved' : 'Pending' }}"
+          }
+        }
+      },
+      "id": "audit-log",
+      "name": "Audit Log",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [1120, 300]
+    }
+  ],
+  "connections": {
+    "Expense Form": {
+      "main": [[{ "node": "Travel — Receipt Required?", "type": "main", "index": 0 }]]
+    },
+    "Travel — Receipt Required?": {
+      "main": [
+        [{ "node": "Hold — Missing Receipt", "type": "main", "index": 0 }],
+        [{ "node": "Meals — Auto Approve ≤$50?", "type": "main", "index": 0 }]
+      ]
+    },
+    "Hold — Missing Receipt": {
+      "main": [[{ "node": "Audit Log", "type": "main", "index": 0 }]]
+    },
+    "Meals — Auto Approve ≤$50?": {
+      "main": [
+        [{ "node": "Audit Log", "type": "main", "index": 0 }],
+        [{ "node": "Route to Manager", "type": "main", "index": 0 }]
+      ]
+    },
+    "Route to Manager": {
+      "main": [[{ "node": "Audit Log", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": { "executionOrder": "v1" },
+  "meta": {
+    "templateCredsSetupCompleted": false,
+    "instanceId": "itaky-expense-demo"
+  },
+  "tags": [{ "name": "ITAKY" }, { "name": "Starter $2500" }]
+}
