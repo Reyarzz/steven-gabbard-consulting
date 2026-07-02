@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vendor Onboarding — ITAKY Demo</title>
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/demos/shared/demo.css?v=8">
+<script src="/assets/ga4-config.js"></script>
+<script src="/assets/ga4.js"></script>
+</head>
+<body>
+
+<nav class="demo-nav">
+  <a class="nav-brand" href="https://itaky.net/"><img class="demo-logo" src="/assets/itaky-logo.jpg" alt="ITAKY Technology" width="52" height="52" style="width:52px;height:52px;max-width:52px;max-height:52px;object-fit:contain"></a>
+  <div class="demo-nav-links">
+    <a class="nav-home" href="https://itaky.net/">Home</a>
+    <a href="https://itaky.net/demos/">All demos</a>
+    <a href="#scope">What's included</a>
+    <span class="demo-tag">Demo 6 · Vendor onboarding</span>
+  </div>
+</nav>
+
+<div class="demo-header">
+  <h1>Vendor onboarding / W-9 + COI collection <span class="status-pill idle" data-status>Ready</span></h1>
+  <p>New vendor packet intake — W-9 chase, COI expiration tracking, AP notified, audit log on every submission.</p>
+</div>
+
+<section class="run-history">
+  <h2>Recent vendor packets</h2>
+  <table>
+    <thead><tr><th>Ref</th><th>Vendor</th><th>W-9</th><th>COI</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td class="mono">VND-2201</td><td>Blue Ridge Electric</td><td><span class="pill ok">On file</span></td><td>Dec 2026</td><td><span class="pill ok">Approved</span></td></tr>
+      <tr><td class="mono">VND-2194</td><td>Valley HVAC Supply</td><td><span class="pill pending">Pending</span></td><td>—</td><td><span class="pill pending">Follow-up sent</span></td></tr>
+      <tr><td class="mono">VND-2188</td><td>ProLine Concrete</td><td><span class="pill ok">On file</span></td><td>Aug 2026</td><td><span class="pill pending">COI expiring</span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<main class="demo-layout">
+  <section class="panel" id="formPanel">
+    <div class="panel-head">
+      <h2>Microsoft Forms — New vendor packet</h2>
+      <p>Incoming submission</p>
+    </div>
+    <div class="panel-body">
+      <div class="form-app-chrome">
+        <div class="bar">Vendor Intake · Acme Construction LLC</div>
+        <div class="inner">
+          <div class="field">
+            <label for="vendor">Vendor name</label>
+            <input id="vendor" value="Summit Plumbing Co." autocomplete="off">
+          </div>
+          <div class="field">
+            <label for="email">Contact email</label>
+            <input id="email" value="ap@summitplumbing.demo" autocomplete="off">
+          </div>
+          <div class="field">
+            <label for="w9">W-9 status</label>
+            <select id="w9">
+              <option value="Yes">Yes — uploaded</option>
+              <option value="Pending" selected>Pending — not yet received</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="coi">COI expiration</label>
+            <input id="coi" type="date">
+          </div>
+        </div>
+      </div>
+      <div class="rules-box" id="rulesBox">
+        <strong>Rules:</strong> W-9 pending → auto follow-up to vendor · COI missing or &lt; 30 days → AP flag · All packets logged
+      </div>
+      <div class="escalation" id="w9Note">W-9 not on file — vendor follow-up email queued automatically.</div>
+      <div class="escalation" id="coiNote">COI missing or expiring soon — AP flagged for review.</div>
+      <button class="btn-primary" id="run" type="button" data-run data-action>Submit vendor packet</button>
+
+      <div class="completion-card" id="completion">
+        <h3>Vendor packet processed</h3>
+        <dl></dl>
+        <div data-completion-body class="footnote"></div>
+        <div class="reset-row"><button type="button" data-reset>Reset demo</button></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head">
+      <h2>Automation run</h2>
+      <p>Actions executed</p>
+    </div>
+    <div class="panel-body">
+      <ul class="checklist" id="checklist">
+        <li data-i="0"><span class="dot"></span><div><strong>Form validated</strong><span>Vendor packet accepted</span></div><span class="meta"></span></li>
+        <li data-i="1"><span class="dot"></span><div><strong>W-9 check</strong><span>On file or follow-up queued</span></div><span class="meta"></span></li>
+        <li data-i="2"><span class="dot"></span><div><strong>COI check</strong><span>Expiration validated</span></div><span class="meta"></span></li>
+        <li data-i="3"><span class="dot"></span><div><strong>AP notified</strong><span>Summary email to accounts payable</span></div><span class="meta"></span></li>
+        <li data-i="4"><span class="dot"></span><div><strong>Audit log</strong><span>Vendor_Log row appended</span></div><span class="meta"></span></li>
+      </ul>
+      <div class="log-scroll" style="max-height:140px;overflow-y:auto;">
+        <table class="log-table">
+          <thead><tr><th>Time</th><th>Event</th><th>Status</th></tr></thead>
+          <tbody id="log"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</main>
+
+<section class="scope-wrap" id="scope" aria-labelledby="scope-heading-vendor">
+  <p class="scope-intro" id="scope-heading-vendor">This page is an interactive preview. <strong>Starter delivery</strong> wires the workflow to your forms, email, and spreadsheet — tools you already own.</p>
+  <div class="scope-grid">
+    <article class="scope-card starter">
+      <div class="scope-card-head">
+        <h2>What's included — Starter</h2>
+        <span class="scope-badge starter">$2,500 fixed</span>
+      </div>
+      <span class="scope-saved">~2 hrs/vendor saved on W-9 + COI chase-down</span>
+      <p class="lead">Stops new vendor paperwork from living in email attachments and forgotten folders.</p>
+      <ul class="scope-list">
+        <li>Vendor intake form — name, contact, W-9 status, COI expiration</li>
+        <li>W-9 follow-up — auto email to vendor when not on file</li>
+        <li>COI tracking — flag missing or expiring within 30 days</li>
+        <li>AP notification — summary on every new packet</li>
+        <li>Audit log — vendor, W-9 status, COI date, timestamp</li>
+        <li>Handoff doc + 30-day tweak window</li>
+      </ul>
+      <p class="scope-not"><strong>Not included on day one:</strong> QuickBooks vendor sync, e-signature platform, or insurance certificate verification API.</p>
+      <p class="scope-cta"><a href="https://itaky.net/#contact">Book a consult →</a></p>
+    </article>
+    <article class="scope-card extend">
+      <div class="scope-card-head">
+        <h2>If you want us to go further</h2>
+        <span class="scope-badge extend">Scoped add-on</span>
+      </div>
+      <p class="lead">Connect deeper once packets are flowing and you see what's still manual.</p>
+      <ul class="scope-list">
+        <li>DocuSign / Adobe Sign — W-9 e-sign on submit</li>
+        <li>COI renewal sequence — 60/30/14-day reminders to vendor</li>
+        <li>QuickBooks vendor record — auto-create on approval</li>
+        <li>Compliance dashboard — expiring COIs rollup for owner</li>
+        <li>1099 prep export — W-9 data ready for year-end</li>
+      </ul>
+      <p class="scope-not">Each integration is quoted separately after we see your stack.</p>
+    </article>
+  </div>
+</section>
+
+<footer class="demo-footer">ITAKY Technology · <a href="https://itaky.net/">itaky.net</a></footer>
+
+<script src="../shared/demo.js"></script>
+<script>
+(function () {
+  const D = window.DemoRunner;
+  const formPanel = document.getElementById('formPanel');
+  const runBtn = document.getElementById('run');
+  const log = document.getElementById('log');
+  const checklist = document.getElementById('checklist');
+  const completion = document.getElementById('completion');
+  const statusPill = document.querySelector('[data-status]');
+  const w9Select = document.getElementById('w9');
+  const coiInput = document.getElementById('coi');
+  const w9Note = document.getElementById('w9Note');
+  const coiNote = document.getElementById('coiNote');
+
+  D.bindReset(document.querySelector('[data-reset]'));
+
+  function daysUntilCoi() {
+    const val = coiInput.value;
+    if (!val) return null;
+    const exp = new Date(val + 'T12:00:00');
+    const now = new Date();
+    now.setHours(12, 0, 0, 0);
+    return Math.ceil((exp - now) / (1000 * 60 * 60 * 24));
+  }
+
+  function updateNotes() {
+    w9Note.classList.toggle('show', w9Select.value === 'Pending');
+    const days = daysUntilCoi();
+    coiNote.classList.toggle('show', days === null || days <= 30);
+  }
+
+  w9Select.addEventListener('change', updateNotes);
+  coiInput.addEventListener('input', updateNotes);
+  updateNotes();
+
+  if (D.init('vendor-onboarding')) {
+    const record = D.getRecord();
+    checklist.querySelectorAll('li').forEach(li => li.classList.add('done'));
+    D.restoreCompleted(formPanel, completion, record,
+      'Est. time saved: <strong>~2 hrs/vendor</strong> on W-9 + COI chase-down.');
+    return;
+  }
+
+  runBtn.addEventListener('click', async () => {
+    if (D.isComplete()) return;
+
+    const vendor = document.getElementById('vendor').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const w9 = w9Select.value;
+    const coi = coiInput.value;
+    const refId = D.refId('VND');
+    const w9Pending = w9 === 'Pending';
+    const coiDays = daysUntilCoi();
+    const coiFlag = coiDays === null || coiDays <= 30;
+
+    runBtn.disabled = true;
+    D.setStatus(statusPill, 'running');
+    completion.classList.remove('show');
+    log.innerHTML = '';
+    checklist.querySelectorAll('li').forEach(li => {
+      li.classList.remove('active', 'done');
+      li.style.opacity = '';
+      li.querySelector('.meta').textContent = '';
+    });
+
+    D.addLogRow(log, refId + ' — ' + vendor + ' · W-9: ' + w9, 'info');
+
+    D.setChecklistItem(checklist, 0, 'active');
+    await new Promise(r => setTimeout(r, 600));
+    D.setChecklistItem(checklist, 0, 'done', 'accepted');
+
+    D.setChecklistItem(checklist, 1, 'active');
+    await new Promise(r => setTimeout(r, 700));
+    if (w9Pending) {
+      D.addLogRow(log, 'Gmail → ' + email + ' · "Please upload W-9"', 'warn');
+      D.setChecklistItem(checklist, 1, 'done', 'follow-up queued');
+    } else {
+      D.addLogRow(log, 'W-9 on file · no follow-up needed', 'ok');
+      D.setChecklistItem(checklist, 1, 'done', 'on file');
+    }
+
+    D.setChecklistItem(checklist, 2, 'active');
+    await new Promise(r => setTimeout(r, 600));
+    if (coiFlag) {
+      const reason = coiDays === null ? 'missing' : coiDays + ' days left';
+      D.addLogRow(log, 'COI flag · ' + reason + ' · AP alert queued', 'warn');
+      D.setChecklistItem(checklist, 2, 'done', 'flagged');
+    } else {
+      D.addLogRow(log, 'COI valid · exp ' + coi, 'ok');
+      D.setChecklistItem(checklist, 2, 'done', 'valid');
+    }
+
+    D.setChecklistItem(checklist, 3, 'active');
+    await new Promise(r => setTimeout(r, 700));
+    D.addLogRow(log, 'Gmail → ap@acme-construction.demo · "New vendor — ' + vendor + '"', 'info');
+    D.setChecklistItem(checklist, 3, 'done', 'sent');
+
+    D.setChecklistItem(checklist, 4, 'active');
+    await new Promise(r => setTimeout(r, 500));
+    D.addLogRow(log, 'Vendor_Log · intake complete · row appended', 'ok');
+    D.setChecklistItem(checklist, 4, 'done', 'logged');
+
+    const record = {
+      Reference: refId,
+      Vendor: vendor,
+      Email: email,
+      'W-9': w9,
+      'COI exp': coi || 'Not provided',
+      Action: w9Pending ? 'Follow-up queued' : (coiFlag ? 'COI flagged' : 'Approved'),
+      decision: w9Pending ? 'w9-pending' : (coiFlag ? 'coi-flag' : 'complete'),
+    };
+    D.markComplete(record);
+    D.setStatus(statusPill, 'complete');
+    D.lockForm(formPanel);
+    D.showCompletion(completion, record,
+      'Est. time saved: <strong>~2 hrs/vendor</strong> on W-9 + COI chase-down.');
+  });
+})();
+</script>
+</body>
+</html>
