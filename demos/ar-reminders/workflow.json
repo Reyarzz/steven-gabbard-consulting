@@ -1,0 +1,97 @@
+{
+  "name": "ITAKY Scaffold — AR Reminder Sequence",
+  "meta": {
+    "scaffoldId": "ar-reminders",
+    "rank": 2,
+    "status": "scaffold",
+    "extends": "invoice-approval",
+    "patterns": ["sequence-followup", "approval-router", "audit-log"],
+    "instanceId": "itaky-ar-reminders-scaffold"
+  },
+  "nodes": [
+    {
+      "parameters": {
+        "rule": { "interval": [{ "field": "cronExpression", "expression": "0 9 * * 5" }] }
+      },
+      "name": "Friday AR Sweep",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "operation": "read",
+        "documentId": { "__rl": true, "value": "SAMPLE_SHEET_ID", "mode": "id" },
+        "sheetName": { "__rl": true, "value": "Open Invoices", "mode": "name" }
+      },
+      "name": "Load Overdue Invoices",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [{ "value1": "={{ $json.daysOverdue }}", "operation": "larger", "value2": 7 }]
+        }
+      },
+      "name": "Tier 1 — 7+ days",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [680, 200]
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.customerEmail }}",
+        "subject": "Friendly reminder — invoice {{ $json.invoiceNo }}",
+        "message": "Hi,\n\nOur records show invoice {{ $json.invoiceNo }} is past due. Please let us know if you have questions.\n\nThank you."
+      },
+      "name": "Send Reminder",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2,
+      "position": [900, 200]
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.ownerEmail }}",
+        "subject": "Escalation — {{ $json.customerName }} 30+ days overdue",
+        "message": "Owner action needed on AR."
+      },
+      "name": "Escalate to Owner",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2,
+      "position": [900, 400]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": { "__rl": true, "value": "SAMPLE_SHEET_ID", "mode": "id" },
+        "sheetName": { "__rl": true, "value": "AR Log", "mode": "name" },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "At": "={{ $now.toISO() }}",
+            "Invoice": "={{ $json.invoiceNo }}",
+            "Action": "reminder_sent"
+          }
+        }
+      },
+      "name": "Audit Log",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [1100, 300]
+    }
+  ],
+  "connections": {
+    "Friday AR Sweep": { "main": [[{ "node": "Load Overdue Invoices", "type": "main", "index": 0 }]] },
+    "Load Overdue Invoices": { "main": [[{ "node": "Tier 1 — 7+ days", "type": "main", "index": 0 }]] },
+    "Tier 1 — 7+ days": {
+      "main": [
+        [{ "node": "Send Reminder", "type": "main", "index": 0 }],
+        [{ "node": "Escalate to Owner", "type": "main", "index": 0 }]
+      ]
+    },
+    "Send Reminder": { "main": [[{ "node": "Audit Log", "type": "main", "index": 0 }]] }
+  },
+  "tags": [{ "name": "ITAKY" }, { "name": "scaffold" }]
+}
