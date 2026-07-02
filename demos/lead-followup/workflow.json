@@ -1,0 +1,97 @@
+{
+  "name": "ITAKY Scaffold — Lead Follow-up Sequence",
+  "meta": {
+    "scaffoldId": "lead-followup",
+    "rank": 1,
+    "status": "scaffold",
+    "patterns": ["intake-form", "sequence-followup", "audit-log"],
+    "instanceId": "itaky-lead-followup-scaffold"
+  },
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "New Lead — Acme Office",
+        "formFields": {
+          "values": [
+            { "fieldLabel": "Contact Name", "fieldType": "text", "requiredField": true },
+            { "fieldLabel": "Email", "fieldType": "email", "requiredField": true },
+            { "fieldLabel": "Source", "fieldType": "dropdown", "fieldOptions": { "values": [{ "option": "Website" }, { "option": "Referral" }, { "option": "Event" }] } },
+            { "fieldLabel": "Owner Email", "fieldType": "email", "requiredField": true }
+          ]
+        }
+      },
+      "name": "Lead Form Submit",
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": { "__rl": true, "value": "SAMPLE_SHEET_ID", "mode": "id" },
+        "sheetName": { "__rl": true, "value": "Sequence Queue", "mode": "name" },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "contactName": "={{ $json['Contact Name'] }}",
+            "contactEmail": "={{ $json.Email }}",
+            "ownerEmail": "={{ $json['Owner Email'] }}",
+            "touches": 0,
+            "nextTouchDays": 2,
+            "stage": "new"
+          }
+        }
+      },
+      "name": "Enqueue Sequence",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [520, 300]
+    },
+    {
+      "parameters": {
+        "rule": { "interval": [{ "field": "hours", "hoursInterval": 24 }] }
+      },
+      "name": "Daily Touch Runner",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [240, 520]
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.contactEmail }}",
+        "subject": "Following up — {{ $json.contactName }}",
+        "message": "Hi {{ $json.contactName }},\n\nWanted to follow up on your inquiry. Still happy to chat when timing works.\n\n— Acme Office"
+      },
+      "name": "Send Sequence Touch",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2,
+      "position": [800, 520]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": { "__rl": true, "value": "SAMPLE_SHEET_ID", "mode": "id" },
+        "sheetName": { "__rl": true, "value": "Audit Log", "mode": "name" },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Timestamp": "={{ $now.toISO() }}",
+            "Workflow": "lead-followup",
+            "Event": "touch_sent",
+            "Detail": "={{ $json.contactEmail }}"
+          }
+        }
+      },
+      "name": "Audit Log",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [1040, 520]
+    }
+  ],
+  "connections": {
+    "Lead Form Submit": { "main": [[{ "node": "Enqueue Sequence", "type": "main", "index": 0 }]] },
+    "Daily Touch Runner": { "main": [[{ "node": "Send Sequence Touch", "type": "main", "index": 0 }]] },
+    "Send Sequence Touch": { "main": [[{ "node": "Audit Log", "type": "main", "index": 0 }]] }
+  },
+  "tags": [{ "name": "ITAKY" }, { "name": "scaffold" }]
+}
