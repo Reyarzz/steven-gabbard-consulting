@@ -1,0 +1,71 @@
+{
+  "name": "ITAKY Scaffold — Vendor Onboarding",
+  "meta": {
+    "scaffoldId": "vendor-onboarding",
+    "rank": 4,
+    "status": "scaffold",
+    "patterns": ["intake-form", "audit-log"],
+    "instanceId": "itaky-vendor-onboarding-scaffold"
+  },
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "New Vendor Packet",
+        "formFields": {
+          "values": [
+            { "fieldLabel": "Vendor Name", "fieldType": "text", "requiredField": true },
+            { "fieldLabel": "Contact Email", "fieldType": "email", "requiredField": true },
+            { "fieldLabel": "W-9 Uploaded", "fieldType": "dropdown", "fieldOptions": { "values": [{ "option": "Yes" }, { "option": "Pending" }] } },
+            { "fieldLabel": "COI Expiration", "fieldType": "date", "requiredField": false }
+          ]
+        }
+      },
+      "name": "Vendor Intake Form",
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "sendTo": "ap@example.com",
+        "subject": "New vendor — {{ $json['Vendor Name'] }}",
+        "message": "Vendor packet submitted.\n\nW-9: {{ $json['W-9 Uploaded'] }}\nCOI exp: {{ $json['COI Expiration'] || 'N/A' }}"
+      },
+      "name": "Notify AP",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2,
+      "position": [520, 200]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": { "__rl": true, "value": "SAMPLE_SHEET_ID", "mode": "id" },
+        "sheetName": { "__rl": true, "value": "Vendor Log", "mode": "name" },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Vendor": "={{ $json['Vendor Name'] }}",
+            "Email": "={{ $json['Contact Email'] }}",
+            "W9": "={{ $json['W-9 Uploaded'] }}",
+            "COI Exp": "={{ $json['COI Expiration'] }}",
+            "Status": "Intake complete",
+            "At": "={{ $now.toISO() }}"
+          }
+        }
+      },
+      "name": "Audit Log",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [760, 300]
+    }
+  ],
+  "connections": {
+    "Vendor Intake Form": {
+      "main": [[
+        { "node": "Notify AP", "type": "main", "index": 0 },
+        { "node": "Audit Log", "type": "main", "index": 0 }
+      ]]
+    }
+  },
+  "tags": [{ "name": "ITAKY" }, { "name": "scaffold" }]
+}
