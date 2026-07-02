@@ -1,0 +1,100 @@
+{
+  "name": "ITAKY Scaffold — Project Status Updates",
+  "meta": {
+    "scaffoldId": "project-status",
+    "rank": 5,
+    "status": "scaffold",
+    "patterns": ["intake-form", "sequence-followup", "audit-log"],
+    "instanceId": "itaky-project-status-scaffold"
+  },
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Project Status Update",
+        "formFields": {
+          "values": [
+            { "fieldLabel": "Project Name", "fieldType": "text", "requiredField": true },
+            { "fieldLabel": "Customer Email", "fieldType": "email", "requiredField": true },
+            { "fieldLabel": "Phase", "fieldType": "dropdown", "fieldOptions": { "values": [{ "option": "Scheduled" }, { "option": "In Progress" }, { "option": "Inspection" }, { "option": "Delayed" }, { "option": "Complete" }] } },
+            { "fieldLabel": "Percent Complete", "fieldType": "number", "requiredField": false },
+            { "fieldLabel": "Notes", "fieldType": "textarea", "requiredField": false }
+          ]
+        }
+      },
+      "name": "PM Status Form",
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json['Customer Email'] }}",
+        "subject": "Project update — {{ $json['Project Name'] }}",
+        "message": "Hi,\n\nHere's your latest project status:\n\nPhase: {{ $json.Phase }}\nProgress: {{ $json['Percent Complete'] || 'N/A' }}%\n\n{{ $json.Notes || '' }}\n\n— Acme Construction"
+      },
+      "name": "Send Customer Update",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2,
+      "position": [520, 200]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [{ "value1": "={{ $json.Phase }}", "operation": "equals", "value2": "Delayed" }]
+        }
+      },
+      "name": "Delayed?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [520, 400]
+    },
+    {
+      "parameters": {
+        "sendTo": "owner@example.com",
+        "subject": "Delayed project — {{ $json['Project Name'] }}",
+        "message": "PM flagged project as delayed. Customer update sent; owner review recommended."
+      },
+      "name": "Notify Owner",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2,
+      "position": [740, 400]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": { "__rl": true, "value": "SAMPLE_SHEET_ID", "mode": "id" },
+        "sheetName": { "__rl": true, "value": "Project Status Log", "mode": "name" },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Project": "={{ $json['Project Name'] }}",
+            "Phase": "={{ $json.Phase }}",
+            "Pct": "={{ $json['Percent Complete'] }}",
+            "At": "={{ $now.toISO() }}",
+            "Action": "customer_update_sent"
+          }
+        }
+      },
+      "name": "Audit Log",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [760, 300]
+    }
+  ],
+  "connections": {
+    "PM Status Form": {
+      "main": [[
+        { "node": "Send Customer Update", "type": "main", "index": 0 },
+        { "node": "Delayed?", "type": "main", "index": 0 },
+        { "node": "Audit Log", "type": "main", "index": 0 }
+      ]]
+    },
+    "Delayed?": {
+      "main": [
+        [{ "node": "Notify Owner", "type": "main", "index": 0 }],
+        []
+      ]
+    }
+  },
+  "tags": [{ "name": "ITAKY" }, { "name": "scaffold" }]
+}
