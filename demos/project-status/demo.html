@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Status Updates — ITAKY Demo</title>
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/demos/shared/demo.css?v=9">
+<script src="/assets/ga4-config.js"></script>
+<script src="/assets/ga4.js"></script>
+</head>
+<body>
+
+<nav class="demo-nav">
+  <a class="nav-brand" href="https://itaky.net/"><img class="demo-logo" src="/assets/itaky-logo.jpg" alt="ITAKY Technology" width="52" height="52" style="width:52px;height:52px;max-width:52px;max-height:52px;object-fit:contain"></a>
+  <div class="demo-nav-links">
+    <a class="nav-home" href="https://itaky.net/">Home</a>
+    <a href="https://itaky.net/demos/">All demos</a>
+    <a href="#scope">What's included</a>
+    <span class="demo-tag">Demo 7 · Project status</span>
+  </div>
+</nav>
+
+<div class="demo-header">
+  <h1>Customer project status updates <span class="status-pill idle" data-status>Ready</span></h1>
+  <p>PM submits a status change — customer gets a branded update email, owner alerted on delays, every touch logged.</p>
+</div>
+
+<section class="run-history">
+  <h2>Active projects</h2>
+  <table>
+    <thead><tr><th>Project</th><th>Customer</th><th>Phase</th><th>Last update</th></tr></thead>
+    <tbody>
+      <tr><td class="mono">PRJ-1042</td><td>Rivera Residence</td><td><span class="pill ok">In progress</span></td><td>Today 9:12 AM</td></tr>
+      <tr><td class="mono">PRJ-1038</td><td>Valley Church remodel</td><td><span class="pill pending">Inspection</span></td><td>Mon</td></tr>
+      <tr><td class="mono">PRJ-1031</td><td>Bluegrass Retail build-out</td><td><span class="pill reject">Delayed</span></td><td>Last week</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<main class="demo-layout">
+  <section class="panel" id="formPanel">
+    <div class="panel-head">
+      <h2>Microsoft Forms — PM status update</h2>
+      <p>Submit customer-facing update</p>
+    </div>
+    <div class="panel-body">
+      <div class="form-app-chrome">
+        <div class="bar">Project Status · Acme Construction LLC</div>
+        <div class="inner">
+          <div class="field">
+            <label for="project">Project name</label>
+            <input id="project" value="Rivera Residence — kitchen remodel" autocomplete="off">
+          </div>
+          <div class="field">
+            <label for="customer">Customer name</label>
+            <input id="customer" value="Maria Rivera" autocomplete="off">
+          </div>
+          <div class="field">
+            <label for="email">Customer email</label>
+            <input id="email" value="maria.rivera.demo@example.com" autocomplete="off">
+          </div>
+          <div class="field">
+            <label for="phase">Phase</label>
+            <select id="phase">
+              <option>Scheduled</option>
+              <option selected>In Progress</option>
+              <option>Inspection</option>
+              <option>Delayed</option>
+              <option>Complete</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="pct">Percent complete</label>
+            <input id="pct" type="number" min="0" max="100" value="65" autocomplete="off">
+          </div>
+          <div class="field">
+            <label for="notes">Customer-facing notes</label>
+            <input id="notes" value="Cabinets installed; countertop template scheduled Thursday." autocomplete="off">
+          </div>
+        </div>
+      </div>
+      <div class="rules-box" id="rulesBox">
+        <strong>Rules:</strong> Every submit → customer email · Phase = Delayed → owner copy · All updates logged · Weekly nudge if no update in 7 days
+      </div>
+      <div class="escalation" id="delayNote">Project marked delayed — owner gets a copy and follow-up task.</div>
+      <button class="btn-primary" id="run" type="button" data-run data-action>Send status update</button>
+
+      <div class="completion-card" id="completion">
+        <h3>Status update sent</h3>
+        <dl></dl>
+        <div data-completion-body class="footnote"></div>
+        <div class="reset-row"><button type="button" data-reset>Reset demo</button></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head">
+      <h2>Automation run</h2>
+      <p>Actions executed</p>
+    </div>
+    <div class="panel-body">
+      <ul class="checklist" id="checklist">
+        <li data-i="0"><span class="dot"></span><div><strong>Status validated</strong><span>PM form accepted</span></div><span class="meta"></span></li>
+        <li data-i="1"><span class="dot"></span><div><strong>Email drafted</strong><span>Branded customer template</span></div><span class="meta"></span></li>
+        <li data-i="2"><span class="dot"></span><div><strong>Customer notified</strong><span>Status email sent</span></div><span class="meta"></span></li>
+        <li data-i="3"><span class="dot"></span><div><strong>Owner escalation</strong><span>Delayed projects only</span></div><span class="meta"></span></li>
+        <li data-i="4"><span class="dot"></span><div><strong>Audit log</strong><span>Project_Status_Log row</span></div><span class="meta"></span></li>
+      </ul>
+      <div class="email-card" id="preview" style="margin-top:12px;display:none;">
+        <div class="row"><span>To</span><span id="previewTo"></span></div>
+        <div class="subject" id="previewSubject"></div>
+        <div id="previewBody" style="margin-top:8px;font-size:0.82rem;color:var(--text-secondary);white-space:pre-line;"></div>
+      </div>
+      <div class="log-scroll" style="max-height:120px;overflow-y:auto;margin-top:12px;">
+        <table class="log-table">
+          <thead><tr><th>Time</th><th>Event</th><th>Status</th></tr></thead>
+          <tbody id="log"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</main>
+
+<section class="scope-wrap" id="scope" aria-labelledby="scope-heading-project">
+  <p class="scope-intro" id="scope-heading-project">This page is an interactive preview. <strong>Starter delivery</strong> wires the workflow to your forms, email, and project sheet — tools you already own.</p>
+  <div class="scope-grid">
+    <article class="scope-card starter">
+      <div class="scope-card-head">
+        <h2>What's included — Starter</h2>
+        <span class="scope-badge starter">$2,500 fixed</span>
+      </div>
+      <span class="scope-saved">~4 hrs/week saved on "where's my project?" calls</span>
+      <p class="lead">Stops customers from calling because nobody sent an update since last Tuesday.</p>
+      <ul class="scope-list">
+        <li>PM status form — phase, % complete, customer-facing notes</li>
+        <li>Branded customer email — sent on every status change</li>
+        <li>Delayed flag — owner copy when phase = Delayed</li>
+        <li>Weekly PM nudge — if active project has no update in 7 days</li>
+        <li>Audit log — project, phase, timestamp, who sent</li>
+        <li>Handoff doc + 30-day tweak window</li>
+      </ul>
+      <p class="scope-not"><strong>Not included on day one:</strong> Customer portal, SMS updates, or Procore/Buildertrend sync.</p>
+      <p class="scope-cta"><a href="https://itaky.net/#contact">Book a consult →</a></p>
+    </article>
+    <article class="scope-card extend">
+      <div class="scope-card-head">
+        <h2>If you want us to go further</h2>
+        <span class="scope-badge extend">Scoped add-on</span>
+      </div>
+      <p class="lead">Connect deeper once updates are going out and you see call volume drop.</p>
+      <ul class="scope-list">
+        <li>SMS touch — Twilio status ping for high-value jobs</li>
+        <li>Photo attach — SharePoint link embedded in customer email</li>
+        <li>Procore / Buildertrend — pull phase from your PM tool</li>
+        <li>Customer reply tracking — stop weekly nudge when they respond</li>
+        <li>Owner dashboard — projects overdue for an update</li>
+      </ul>
+      <p class="scope-not">Each integration is quoted separately after we see your stack.</p>
+    </article>
+  </div>
+</section>
+
+<footer class="demo-footer">ITAKY Technology · <a href="https://itaky.net/">itaky.net</a></footer>
+
+<script src="../shared/demo.js"></script>
+<script>
+(function () {
+  const D = window.DemoRunner;
+  const formPanel = document.getElementById('formPanel');
+  const runBtn = document.getElementById('run');
+  const log = document.getElementById('log');
+  const checklist = document.getElementById('checklist');
+  const completion = document.getElementById('completion');
+  const statusPill = document.querySelector('[data-status]');
+  const phaseSelect = document.getElementById('phase');
+  const delayNote = document.getElementById('delayNote');
+  const preview = document.getElementById('preview');
+
+  D.bindReset(document.querySelector('[data-reset]'));
+
+  function isDelayed() {
+    return phaseSelect.value === 'Delayed';
+  }
+
+  phaseSelect.addEventListener('change', () => {
+    delayNote.classList.toggle('show', isDelayed());
+  });
+  delayNote.classList.toggle('show', isDelayed());
+
+  if (D.init('project-status')) {
+    const record = D.getRecord();
+    checklist.querySelectorAll('li').forEach((li, i) => {
+      if (record.decision !== 'delayed' && i === 3) return;
+      li.classList.add('done');
+    });
+    if (record.Preview) {
+      preview.style.display = 'block';
+      document.getElementById('previewTo').textContent = record.Email;
+      document.getElementById('previewSubject').textContent = record.PreviewSubject;
+      document.getElementById('previewBody').textContent = record.Preview;
+    }
+    D.restoreCompleted(formPanel, completion, record,
+      'Est. time saved: <strong>~4 hrs/week</strong> on status-call chase-down.');
+    return;
+  }
+
+  runBtn.addEventListener('click', async () => {
+    if (D.isComplete()) return;
+
+    const project = document.getElementById('project').value.trim();
+    const customer = document.getElementById('customer').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const phase = phaseSelect.value;
+    const pct = document.getElementById('pct').value.trim();
+    const notes = document.getElementById('notes').value.trim();
+    const refId = D.refId('PRJ');
+    const delayed = isDelayed();
+
+    runBtn.disabled = true;
+    D.setStatus(statusPill, 'running');
+    completion.classList.remove('show');
+    preview.style.display = 'none';
+    log.innerHTML = '';
+    checklist.querySelectorAll('li').forEach(li => {
+      li.classList.remove('active', 'done');
+      li.style.opacity = '';
+      li.querySelector('.meta').textContent = '';
+    });
+
+    D.addLogRow(log, refId + ' — ' + project + ' · ' + phase + ' · ' + pct + '%', 'info');
+
+    D.setChecklistItem(checklist, 0, 'active');
+    await new Promise(r => setTimeout(r, 600));
+    D.setChecklistItem(checklist, 0, 'done', 'valid');
+
+    const body = 'Hi ' + customer + ',\n\nProject: ' + project + '\nPhase: ' + phase + '\nProgress: ' + pct + '%\n\n' + notes + '\n\n— Acme Construction';
+    const subject = 'Project update — ' + project;
+
+    D.setChecklistItem(checklist, 1, 'active');
+    await new Promise(r => setTimeout(r, 700));
+    D.addLogRow(log, 'Template merged · customer-facing copy', 'info');
+    D.setChecklistItem(checklist, 1, 'done', 'ready');
+
+    D.setChecklistItem(checklist, 2, 'active');
+    await new Promise(r => setTimeout(r, 700));
+    D.addLogRow(log, 'Gmail → ' + email + ' · "' + subject + '"', 'ok');
+    D.setChecklistItem(checklist, 2, 'done', 'sent');
+
+    preview.style.display = 'block';
+    document.getElementById('previewTo').textContent = email;
+    document.getElementById('previewSubject').textContent = subject;
+    document.getElementById('previewBody').textContent = body;
+
+    if (delayed) {
+      D.setChecklistItem(checklist, 3, 'active');
+      await new Promise(r => setTimeout(r, 700));
+      D.addLogRow(log, 'Owner copy → owner@acme-construction.demo · delayed flag', 'warn');
+      D.setChecklistItem(checklist, 3, 'done', 'notified');
+    } else {
+      checklist.querySelectorAll('li')[3].style.opacity = '0.45';
+    }
+
+    D.setChecklistItem(checklist, 4, 'active');
+    await new Promise(r => setTimeout(r, 500));
+    D.addLogRow(log, 'Project_Status_Log · customer_update_sent · row appended', 'ok');
+    D.setChecklistItem(checklist, 4, 'done', 'logged');
+
+    const record = {
+      Reference: refId,
+      Project: project,
+      Customer: customer,
+      Email: email,
+      Phase: phase,
+      Progress: pct + '%',
+      Action: delayed ? 'Update sent · owner alerted' : 'Update sent',
+      PreviewSubject: subject,
+      Preview: body,
+      decision: delayed ? 'delayed' : 'sent',
+    };
+    D.markComplete(record);
+    D.setStatus(statusPill, 'complete');
+    D.lockForm(formPanel);
+    D.showCompletion(completion, record,
+      'Est. time saved: <strong>~4 hrs/week</strong> on status-call chase-down.');
+  });
+})();
+</script>
+</body>
+</html>
