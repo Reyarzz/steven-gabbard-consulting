@@ -390,6 +390,45 @@ nav.demo-nav .nav-brand img.demo-logo {
 .index-hero h1 { font-size: 1.35rem; font-weight: 700; margin-bottom: 0.4rem; }
 .index-hero p { color: #94a3b8; font-size: 0.9rem; max-width: 480px; margin: 0 auto; }
 .index-main { max-width: 640px; margin: 1.5rem auto; padding: 0 1.25rem 2rem; }
+.finance-cluster {
+  background: var(--accent-subtle);
+  border: 1px solid #c5ddd0;
+  border-radius: var(--radius-md);
+  padding: 1rem 1.15rem;
+  margin-bottom: 1rem;
+}
+.finance-cluster h2 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 0.45rem;
+}
+.finance-cluster p {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.55rem;
+}
+.finance-cluster ul {
+  list-style: none;
+  margin: 0 0 0.55rem;
+  padding: 0;
+}
+.finance-cluster li {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  padding: 0.2rem 0;
+}
+.finance-cluster li a {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+.finance-cluster li a:hover { text-decoration: underline; }
+.finance-cluster-note {
+  font-size: 0.78rem !important;
+  color: var(--text-muted) !important;
+  margin-bottom: 0 !important;
+}
 .demo-card {
   background: white;
   border: 1px solid var(--border);
