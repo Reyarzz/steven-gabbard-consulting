@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AR Reminder Sequence — ITAKY Demo</title>
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/demos/shared/demo.css?v=6">
+<script src="/assets/ga4-config.js"></script>
+<script src="/assets/ga4.js"></script>
+</head>
+<body>
+
+<nav class="demo-nav">
+  <a class="nav-brand" href="https://itaky.net/"><img class="demo-logo" src="/assets/itaky-logo.jpg" alt="ITAKY Technology" width="52" height="52" style="width:52px;height:52px;max-width:52px;max-height:52px;object-fit:contain"></a>
+  <div class="demo-nav-links">
+    <a class="nav-home" href="https://itaky.net/">Home</a>
+    <a href="https://itaky.net/demos/">All demos</a>
+    <a href="#scope">What's included</a>
+    <span class="demo-tag">Demo 5 · AR reminders</span>
+  </div>
+</nav>
+
+<div class="demo-header">
+  <h1>Overdue invoice / AR reminder sequence <span class="status-pill idle" data-status>Ready</span></h1>
+  <p>Friday AR sweep — overdue invoices flagged, tiered reminders sent, owner escalated at 30+ days, stop on payment.</p>
+</div>
+
+<section class="run-history">
+  <h2>Open AR — overdue</h2>
+  <table>
+    <thead><tr><th>Invoice</th><th>Customer</th><th>Amount</th><th>Days</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td class="mono">AR-1042</td><td>Valley Builders LLC</td><td class="mono">$4,800</td><td>34</td><td><span class="pill reject">Escalated</span></td></tr>
+      <tr><td class="mono">AR-1038</td><td>Bluegrass Electric</td><td class="mono">$1,240</td><td>14</td><td><span class="pill pending">Reminder sent</span></td></tr>
+      <tr><td class="mono">AR-1031</td><td>Rivera Construction</td><td class="mono">$890</td><td>8</td><td><span class="pill pending">In sequence</span></td></tr>
+      <tr><td class="mono">AR-1025</td><td>Acme Office Supply</td><td class="mono">$2,100</td><td>3</td><td><span class="pill ok">Current</span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<main class="demo-layout">
+  <section class="panel" id="formPanel">
+    <div class="panel-head">
+      <h2>QuickBooks — Open invoices</h2>
+      <p>Friday AR sweep (9:00 AM)</p>
+    </div>
+    <div class="panel-body">
+      <div class="email-card">
+        <div class="row"><span>Trigger</span><span>Schedule · every Friday 9:00 AM</span></div>
+        <div class="row"><span>Source</span><span>Open Invoices sheet / QBO export</span></div>
+        <div class="subject">3 invoices past due · 1 needs owner escalation</div>
+      </div>
+      <div class="rules-box" id="rulesBox">
+        <strong>Tiers:</strong> 7+ days → customer reminder · 14+ days → follow-up · 30+ days → owner escalation · Stop on payment
+      </div>
+      <div class="field">
+        <label for="invoice">Invoice #</label>
+        <input id="invoice" value="AR-1038" autocomplete="off">
+      </div>
+      <div class="field">
+        <label for="customer">Customer</label>
+        <input id="customer" value="Bluegrass Electric" autocomplete="off">
+      </div>
+      <div class="field">
+        <label for="amount">Amount USD</label>
+        <input id="amount" value="1240.00" autocomplete="off">
+      </div>
+      <div class="field">
+        <label for="days">Days overdue</label>
+        <input id="days" value="14" autocomplete="off" type="number" min="0">
+      </div>
+      <div class="field">
+        <label for="customerEmail">Customer email</label>
+        <input id="customerEmail" value="ap@bluegrasselectric.demo" autocomplete="off">
+      </div>
+      <div class="field">
+        <label for="owner">Owner email</label>
+        <input id="owner" value="owner@acme-office.demo" autocomplete="off">
+      </div>
+      <div class="escalation" id="escalationNote">30+ days overdue — owner gets escalation email + AR task.</div>
+      <button class="btn-primary" id="run" type="button" data-run data-action>Run AR sweep</button>
+
+      <div class="completion-card" id="completion">
+        <h3>AR sweep complete</h3>
+        <dl></dl>
+        <div data-completion-body class="footnote"></div>
+        <div class="reset-row"><button type="button" data-reset>Reset demo</button></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head">
+      <h2>AR automation log</h2>
+      <p>Actions executed</p>
+    </div>
+    <div class="panel-body">
+      <ul class="checklist" id="checklist">
+        <li data-i="0"><span class="dot"></span><div><strong>Overdue loaded</strong><span>Open invoices past due date</span></div><span class="meta"></span></li>
+        <li data-i="1"><span class="dot"></span><div><strong>Tier matched</strong><span>7 / 14 / 30-day rules applied</span></div><span class="meta"></span></li>
+        <li data-i="2"><span class="dot"></span><div><strong>Reminder sent</strong><span>Customer email with invoice link</span></div><span class="meta"></span></li>
+        <li data-i="3"><span class="dot"></span><div><strong>Owner escalation</strong><span>30+ days · task created</span></div><span class="meta"></span></li>
+        <li data-i="4"><span class="dot"></span><div><strong>Sequence queued</strong><span>Next touch scheduled</span></div><span class="meta"></span></li>
+        <li data-i="5"><span class="dot"></span><div><strong>Audit log</strong><span>AR_Log row appended</span></div><span class="meta"></span></li>
+      </ul>
+      <div class="sequence-timeline" id="timeline" style="margin:12px 0;padding:10px 12px;background:#f7fafc;border:1px solid #e2e8f0;border-radius:6px;font-size:9.5pt;display:none;">
+        <strong style="display:block;margin-bottom:6px;color:#1a365d;">Reminder sequence</strong>
+        <div id="timelineRows"></div>
+      </div>
+      <div class="log-scroll" style="max-height:140px;overflow-y:auto;">
+        <table class="log-table">
+          <thead><tr><th>Time</th><th>Event</th><th>Status</th></tr></thead>
+          <tbody id="log"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</main>
+
+<section class="scope-wrap" id="scope" aria-labelledby="scope-heading-ar">
+  <p class="scope-intro" id="scope-heading-ar">This page is an interactive preview. <strong>Starter delivery</strong> wires the workflow to your invoicing export, email, and spreadsheet — tools you already own.</p>
+  <div class="scope-grid">
+    <article class="scope-card starter">
+      <div class="scope-card-head">
+        <h2>What's included — Starter</h2>
+        <span class="scope-badge starter">$2,500 fixed</span>
+      </div>
+      <span class="scope-saved">~3 hrs/week saved on AR chase-down</span>
+      <p class="lead">Stops Friday panic over who still owes you money — reminders go out automatically, escalations land in your inbox.</p>
+      <ul class="scope-list">
+        <li>Friday AR sweep — scheduled pull from QBO export or Open Invoices sheet</li>
+        <li>Tiered reminders — 7-day friendly, 14-day follow-up, 30-day escalation</li>
+        <li>Customer email — invoice #, amount, payment link (your template)</li>
+        <li>Owner escalation — 30+ days overdue triggers task + email</li>
+        <li>Stop on payment — sequence pauses when invoice marked paid</li>
+        <li>Audit log — every reminder, timestamp, tier, customer</li>
+        <li>Handoff doc + 30-day tweak window</li>
+      </ul>
+      <p class="scope-not"><strong>Not included on day one:</strong> Auto-sync with QuickBooks API, collections agency handoff, or payment processing.</p>
+      <p class="scope-cta"><a href="https://itaky.net/#contact">Book a consult →</a></p>
+    </article>
+    <article class="scope-card extend">
+      <div class="scope-card-head">
+        <h2>If you want us to go further</h2>
+        <span class="scope-badge extend">Scoped add-on</span>
+      </div>
+      <p class="lead">Connect deeper once the sweep is running and you see DSO improve.</p>
+      <ul class="scope-list">
+        <li>QuickBooks Online — live invoice status, auto-stop on payment</li>
+        <li>SMS reminder — Twilio for high-value accounts</li>
+        <li>Customer portal — pay link embedded in reminder</li>
+        <li>AR aging dashboard — weekly rollup to owner</li>
+        <li>Collections handoff — auto-flag 60+ days for manual follow-up</li>
+      </ul>
+      <p class="scope-not">Each integration is quoted separately after we see your stack.</p>
+    </article>
+  </div>
+</section>
+
+<footer class="demo-footer">ITAKY Technology · <a href="https://itaky.net/">itaky.net</a></footer>
+
+<script src="../shared/demo.js"></script>
+<script>
+(function () {
+  const D = window.DemoRunner;
+  const formPanel = document.getElementById('formPanel');
+  const runBtn = document.getElementById('run');
+  const log = document.getElementById('log');
+  const checklist = document.getElementById('checklist');
+  const completion = document.getElementById('completion');
+  const statusPill = document.querySelector('[data-status]');
+  const escalationNote = document.getElementById('escalationNote');
+  const daysInput = document.getElementById('days');
+  const timeline = document.getElementById('timeline');
+  const timelineRows = document.getElementById('timelineRows');
+
+  D.bindReset(document.querySelector('[data-reset]'));
+
+  function parseDays() {
+    return parseInt(String(daysInput.value).replace(/[^0-9]/g, ''), 10) || 0;
+  }
+
+  function fmtDate(days) {
+    const d = new Date();
+    d.setDate(d.getDate() + days);
+    return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+  }
+
+  function tierLabel(days) {
+    if (days >= 30) return 'Tier 3 · escalation';
+    if (days >= 14) return 'Tier 2 · follow-up';
+    if (days >= 7) return 'Tier 1 · reminder';
+    return 'Below threshold';
+  }
+
+  daysInput.addEventListener('input', () => {
+    escalationNote.classList.toggle('show', parseDays() >= 30);
+  });
+
+  if (D.init('ar-reminders')) {
+    const record = D.getRecord();
+    checklist.querySelectorAll('li').forEach((li, i) => {
+      if (record.decision === 'below-threshold' && i > 1) return;
+      if (record.decision !== 'escalated' && i === 3) return;
+      li.classList.add('done');
+    });
+    if (record.Touches) {
+      timeline.style.display = 'block';
+      timelineRows.innerHTML = record.Touches;
+    }
+    D.restoreCompleted(formPanel, completion, record,
+      'Est. time saved: <strong>~3 hrs/week</strong> on AR chase-down.');
+    return;
+  }
+
+  runBtn.addEventListener('click', async () => {
+    if (D.isComplete()) return;
+
+    const invoice = document.getElementById('invoice').value.trim();
+    const customer = document.getElementById('customer').value.trim();
+    const amount = document.getElementById('amount').value.trim();
+    const days = parseDays();
+    const customerEmail = document.getElementById('customerEmail').value.trim();
+    const owner = document.getElementById('owner').value.trim();
+    const refId = D.refId('AR');
+    const needsEscalation = days >= 30;
+    const belowThreshold = days < 7;
+
+    runBtn.disabled = true;
+    D.setStatus(statusPill, 'running');
+    completion.classList.remove('show');
+    timeline.style.display = 'none';
+    log.innerHTML = '';
+    checklist.querySelectorAll('li').forEach(li => { li.classList.remove('active', 'done'); li.querySelector('.meta').textContent = ''; });
+
+    D.addLogRow(log, refId + ' sweep — ' + invoice + ' · ' + customer + ' · ' + days + 'd overdue', 'info');
+
+    if (belowThreshold) {
+      D.setChecklistItem(checklist, 0, 'active');
+      await new Promise(r => setTimeout(r, 600));
+      D.setChecklistItem(checklist, 0, 'done', '1 current');
+      D.addLogRow(log, invoice + ' — below 7-day threshold · skipped', 'info');
+      D.setChecklistItem(checklist, 1, 'done', 'no action');
+      const record = {
+        Reference: refId,
+        Invoice: invoice,
+        Customer: customer,
+        'Days overdue': days,
+        Action: 'Skipped — below threshold',
+        decision: 'below-threshold',
+      };
+      D.markComplete(record);
+      D.setStatus(statusPill, 'complete');
+      D.lockForm(formPanel);
+      D.showCompletion(completion, record,
+        'Invoice current — no reminder needed this sweep.');
+      return;
+    }
+
+    const steps = [
+      { idx: 0, meta: '3 overdue', msg: 'Sheet → Open Invoices · 3 past due' },
+      { idx: 1, meta: tierLabel(days), msg: 'Rules applied · ' + days + ' days' },
+      { idx: 2, meta: 'sent', msg: 'Gmail → ' + customerEmail + ' · "Friendly reminder — ' + invoice + '"' },
+    ];
+
+    for (const step of steps) {
+      D.setChecklistItem(checklist, step.idx, 'active', step.meta);
+      await new Promise(r => setTimeout(r, 700));
+      D.addLogRow(log, step.msg, 'info');
+      D.setChecklistItem(checklist, step.idx, 'done', step.meta);
+    }
+
+    if (needsEscalation) {
+      D.setChecklistItem(checklist, 3, 'active');
+      await new Promise(r => setTimeout(r, 700));
+      D.addLogRow(log, 'Escalation → ' + owner + ' · "' + customer + ' 30+ days"', 'warn');
+      D.setChecklistItem(checklist, 3, 'done', 'owner task');
+    } else {
+      checklist.querySelectorAll('li')[3].style.opacity = '0.45';
+    }
+
+    D.setChecklistItem(checklist, 4, 'active');
+    await new Promise(r => setTimeout(r, 600));
+    const nextTouch = days >= 14 ? 7 : 7;
+    D.addLogRow(log, 'Next touch scheduled · +' + nextTouch + ' days · stop on payment', 'info');
+    D.setChecklistItem(checklist, 4, 'done', 'D+' + nextTouch);
+
+    D.setChecklistItem(checklist, 5, 'active');
+    await new Promise(r => setTimeout(r, 500));
+    D.addLogRow(log, 'AR_Log · reminder_sent · row appended', 'ok');
+    D.setChecklistItem(checklist, 5, 'done', 'logged');
+
+    const touchHtml =
+      '<div>Touch 1 · Today · Friendly reminder · <span class="pill ok" style="font-size:8pt">Sent</span></div>' +
+      (days >= 14
+        ? '<div>Touch 2 · ' + fmtDate(7) + ' · Follow-up · <span class="pill pending" style="font-size:8pt">Scheduled</span></div>'
+        : '<div>Touch 2 · ' + fmtDate(7) + ' · Follow-up · <span class="pill pending" style="font-size:8pt">Scheduled</span></div>') +
+      (needsEscalation
+        ? '<div>Escalation · Today · Owner notified · <span class="pill reject" style="font-size:8pt">Sent</span></div>'
+        : '');
+    timelineRows.innerHTML = touchHtml;
+    timeline.style.display = 'block';
+
+    const record = {
+      Reference: refId,
+      Invoice: invoice,
+      Customer: customer,
+      Amount: '$' + amount,
+      'Days overdue': days,
+      Tier: tierLabel(days),
+      Touches: touchHtml,
+      decision: needsEscalation ? 'escalated' : 'reminder',
+    };
+    D.markComplete(record);
+    D.setStatus(statusPill, 'complete');
+    D.lockForm(formPanel);
+    D.showCompletion(completion, record,
+      'Est. time saved: <strong>~3 hrs/week</strong> on AR chase-down.');
+  });
+})();
+</script>
+</body>
+</html>
