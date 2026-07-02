@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lead Follow-up Sequence — ITAKY Demo</title>
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/demos/shared/demo.css?v=6">
+<script src="/assets/ga4-config.js"></script>
+<script src="/assets/ga4.js"></script>
+</head>
+<body>
+
+<nav class="demo-nav">
+  <a class="nav-brand" href="https://itaky.net/"><img class="demo-logo" src="/assets/itaky-logo.jpg" alt="ITAKY Technology" width="52" height="52" style="width:52px;height:52px;max-width:52px;max-height:52px;object-fit:contain"></a>
+  <div class="demo-nav-links">
+    <a class="nav-home" href="https://itaky.net/">Home</a>
+    <a href="https://itaky.net/demos/">All demos</a>
+    <a href="#scope">What's included</a>
+    <span class="demo-tag">Demo 4 · Lead follow-up</span>
+  </div>
+</nav>
+
+<div class="demo-header">
+  <h1>Lead follow-up sequence <span class="status-pill idle" data-status>Ready</span></h1>
+  <p>Website inquiry captured to CRM — owner notified, 3-touch email sequence scheduled, no lead sits untouched.</p>
+</div>
+
+<section class="run-history">
+  <h2>Active sequences</h2>
+  <table>
+    <thead><tr><th>Ref</th><th>Contact</th><th>Source</th><th>Touch</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td class="mono">LEAD-8821</td><td>Sarah Kim</td><td>Referral</td><td>3 of 3</td><td><span class="pill ok">Responded</span></td></tr>
+      <tr><td class="mono">LEAD-8794</td><td>Mike Torres</td><td>Website</td><td>2 of 3</td><td><span class="pill pending">In sequence</span></td></tr>
+      <tr><td class="mono">LEAD-8760</td><td>Priya Patel</td><td>Event</td><td>1 of 3</td><td><span class="pill pending">In sequence</span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<main class="demo-layout">
+  <section class="panel" id="formPanel">
+    <div class="panel-head">
+      <h2>Website — Contact form</h2>
+      <p>New inquiry submitted</p>
+    </div>
+    <div class="panel-body">
+      <div class="form-app-chrome">
+        <div class="bar">itaky.net · Contact</div>
+        <div class="inner">
+          <div class="field">
+            <label for="name">Contact name</label>
+            <input id="name" value="Alex Rivera" autocomplete="off">
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" value="alex@rivera-build.demo" autocomplete="off">
+          </div>
+          <div class="field">
+            <label for="source">Source</label>
+            <select id="source">
+              <option>Website</option>
+              <option>Referral</option>
+              <option>Event</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="owner">Owner email</label>
+            <input id="owner" value="steven@itaky.net" autocomplete="off">
+          </div>
+        </div>
+      </div>
+      <div class="rules-box" id="rulesBox">
+        <strong>Sequence:</strong> Touch 1 — instant ack · Touch 2 — day 2 check-in · Touch 3 — day 5 value note · Stop on reply
+      </div>
+      <div class="escalation" id="referralNote">Referral source — owner gets priority Slack ping.</div>
+      <button class="btn-primary" id="run" type="button" data-run data-action>Submit and start sequence</button>
+
+      <div class="completion-card" id="completion">
+        <h3>Sequence started</h3>
+        <dl></dl>
+        <div data-completion-body class="footnote"></div>
+        <div class="reset-row"><button type="button" data-reset>Reset demo</button></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head">
+      <h2>Automation run</h2>
+      <p>Actions executed</p>
+    </div>
+    <div class="panel-body">
+      <ul class="checklist" id="checklist">
+        <li data-i="0"><span class="dot"></span><div><strong>Lead captured</strong><span>CRM row + owner assigned</span></div><span class="meta"></span></li>
+        <li data-i="1"><span class="dot"></span><div><strong>Touch 1 sent</strong><span>Instant acknowledgment email</span></div><span class="meta"></span></li>
+        <li data-i="2"><span class="dot"></span><div><strong>Sequence queued</strong><span>Touch 2 + 3 scheduled</span></div><span class="meta"></span></li>
+        <li data-i="3"><span class="dot"></span><div><strong>Owner notified</strong><span>Email + task in inbox</span></div><span class="meta"></span></li>
+        <li data-i="4"><span class="dot"></span><div><strong>Audit log</strong><span>Sheet row appended</span></div><span class="meta"></span></li>
+      </ul>
+      <div class="sequence-timeline" id="timeline" style="margin:12px 0;padding:10px 12px;background:#f7fafc;border:1px solid #e2e8f0;border-radius:6px;font-size:9.5pt;display:none;">
+        <strong style="display:block;margin-bottom:6px;color:#1a365d;">Scheduled touches</strong>
+        <div id="timelineRows"></div>
+      </div>
+      <div class="log-scroll" style="max-height:140px;overflow-y:auto;">
+        <table class="log-table">
+          <thead><tr><th>Time</th><th>Event</th><th>Status</th></tr></thead>
+          <tbody id="log"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</main>
+
+<section class="scope-wrap" id="scope" aria-labelledby="scope-heading-lead">
+  <p class="scope-intro" id="scope-heading-lead">This page is an interactive preview. <strong>Starter delivery</strong> wires the workflow to your website form, email, and spreadsheet or CRM — tools you already own.</p>
+  <div class="scope-grid">
+    <article class="scope-card starter">
+      <div class="scope-card-head">
+        <h2>What's included — Starter</h2>
+        <span class="scope-badge starter">$2,500 fixed</span>
+      </div>
+      <span class="scope-saved">~5 hrs/week saved vs manual follow-up</span>
+      <p class="lead">Stops warm leads from going cold because nobody remembered to follow up on day 3.</p>
+      <ul class="scope-list">
+        <li>Form trigger — website, Typeform, or HubSpot form webhook</li>
+        <li>CRM row — Google Sheet, Airtable, or HubSpot contact</li>
+        <li>3-touch email sequence — ack, check-in, value note (your copy)</li>
+        <li>Owner notification — email + optional Slack/Teams ping</li>
+        <li>Stop-on-reply — sequence pauses when lead responds</li>
+        <li>Audit log — every touch, timestamp, owner</li>
+        <li>Handoff doc + 30-day tweak window</li>
+      </ul>
+      <p class="scope-not"><strong>Not included on day one:</strong> Full CRM migration, paid ad integrations, or AI-written outreach.</p>
+      <p class="scope-cta"><a href="https://itaky.net/#contact">Book a consult →</a></p>
+    </article>
+    <article class="scope-card extend">
+      <div class="scope-card-head">
+        <h2>If you want us to go further</h2>
+        <span class="scope-badge extend">Scoped add-on</span>
+      </div>
+      <p class="lead">Connect deeper once the sequence is running and you see reply rates.</p>
+      <ul class="scope-list">
+        <li>HubSpot / Pipedrive — native deal stage updates on reply</li>
+        <li>Calendly link — book-a-call CTA in touch 2</li>
+        <li>SMS touch — Twilio for high-intent referrals</li>
+        <li>Lead scoring — route hot leads to owner immediately</li>
+        <li>Monthly report — touches sent, reply rate, avg time-to-reply</li>
+      </ul>
+      <p class="scope-not">Each integration is quoted separately after we see your stack.</p>
+    </article>
+  </div>
+</section>
+
+<footer class="demo-footer">ITAKY Technology · <a href="https://itaky.net/">itaky.net</a></footer>
+
+<script src="../shared/demo.js"></script>
+<script>
+(function () {
+  const D = window.DemoRunner;
+  const formPanel = document.getElementById('formPanel');
+  const runBtn = document.getElementById('run');
+  const log = document.getElementById('log');
+  const checklist = document.getElementById('checklist');
+  const completion = document.getElementById('completion');
+  const statusPill = document.querySelector('[data-status]');
+  const referralNote = document.getElementById('referralNote');
+  const sourceSelect = document.getElementById('source');
+  const timeline = document.getElementById('timeline');
+  const timelineRows = document.getElementById('timelineRows');
+
+  D.bindReset(document.querySelector('[data-reset]'));
+
+  function fmtDate(days) {
+    const d = new Date();
+    d.setDate(d.getDate() + days);
+    return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+  }
+
+  sourceSelect.addEventListener('change', () => {
+    referralNote.classList.toggle('show', sourceSelect.value === 'Referral');
+  });
+
+  if (D.init('lead-followup')) {
+    const record = D.getRecord();
+    checklist.querySelectorAll('li').forEach(li => li.classList.add('done'));
+    if (record.Touches) {
+      timeline.style.display = 'block';
+      timelineRows.innerHTML = record.Touches;
+    }
+    D.restoreCompleted(formPanel, completion, record,
+      'Est. time saved: <strong>~5 hrs/week</strong> on manual follow-up.');
+    return;
+  }
+
+  runBtn.addEventListener('click', async () => {
+    if (D.isComplete()) return;
+
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const source = sourceSelect.value;
+    const owner = document.getElementById('owner').value.trim();
+    const refId = D.refId('LEAD');
+    const isReferral = source === 'Referral';
+
+    runBtn.disabled = true;
+    D.setStatus(statusPill, 'running');
+    completion.classList.remove('show');
+    timeline.style.display = 'none';
+    log.innerHTML = '';
+    checklist.querySelectorAll('li').forEach(li => { li.classList.remove('active', 'done'); li.querySelector('.meta').textContent = ''; });
+
+    D.addLogRow(log, refId + ' started — ' + name + ' (' + source + ')', 'info');
+
+    const steps = [
+      { meta: 'row=CRM', msg: 'Sheet → Leads · owner=' + owner.split('@')[0] },
+      { meta: 'sent', msg: 'Gmail → ' + email + ' · "Thanks for reaching out"' },
+      { meta: 'D+2, D+5', msg: 'Sequence queue · 2 touches scheduled' },
+      { meta: isReferral ? 'Slack+email' : 'email', msg: 'Owner notified · new lead task' },
+      { meta: 'row=appended', msg: 'Audit Log · sequence_started' },
+    ];
+
+    for (let i = 0; i < steps.length; i++) {
+      D.setChecklistItem(checklist, i, 'active', steps[i].meta);
+      await new Promise(r => setTimeout(r, 700));
+      D.addLogRow(log, steps[i].msg, i === steps.length - 1 ? 'ok' : 'info');
+      D.setChecklistItem(checklist, i, 'done', steps[i].meta);
+    }
+
+    const touchHtml =
+      '<div>Touch 1 · Today · Acknowledgment · <span class="pill ok" style="font-size:8pt">Sent</span></div>' +
+      '<div>Touch 2 · ' + fmtDate(2) + ' · Check-in · <span class="pill pending" style="font-size:8pt">Scheduled</span></div>' +
+      '<div>Touch 3 · ' + fmtDate(5) + ' · Value note · <span class="pill pending" style="font-size:8pt">Scheduled</span></div>';
+    timelineRows.innerHTML = touchHtml;
+    timeline.style.display = 'block';
+
+    const record = {
+      Reference: refId,
+      Contact: name,
+      Source: source,
+      Touches: touchHtml,
+      'Touches scheduled': '3 (stop on reply)',
+    };
+    D.markComplete(record);
+    D.setStatus(statusPill, 'complete');
+    D.lockForm(formPanel);
+    D.showCompletion(completion, record,
+      'Est. time saved: <strong>~5 hrs/week</strong> on manual follow-up.');
+  });
+})();
+</script>
+</body>
+</html>
