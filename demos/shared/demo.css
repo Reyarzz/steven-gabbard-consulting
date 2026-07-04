@@ -69,13 +69,14 @@ nav.demo-nav .nav-brand img.demo-logo {
 }
 .brand-text {
   font-family: var(--font-display);
-  font-size: 1.15rem;
+  font-size: 1.25rem;
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: var(--text-muted);
-  line-height: 1.2;
+  letter-spacing: 0.06em;
+  line-height: 1;
 }
+.brand-text .ita { color: var(--text-muted); }
+.brand-text .ky { color: var(--accent); }
 .brand-text em { color: var(--accent); font-style: normal; }
 .demo-nav-links { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
 .demo-nav-links a.nav-home { color: var(--text-primary); font-weight: 600; }
