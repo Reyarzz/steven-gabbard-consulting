@@ -108,6 +108,13 @@ nav.demo-nav .nav-brand img.demo-logo {
   margin-bottom: 0.4rem;
 }
 .demo-header p { color: var(--text-muted); font-size: 0.95rem; max-width: 640px; }
+.demo-header .replaces {
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  max-width: 640px;
+  margin-top: 0.35rem;
+  line-height: 1.45;
+}
 
 .run-history {
   max-width: 1100px;
@@ -539,7 +546,7 @@ nav.demo-nav .nav-brand img.demo-logo {
 
 .demo-card {
   display: grid;
-  grid-template-columns: 4.5rem 1fr auto;
+  grid-template-columns: 1fr auto;
   gap: 1rem;
   align-items: center;
   background: var(--bg-surface);
@@ -549,19 +556,17 @@ nav.demo-nav .nav-brand img.demo-logo {
   border-radius: 0;
 }
 .demo-card .num {
-  font-family: var(--font-display);
-  font-size: 1.6rem;
-  font-weight: 800;
-  color: var(--accent);
+  display: none;
 }
 .demo-card h2 {
   font-family: var(--font-display);
   font-size: 1.25rem;
   text-transform: uppercase;
   line-height: 1;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.35rem;
   font-weight: 800;
 }
+.demo-card p.replaces { color: var(--text-secondary); font-size: 0.92rem; line-height: 1.45; }
 .demo-card p { color: var(--text-muted); font-size: 0.9rem; }
 .demo-card .meta {
   color: var(--accent);
