@@ -254,6 +254,48 @@ section {
   border-bottom: 1px solid var(--border-strong);
 }
 
+.reviews-section {
+  border-top: 1px solid var(--border-strong);
+}
+.review-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  padding: 1.5rem;
+  max-width: 42rem;
+}
+.review-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+.review-stars {
+  color: var(--accent);
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+}
+.review-source {
+  color: var(--text-faint);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.review-quote {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  line-height: 1.55;
+  margin: 0 0 0.75rem;
+  border: none;
+  padding: 0;
+}
+.review-author {
+  color: var(--text-muted);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
 .contact-section {
   background: var(--bg-surface);
   border-top: 1px solid var(--border);
