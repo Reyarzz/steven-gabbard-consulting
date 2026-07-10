@@ -269,14 +269,14 @@
 
     for (const step of steps) {
       D.setChecklistItem(checklist, step.idx, 'active', step.meta);
-      await new Promise(r => setTimeout(r, 700));
+      await new Promise(r => setTimeout(r, 400));
       D.addLogRow(log, step.msg, 'info');
       D.setChecklistItem(checklist, step.idx, 'done', step.meta);
     }
 
     if (needsEscalation) {
       D.setChecklistItem(checklist, 3, 'active');
-      await new Promise(r => setTimeout(r, 700));
+      await new Promise(r => setTimeout(r, 400));
       D.addLogRow(log, 'Escalation → ' + owner + ' · "' + customer + ' 30+ days"', 'warn');
       D.setChecklistItem(checklist, 3, 'done', 'owner task');
     } else {

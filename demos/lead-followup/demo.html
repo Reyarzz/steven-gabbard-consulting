@@ -95,11 +95,11 @@
     </div>
     <div class="panel-body">
       <ul class="checklist" id="checklist">
-        <li data-i="0"><span class="dot"></span><div><strong>Lead captured</strong><span>CRM row + owner assigned</span></div><span class="meta"></span></li>
-        <li data-i="1"><span class="dot"></span><div><strong>Touch 1 sent</strong><span>Instant acknowledgment email</span></div><span class="meta"></span></li>
-        <li data-i="2"><span class="dot"></span><div><strong>Sequence queued</strong><span>Touch 2 + 3 scheduled</span></div><span class="meta"></span></li>
-        <li data-i="3"><span class="dot"></span><div><strong>Owner notified</strong><span>Email + task in inbox</span></div><span class="meta"></span></li>
-        <li data-i="4"><span class="dot"></span><div><strong>Audit log</strong><span>Sheet row appended</span></div><span class="meta"></span></li>
+        <li data-i="0"><span class="dot"></span><div><strong>Lead captured</strong><span>CRM entry created</span></div><span class="meta"></span></li>
+        <li data-i="1"><span class="dot"></span><div><strong>Touch 1 sent</strong><span>Acknowledgment sent</span></div><span class="meta"></span></li>
+        <li data-i="2"><span class="dot"></span><div><strong>Sequence queued</strong><span>Touches scheduled</span></div><span class="meta"></span></li>
+        <li data-i="3"><span class="dot"></span><div><strong>Owner notified</strong><span>Owner notified</span></div><span class="meta"></span></li>
+        <li data-i="4"><span class="dot"></span><div><strong>Audit log</strong><span>Audit log updated</span></div><span class="meta"></span></li>
       </ul>
       <div class="sequence-timeline" id="timeline" style="margin:12px 0;padding:10px 12px;background:#f7fafc;border:1px solid #e2e8f0;border-radius:6px;font-size:9.5pt;display:none;">
         <strong style="display:block;margin-bottom:6px;color:#1a365d;">Scheduled touches</strong>
@@ -225,7 +225,7 @@
 
     for (let i = 0; i < steps.length; i++) {
       D.setChecklistItem(checklist, i, 'active', steps[i].meta);
-      await new Promise(r => setTimeout(r, 700));
+      await new Promise(r => setTimeout(r, 400));
       D.addLogRow(log, steps[i].msg, i === steps.length - 1 ? 'ok' : 'info');
       D.setChecklistItem(checklist, i, 'done', steps[i].meta);
     }
