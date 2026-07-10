@@ -24,13 +24,13 @@
 </nav>
 
 <div class="demo-header">
-  <h1>Employee onboarding automation <span class="status-pill idle" data-status>Ready</span></h1>
+  <h1>Employee onboarding <span class="status-pill idle" data-status>Ready</span></h1>
   <p>New hire submission routes by department — manager checklist, IT tasks, HR escalation if start date is under 5 business days.</p>
-  <p class="replaces">Replaces the new-hire checklist living in email + a shared drive folder nobody updates.</p>
+  <p class="replaces">Replaces manual email threads and forgotten spreadsheets.</p>
 </div>
 
 <section class="run-history">
-  <h2>Recent onboardings</h2>
+  <h2>Onboarding Log</h2>
   <table>
     <thead><tr><th>Ref</th><th>Employee</th><th>Dept</th><th>Status</th></tr></thead>
     <tbody>
@@ -95,11 +95,11 @@
     </div>
     <div class="panel-body">
       <ul class="checklist" id="checklist">
-        <li data-i="0"><span class="dot"></span><div><strong>Form validated</strong><span>Webhook payload accepted</span></div><span class="meta"></span></li>
-        <li data-i="1"><span class="dot"></span><div><strong>Manager checklist</strong><span>Dept-specific tasks emailed</span></div><span class="meta"></span></li>
-        <li data-i="2"><span class="dot"></span><div><strong>IT provisioning</strong><span>Planner tasks created</span></div><span class="meta"></span></li>
-        <li data-i="3"><span class="dot"></span><div><strong>Teams alert</strong><span>#it-onboarding notified</span></div><span class="meta"></span></li>
-        <li data-i="4"><span class="dot"></span><div><strong>Audit log</strong><span>SharePoint row appended</span></div><span class="meta"></span></li>
+        <li data-i="0"><span class="dot"></span><div><strong>Intake received</strong><span>Webhook verified</span></div><span class="meta"></span></li>
+        <li data-i="1"><span class="dot"></span><div><strong>Manager notified</strong><span>Checklist emailed</span></div><span class="meta"></span></li>
+        <li data-i="2"><span class="dot"></span><div><strong>IT provisioned</strong><span>Planner tasks ready</span></div><span class="meta"></span></li>
+        <li data-i="3"><span class="dot"></span><div><strong>Teams alert</strong><span>Channel pinged</span></div><span class="meta"></span></li>
+        <li data-i="4"><span class="dot"></span><div><strong>Audit logged</strong><span>Tracker updated</span></div><span class="meta"></span></li>
       </ul>
       <div class="log-scroll" style="max-height:140px;overflow-y:auto;">
         <table class="log-table">
@@ -219,7 +219,7 @@
 
     for (let i = 0; i < steps.length; i++) {
       D.setChecklistItem(checklist, i, 'active', steps[i].meta);
-      await new Promise(r => setTimeout(r, 700));
+      await new Promise(r => setTimeout(r, 400));
       D.addLogRow(log, steps[i].msg, i === steps.length - 1 ? 'ok' : 'info');
       D.setChecklistItem(checklist, i, 'done', steps[i].meta);
     }

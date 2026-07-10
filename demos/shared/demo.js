@@ -77,7 +77,7 @@ window.DemoRunner = {
     window.setTimeout(() => card.classList.remove('attention'), 2800);
   },
 
-  async animateSteps(steps, onStep, delayMs = 850) {
+  async animateSteps(steps, onStep, delayMs = 450) {
     for (let i = 0; i < steps.length; i++) {
       steps[i].classList.add('active');
       if (onStep) await onStep(i, steps[i]);
