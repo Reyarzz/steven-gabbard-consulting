@@ -100,6 +100,7 @@
         <li data-i="2"><span class="dot"></span><div><strong>IT provisioned</strong><span>Planner tasks ready</span></div><span class="meta"></span></li>
         <li data-i="3"><span class="dot"></span><div><strong>Teams alert</strong><span>Channel pinged</span></div><span class="meta"></span></li>
         <li data-i="4"><span class="dot"></span><div><strong>Audit logged</strong><span>Tracker updated</span></div><span class="meta"></span></li>
+        <li data-i="5"><span class="dot"></span><div><strong>Lexington Sync</strong><span>Ledger verified</span></div><span class="meta"></span></li>
       </ul>
       <div class="log-scroll" style="max-height:140px;overflow-y:auto;">
         <table class="log-table">
@@ -215,16 +216,17 @@
       { meta: 'tasks=3', msg: 'Planner: AD, laptop, MFA' },
       { meta: urgent ? 'HR escalated' : 'standard', msg: 'Teams → #it-onboarding' },
       { meta: 'row=appended', msg: 'SharePoint OnboardingTracker' },
+      { meta: 'synced', msg: 'Lexington Ledger Update' },
     ];
 
     for (let i = 0; i < steps.length; i++) {
       D.setChecklistItem(checklist, i, 'active', steps[i].meta);
-      await new Promise(r => setTimeout(r, 400));
+      await new Promise(r => setTimeout(r, 600)); // Hardened timing
       D.addLogRow(log, steps[i].msg, i === steps.length - 1 ? 'ok' : 'info');
       D.setChecklistItem(checklist, i, 'done', steps[i].meta);
     }
 
-    const record = { Reference: refId, Employee: name, Department: dept, Actions: urgent ? '6 (incl. HR)' : '5' };
+    const record = { Reference: refId, Employee: name, Department: dept, Actions: urgent ? '7 (incl. HR/Ledger)' : '6' };
     D.markComplete(record);
     D.setStatus(statusPill, 'complete');
     D.lockForm(formPanel);

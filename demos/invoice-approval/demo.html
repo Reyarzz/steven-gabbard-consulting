@@ -102,6 +102,7 @@
         <li data-i="1"><span class="dot"></span><div><strong>Approver matched</strong><span>Threshold rules applied</span></div><span class="meta"></span></li>
         <li data-i="2"><span class="dot"></span><div><strong>Decision recorded</strong><span>Audit row in AP_Log</span></div><span class="meta"></span></li>
         <li data-i="3"><span class="dot"></span><div><strong>QuickBooks queue</strong><span>Payment schedule updated</span></div><span class="meta"></span></li>
+        <li data-i="4"><span class="dot"></span><div><strong>Vendor Update</strong><span>Email notification sent</span></div><span class="meta"></span></li>
       </ul>
       <div class="log-scroll" style="max-height:160px;overflow-y:auto;">
         <table class="log-table">
@@ -262,9 +263,15 @@
     D.addLogRow(log, 'Decision: APPROVED', 'ok');
     D.setChecklistItem(checklist, 2, 'done', 'approved');
     D.setChecklistItem(checklist, 3, 'active');
-    await new Promise(r => setTimeout(r, 500));
+    await new Promise(r => setTimeout(r, 600)); // Hardened timing
     D.setChecklistItem(checklist, 3, 'done', 'scheduled');
     D.addLogRow(log, 'QuickBooks AP queue updated', 'ok');
+
+    D.setChecklistItem(checklist, 4, 'active');
+    await new Promise(r => setTimeout(r, 400));
+    D.setChecklistItem(checklist, 4, 'done', 'notified');
+    D.addLogRow(log, 'Vendor payment notification sent', 'ok');
+
     finish('approved');
   });
 
