@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RemindFlow MVP Internal Demo — ITAKY</title>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/assets/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="stylesheet" href="/demos/shared/demo.css?v=13">
+<style>
+  .case-study-hero { background: #0b1220; color: #fff; padding: 4rem 2rem; text-align: center; }
+  .case-study-content { max-width: 800px; margin: 0 auto; padding: 2rem; line-height: 1.6; }
+  .case-study-content h2 { margin-top: 2rem; color: #f59e0b; }
+  .mockup { background: #1e293b; border-radius: 8px; padding: 1.5rem; margin: 1.5rem 0; font-family: monospace; color: #cbd5e1; border-left: 4px solid #f59e0b; }
+  .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2rem; }
+  .feature-card { background: #f8fafc; padding: 1.5rem; border-radius: 8px; border: 1px solid #e2e8f0; }
+  .feature-card h3 { margin-top: 0; color: #0b1220; }
+  @media (max-width: 600px) { .feature-grid { grid-template-columns: 1fr; } }
+</style>
+<script src="/assets/ga4-config.js"></script>
+<script src="/assets/ga4.js"></script>
+</head>
+<body>
+
+<nav class="demo-nav">
+  <a class="nav-brand brand" href="https://itaky.net/"><img class="demo-logo" src="/assets/itaky-logo.jpg" alt="ITAKY" width="48" height="48"></a>
+  <div class="demo-nav-links">
+    <a class="nav-home" href="https://itaky.net/">Home</a>
+    <a href="https://itaky.net/demos/">All demos</a>
+    <a class="cta" href="https://itaky.net/#contact">Free consult</a>
+  </div>
+</nav>
+
+<header class="case-study-hero">
+  <h1>RemindFlow MVP</h1>
+  <p>Internal Demo: Automated Customer Follow-up & Reminder Engine</p>
+</header>
+
+<main class="case-study-content">
+  <section>
+    <h2>Concept</h2>
+    <p>RemindFlow is an internal engine designed to bridge the gap between "we sent the invoice/proposal" and "we got paid/signed." It automates the polite persistence that usually takes hours of manual checking every week.</p>
+    
+    <div class="mockup">
+      // RemindFlow Logic Preview<br>
+      IF invoice_age > 7 DAYS AND status == "unpaid":<br>
+      &nbsp;&nbsp;SEND email_template("friendly_reminder")<br>
+      &nbsp;&nbsp;LOG "7-day reminder sent to client"<br>
+      ELIF invoice_age > 14 DAYS AND status == "unpaid":<br>
+      &nbsp;&nbsp;SEND email_template("urgent_followup")<br>
+      &nbsp;&nbsp;NOTIFY owner("Action required: Invoice #123")
+    </div>
+  </section>
+
+  <section>
+    <h2>Core Features</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h3>Tiered Escalation</h3>
+        <p>Reminders get progressively more firm based on custom triggers and timelines.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Smart Pause</h3>
+        <p>Automatically stops sequences the moment a payment is detected or a manual override is toggled.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Multi-Channel</h3>
+        <p>Support for Email, SMS (via Twilio), and internal Slack/Teams notifications.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Audit Trail</h3>
+        <p>Every touchpoint is logged back to your CRM or source spreadsheet for total visibility.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Internal Use Case</h2>
+    <p>Currently being tested as the backbone for the <strong>AR Reminders</strong> and <strong>Lead Follow-up</strong> demos. This MVP demonstrates the core routing and scheduling logic used in ITAKY Lane 2 automation projects.</p>
+    <p style="margin-top: 2rem; font-weight: bold;">
+      <a href="https://itaky.net/demos/ar-reminders/demo.html">View AR Reminder Demo &rarr;</a>
+    </p>
+  </section>
+</main>
+
+<footer style="text-align: center; padding: 4rem 2rem; color: #64748b; font-size: 0.875rem;">
+  &copy; 2026 ITAKY. Internal Demo Page.
+</footer>
+
+</body>
+</html>
