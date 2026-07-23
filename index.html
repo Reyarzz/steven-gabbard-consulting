@@ -3,112 +3,193 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Automation nationwide · on-site IT Eastern KY | ITAKY</title>
-<meta name="description" content="ITAKY — workflow automation delivered remotely nationwide. On-site IT support in Eastern Kentucky (Stanton / Powell County home base). Essentials retainer from $597/mo. Call (859) 404-1261.">
+<title>Workflow automation nationwide · Local IT in Eastern KY | ITAKY</title>
+<meta name="description" content="ITAKY builds fixed-price workflow automation for invoices, approvals, follow-ups, onboarding, and more. Remote nationwide, with local IT support in Eastern Kentucky.">
 <meta name="author" content="Steven Gabbard, ITAKY">
 <meta name="theme-color" content="#0b1220">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" href="/assets/favicon-32.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="canonical" href="https://itaky.net/">
-<link rel="stylesheet" href="assets/itaky-shared.css?v=13">
+<link rel="stylesheet" href="assets/itaky-shared.css?v=14">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://itaky.net/">
-<meta property="og:title" content="Automation nationwide · on-site IT Eastern KY">
-<meta property="og:description" content="Workflow automation delivered remotely. On-site IT support in Eastern Kentucky. Fixed fees, live demos at itaky.net.">
+<meta property="og:title" content="Workflow automation nationwide · Local IT in Eastern KY">
+<meta property="og:description" content="Replace repetitive work with fixed-price workflows you own. Explore live demos before you book a consultation.">
 <meta property="og:image" content="https://itaky.net/assets/itaky-logo.jpg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "ITAKY",
+  "url": "https://itaky.net/",
+  "image": "https://itaky.net/assets/itaky-logo.jpg",
+  "telephone": "+1-859-404-1261",
+  "email": "itakysupport@gmail.com",
+  "founder": {
+    "@type": "Person",
+    "name": "Steven Gabbard"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Stanton",
+    "addressRegion": "KY",
+    "addressCountry": "US"
+  },
+  "areaServed": [
+    {"@type": "Country", "name": "United States"},
+    {"@type": "AdministrativeArea", "name": "Eastern Kentucky"}
+  ],
+  "knowsAbout": ["Workflow automation", "IT support", "Invoice approval", "Lead follow-up", "Business process automation"]
+}
+</script>
 <script src="/assets/ga4-config.js"></script>
 <script src="/assets/ga4.js"></script>
 </head>
 <body>
 
-<nav>
-  <a class="brand" href="/">
+<nav aria-label="Primary navigation">
+  <a class="brand" href="/" aria-label="ITAKY home">
     <img src="assets/itaky-logo.jpg" alt="ITAKY" width="52" height="52">
   </a>
   <div class="nav-right">
-    <a href="#pricing">Pricing</a>
-    <a href="https://itaky.net/demos/">Demos</a>
-    <a class="phone" href="tel:+18594041261">(859) 404-1261</a>
-    <a class="cta" href="#contact">Free consult</a>
+    <a class="nav-optional" href="#services">Services</a>
+    <a class="nav-optional" href="#pricing">Pricing</a>
+    <a href="#demos">Demos</a>
+    <a class="phone nav-phone-optional" href="tel:+18594041261" data-cta="nav_phone">(859) 404-1261</a>
+    <a class="cta" href="#consultation" data-cta="nav_consult">Free consult</a>
   </div>
 </nav>
 
-<div class="hero">
+<header class="hero">
   <div>
-    <div class="badge">Automation nationwide</div>
-    <h1>Your local IT guy.<br>Automation that actually ships.</h1>
-    <p class="hero-lead">I fix the paper chase that eats your Friday — invoices, approvals, follow-ups — with fixed-price workflows you own. Remote nationwide. On-site when you need me in Eastern KY.</p>
+    <div class="badge">Workflow automation nationwide</div>
+    <h1>Replace busywork with workflows that run.</h1>
+    <p class="hero-lead">I build fixed-price workflows for invoices, approvals, follow-ups, onboarding, and other repetitive work. See a live example before you commit. Remote nationwide, with on-site IT support available in Eastern Kentucky.</p>
     <div class="hero-row">
-      <a class="btn btn-amber" href="tel:+18594041261">Call Steven</a>
-      <a class="btn btn-outline" href="https://itaky.net/demos/">Watch a demo</a>
+      <a class="btn btn-amber" href="#demos" data-cta="hero_demos">See workflow demos</a>
+      <a class="btn btn-outline" href="#consultation" data-cta="hero_consult">Request a workflow review</a>
     </div>
-    <div class="panels">
-      <article class="lane-panel"><span class="tag">Lane 1</span><h3>Essentials</h3><p>$597/mo retainer. Remote troubleshooting, vendor calls, new-user setup, on-site locally.</p></article>
-      <article class="lane-panel"><span class="tag">Lane 2</span><h3>Automation</h3><p>$2,500 Starter. One workflow, 2–3 weeks, audit log, 30-day tweak window.</p></article>
+    <div class="panels" id="services">
+      <article class="lane-panel">
+        <span class="tag">Nationwide</span>
+        <h2>Workflow automation</h2>
+        <p>Replace spreadsheet, inbox, and follow-up bottlenecks with documented workflows your business owns.</p>
+      </article>
+      <article class="lane-panel">
+        <span class="tag">Eastern Kentucky</span>
+        <h2>Local IT support</h2>
+        <p>Remote troubleshooting, vendor coordination, new-user setup, and local on-site help for small teams.</p>
+      </article>
     </div>
   </div>
   <figure class="portrait">
-    <img src="assets/steven-headshot.jpg?v=2" alt="Steven Gabbard, ITAKY" width="200" height="200">
+    <img src="assets/steven-headshot.jpg?v=2" alt="Steven Gabbard, owner of ITAKY" width="200" height="200">
     <figcaption>
       <strong>Steven Gabbard</strong>
       <span>Owner · Stanton, KY</span>
     </figcaption>
   </figure>
-</div>
+</header>
 
 <div class="bar">No MSP fluff · No hourly creep · Written quotes before work starts</div>
 
+<section id="process">
+  <h2 class="section-head">How it works</h2>
+  <p class="muted">A clear path from repetitive task to working system.</p>
+  <div class="process-grid">
+    <article class="process-step"><span>1</span><h3>Show me the bottleneck</h3><p>Tell me what gets copied, chased, approved, or rebuilt by hand.</p></article>
+    <article class="process-step"><span>2</span><h3>Map the workflow</h3><p>I define the trigger, steps, approvals, exceptions, and tools involved.</p></article>
+    <article class="process-step"><span>3</span><h3>Review a working demo</h3><p>You see how the process will behave before final deployment.</p></article>
+    <article class="process-step"><span>4</span><h3>Deploy and hand off</h3><p>You receive the workflow, documentation, and an agreed adjustment window.</p></article>
+  </div>
+</section>
+
+<section id="demos" class="demos-section">
+  <h2 class="section-head">Start with the pain you recognize</h2>
+  <p class="muted">Open an interactive example—no sales call required.</p>
+  <div class="demo-preview-grid">
+    <article class="demo-preview-card">
+      <span class="tag">Finance</span>
+      <h3>Stop invoices getting stuck</h3>
+      <p>Route approvals, preserve an audit trail, and make ownership visible.</p>
+      <a href="/demos/invoice-approval/demo.html" data-cta="demo_invoice">Try invoice approval <span aria-hidden="true">→</span></a>
+    </article>
+    <article class="demo-preview-card">
+      <span class="tag">Sales</span>
+      <h3>Follow up with every lead</h3>
+      <p>Keep interested prospects from disappearing between the first call and the next step.</p>
+      <a href="/demos/lead-followup/demo.html" data-cta="demo_leads">Try lead follow-up <span aria-hidden="true">→</span></a>
+    </article>
+    <article class="demo-preview-card">
+      <span class="tag">Accounts receivable</span>
+      <h3>Send reminders consistently</h3>
+      <p>Replace recurring “just checking in” work with a visible reminder process.</p>
+      <a href="/demos/ar-reminders/demo.html" data-cta="demo_ar">Try AR reminders <span aria-hidden="true">→</span></a>
+    </article>
+  </div>
+  <p class="section-action"><a class="btn btn-outline" href="/demos/" data-cta="all_demos">View all workflow demos</a></p>
+</section>
+
 <section id="pricing">
-  <h2 class="section-head">What it costs</h2>
-  <p class="muted">Fixed fees. Written quotes before work starts.</p>
+  <h2 class="section-head">Packages and pricing</h2>
+  <p class="muted">Fixed starting points with a written scope and quote before work begins.</p>
   <div class="pricing">
     <article class="price-card featured">
+      <span class="tag">Best first workflow</span>
       <h3>Automation Starter</h3>
       <div class="amount">$2,500</div>
       <ul>
-        <li>One workflow (invoice, expense, AR, leads…)</li>
-        <li>Live interactive demos first</li>
-        <li>Tools you already pay for</li>
-        <li>Handoff doc + 30-day tweaks</li>
+        <li>One defined business workflow</li>
+        <li>Interactive example before deployment</li>
+        <li>Built around tools you already use</li>
+        <li>Handoff documentation and 30-day adjustment window</li>
       </ul>
+      <a class="card-action" href="#consultation" data-interest="Automation Starter" data-cta="pricing_starter">Discuss this workflow</a>
     </article>
     <article class="price-card">
+      <span class="tag">Local support</span>
       <h3>Essentials</h3>
       <div class="amount">$597 <span>/mo</span></div>
       <ul>
-        <li>Up to 8 computers</li>
-        <li>Remote support + vendor calls</li>
-        <li>Eastern KY on-site</li>
+        <li>For teams with up to 8 computers</li>
+        <li>Remote support and vendor coordination</li>
+        <li>Eastern Kentucky on-site availability</li>
+        <li>Written service scope before enrollment</li>
       </ul>
+      <a class="card-action" href="#consultation" data-interest="Essentials IT support" data-cta="pricing_essentials">Ask about Essentials</a>
     </article>
     <article class="price-card">
-      <h3>Growth pack</h3>
+      <span class="tag">Multiple processes</span>
+      <h3>Growth Pack</h3>
       <div class="amount">$5,500</div>
       <ul>
-        <li>2–3 workflows</li>
-        <li>Finance cluster ready</li>
-        <li>Often added after Starter</li>
+        <li>Two to three related workflows</li>
+        <li>Shared approval and audit structure where appropriate</li>
+        <li>Best after the first process is clearly defined</li>
+        <li>Written implementation scope</li>
       </ul>
+      <a class="card-action" href="#consultation" data-interest="Growth Pack" data-cta="pricing_growth">Discuss a workflow set</a>
     </article>
     <article class="price-card">
+      <span class="tag">Assessment first</span>
       <h3>Health Check</h3>
       <div class="amount">$750</div>
       <ul>
         <li>Two-page assessment</li>
-        <li>Top 3 fixes roadmap</li>
-        <li>Credit toward projects</li>
-        <li><a href="/health-check/" style="color:var(--accent);">View details &rarr;</a></li>
+        <li>Three prioritized recommendations</li>
+        <li>Review of IT and workflow bottlenecks</li>
+        <li>Credit toward an eligible follow-on project</li>
       </ul>
+      <a class="card-action" href="/health-check/" data-cta="pricing_health_check">View Health Check details</a>
     </article>
   </div>
 </section>
 
 <section id="reviews" class="reviews-section">
-  <h2 class="section-head">What clients say</h2>
-  <p class="muted">Real Google reviews from local IT support clients.</p>
+  <h2 class="section-head">Local IT support feedback</h2>
+  <p class="muted">A Google review from a local IT support client.</p>
   <div id="reviews-container">
-    <!-- Reviews will be loaded here -->
     <article class="review-card">
       <div class="review-meta">
         <span class="review-stars" aria-label="5 out of 5 stars">★★★★★</span>
@@ -120,59 +201,116 @@
   </div>
 </section>
 
-<script>
-async function loadReviews() {
-  const container = document.getElementById('reviews-container');
-  try {
-    const response = await fetch('assets/reviews.json');
-    if (!response.ok) return;
-    const reviews = await response.json();
-    if (!reviews || reviews.length === 0) return;
-    
-    container.innerHTML = reviews.map(r => `
-      <article class="review-card" style="margin-bottom: 1rem;">
-        <div class="review-meta">
-          <span class="review-stars" aria-label="${r.stars} out of 5 stars">${'★'.repeat(r.stars)}${'☆'.repeat(5-r.stars)}</span>
-          <span class="review-source">Google review</span>
-        </div>
-        <blockquote class="review-quote">${r.quote}</blockquote>
-        <footer class="review-author">— ${r.author}</footer>
-      </article>
-    `).join('');
-  } catch (e) {
-    console.error('Failed to load reviews:', e);
-  }
-}
-document.addEventListener('DOMContentLoaded', loadReviews);
-</script>
-
-<div class="contact-section" id="contact">
-  <div class="contact-inner">
-    <h2>Ready to stop wasting time on busywork?</h2>
-    <p>Free consultation. Call, text, or email during business hours.</p>
-    <div class="contact-details">
-      <div class="contact-item">
-        <a href="tel:+18594041261">(859) 404-1261</a>
-        <p>Call or text</p>
-      </div>
-      <div class="contact-item">
-        <a href="mailto:itakysupport@gmail.com">itakysupport@gmail.com</a>
-        <p>Email</p>
-      </div>
-    </div>
-    <a href="tel:+18594041261" class="btn btn-amber">Call now</a>
-    <p class="contact-note">Mon–Fri, 8:00 AM – 6:00 PM ET · Founding client rates on your free consult.</p>
+<section id="consultation" class="consultation-section">
+  <div class="consultation-copy">
+    <div class="badge">Free consultation</div>
+    <h2>Tell me where the work gets stuck.</h2>
+    <p>Share the process, tools, and outcome you have in mind. Submitting this form prepares an email in your device’s email application; nothing is uploaded by this website.</p>
+    <p><strong>Prefer to talk?</strong><br><a href="tel:+18594041261" data-cta="consult_phone">(859) 404-1261</a> · <a href="mailto:itakysupport@gmail.com" data-cta="consult_email">itakysupport@gmail.com</a></p>
+    <p class="contact-note">Mon–Fri, 8:00 AM–6:00 PM ET</p>
   </div>
-</div>
+  <form id="consultation-form" class="consultation-form">
+    <div class="form-row">
+      <label>Name<input name="name" autocomplete="name" required></label>
+      <label>Business<input name="business" autocomplete="organization"></label>
+    </div>
+    <div class="form-row">
+      <label>Email<input name="email" type="email" autocomplete="email" required></label>
+      <label>Phone <span>(optional)</span><input name="phone" type="tel" autocomplete="tel"></label>
+    </div>
+    <label>What are you interested in?
+      <select name="interest" id="interest" required>
+        <option value="">Choose one</option>
+        <option>Automation Starter</option>
+        <option>Growth Pack</option>
+        <option>Essentials IT support</option>
+        <option>Health Check</option>
+        <option>Not sure yet</option>
+      </select>
+    </label>
+    <label>What process or problem should we review?<textarea name="problem" rows="4" required placeholder="Example: invoices wait in email for approval and nobody can see their status."></textarea></label>
+    <div class="form-row">
+      <label>Current tools<input name="tools" placeholder="Microsoft 365, Google Workspace, QuickBooks…"></label>
+      <label>Preferred timeline
+        <select name="timeline">
+          <option>Just researching</option>
+          <option>Within 30 days</option>
+          <option>Within 90 days</option>
+          <option>As soon as possible</option>
+        </select>
+      </label>
+    </div>
+    <label>Preferred reply
+      <select name="reply">
+        <option>Email</option>
+        <option>Phone</option>
+        <option>Text message</option>
+      </select>
+    </label>
+    <button class="btn btn-amber" type="submit">Prepare consultation email</button>
+    <p id="form-status" class="form-status" aria-live="polite"></p>
+  </form>
+</section>
 
 <footer>
-  <p><strong style="color:#e8eef7;">ITAKY</strong> · Steven Gabbard · Stanton, KY</p>
+  <p><strong>ITAKY</strong> · Steven Gabbard · Stanton, KY</p>
   <div class="footer-links">
+    <a href="#services">Services</a>
+    <a href="#demos">Demos</a>
     <a href="#pricing">Pricing</a>
-    <a href="https://itaky.net/demos/">Demos</a>
-    <a href="#contact">Contact</a>
+    <a href="#consultation">Contact</a>
   </div>
 </footer>
+
+<script>
+(function () {
+  function track(name, details) {
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', name, details || {});
+    }
+  }
+
+  document.querySelectorAll('[data-cta]').forEach(function (link) {
+    link.addEventListener('click', function () {
+      track('select_content', {
+        content_type: 'cta',
+        content_id: link.getAttribute('data-cta')
+      });
+    });
+  });
+
+  document.querySelectorAll('[data-interest]').forEach(function (link) {
+    link.addEventListener('click', function () {
+      var interest = document.getElementById('interest');
+      if (interest) interest.value = link.getAttribute('data-interest');
+    });
+  });
+
+  var form = document.getElementById('consultation-form');
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    var data = new FormData(form);
+    var subject = 'ITAKY consultation request — ' + data.get('interest');
+    var body = [
+      'Name: ' + data.get('name'),
+      'Business: ' + (data.get('business') || 'Not provided'),
+      'Email: ' + data.get('email'),
+      'Phone: ' + (data.get('phone') || 'Not provided'),
+      'Interest: ' + data.get('interest'),
+      'Timeline: ' + data.get('timeline'),
+      'Preferred reply: ' + data.get('reply'),
+      'Current tools: ' + (data.get('tools') || 'Not provided'),
+      '',
+      'Process or problem:',
+      data.get('problem')
+    ].join('\n');
+
+    track('generate_lead', {method: 'email', interest: data.get('interest')});
+    document.getElementById('form-status').textContent = 'Opening your email application. Review the message, then send it when ready.';
+    window.location.href = 'mailto:itakysupport@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+  });
+})();
+</script>
 
 </body>
 </html>
