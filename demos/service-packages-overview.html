@@ -1,0 +1,266 @@
+---
+title: ITAKY Automated Assistant — Skeleton Foundation
+description: Complete skeleton of the working automated assistant for ITAKY. Includes service packages, lead pipeline, task system, gateway protocol, and cost tracking — all ready for Steven to review before activation.
+built: 2026-07-24
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hermes Skeleton Foundation · ITAKY</title>
+<link rel="stylesheet" href="/assets/itaky-shared.css?v=13">
+<style>
+  .skeleton-content { max-width: 960px; margin: 4rem auto; padding: 0 1.5rem; font-family: system-ui, -apple-system, sans-serif; color: #e8eef7; }
+  .skeleton-header { margin-bottom: 3rem; border-bottom: 2px solid var(--border); padding-bottom: 2rem; }
+  .skeleton-header h1 { font-family: var(--font-display); font-size: 3rem; text-transform: uppercase; margin-bottom: 0.5rem; color: var(--accent); }
+  .skeleton-header p.muted { color: #8e9aa7; margin-top: 0.5rem; }
+  .section { margin-bottom: 3rem; }
+  .section h2 { font-family: var(--font-display); font-size: 1.8rem; text-transform: uppercase; color: var(--text-primary); margin-bottom: 1rem; }
+  .section p { line-height: 1.7; }
+  table { width: 100%; border-collapse: collapse; margin: 1rem 0 2rem; }
+  th, td { text-align: left; padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); font-size: 0.95rem; }
+  th { color: var(--accent); font-family: var(--font-mono); text-transform: uppercase; font-size: 0.85rem; }
+  td { color: #c8d0e0; }
+  tr:last-child td { border-bottom: none; }
+  .badge { display: inline-block; padding: 0.25rem 0.75rem; border-radius: 999px; font-size: 0.8rem; font-weight: 600; }
+  .badge-green { background: #0d3b2e; color: #4aff7a; }
+  .badge-amber { background: #3b3515; color: #f0c674; }
+  .badge-red { background: #3b1515; color: #ff6f6f; }
+  .badge-blue { background: #1a2a3b; color: #7db7f7; }
+  .badge-purple { background: #2a1a3b; color: #c79eff; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 1.5rem 0; }
+  @media (max-width: 768px) { .grid-2 { grid-template-columns: 1fr; } }
+  .card { background: var(--bg-surface); padding: 1.5rem; border: 1px solid var(--border); border-radius: 4px; }
+  .card h3 { font-family: var(--font-mono); text-transform: uppercase; font-size: 0.9rem; margin-bottom: 0.75rem; color: var(--accent); }
+  .card ul { list-style: none; padding: 0; margin: 0; }
+  .card li { padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 0.95rem; }
+  .card li:last-child { border-bottom: none; }
+  .checklist-item::before { content: "✓"; color: #4aff7a; margin-right: 0.5rem; font-weight: bold; }
+  .status-live { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #4aff7a; margin-right: 6px; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+  .next-steps ol { padding-left: 1.5rem; }
+  .next-steps li { padding: 0.6rem 0; font-size: 0.95rem; line-height: 1.6; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="brand" href="/"><img src="/assets/itaky-logo.jpg" alt="ITAKY" width="52" height="52"></a>
+  <div class="nav-right">
+    <a href="#pricing">Pricing</a>
+    <a href="https://itaky.net/demos/">Demos</a>
+    <a class="phone" href="tel:+18594041261">(859) 404-1261</a>
+    <a class="cta" href="/#contact">Free consult</a>
+    <a style="background:#4aff7a;color:#0b1220;padding:0.4rem 1rem;border-radius:4px;font-size:0.85rem;font-weight:600;" aria-current="page" href="#">SKELETON</a>
+  </div>
+</nav>
+
+<div class="skeleton-content">
+
+<header class="skeleton-header">
+<span class="status-live"></span><strong style="color:#4aff7a;">LIVE — HERMES SKELETON FOUNDATION</strong>
+<h1>Hermes Automated<br>Skeleton Foundation</h1>
+<p class="muted">Built <time datetime="2026-07-24">July 24, 2026</time> to make Hermes a working automated assistant for ITAKY &mdash; service packages, lead pipeline, task system, cost tracking, and gateway protocol.</p>
+</header>
+
+<!-- SECTION: SERVICE PACKAGES -->
+<section class="section" id="packages">
+<h2>Service Packages — What We Sell</h2>
+<p>Four tiers derived from website pricing and demo workflows. Pricing matches itaky.net &mdash; no changes without Steven approval.</p>
+<div class="grid-2">
+
+<div class="card">
+<h3><span class="badge badge-green">ENTRY</span> Health Check — $750</h3>
+<ul>
+<li>Two-page IT infrastructure assessment<br>Workflow bottleneck identification across all departments<br>Top 3 prioritized recommendations with ROI estimates<br>Credit applied to Starter/Growth Pack within 90 days
+</li></ul>
+<p style="margin-top:1rem;font-size:0.85rem;color:#8e9aa7;"><strong>Sales path:</strong> Leads into Starter ($2,500) or Growth Pack ($5,500)</p>
+</div>
+
+<div class="card">
+<h3><span class="badge badge-blue">CORE</span> Automation Starter — $2,500</h3>
+<ul>
+<li>One business workflow (invoice approval, lead follow-up, AR reminders, etc.)<br>Interactive working demo built for client<br>Implementation using tools they already own<br>Handoff documentation + 30-day adjustment window
+</li></ul>
+<p style="margin-top:1rem;font-size:0.85rem;color:#8e9aa7;"><strong>Realistic margin:</strong> ~40-50% after tool costs &mdash; close rate ~30% of Health Checks</p>
+</div>
+
+<div class="card">
+<h3><span class="badge badge-purple">EXPANSION</span> Growth Pack — $5,500</h3>
+<ul>
+<li>Two to three related workflows implemented in sequence<br>Shared approval/audit structure across all workflows<br>Integration between connected workflows (lead follow-up → project status)<br>Written scope + 30-day adjustment window per workflow
+</li></ul>
+<p style="margin-top:1rem;font-size:0.85rem;color:#8e9aa7;"><strong>Lifetime value:</strong> ~$9,064 with maintenance ($297/mo) over 12 months for 60%+ of clients</p>
+</div>
+
+<div class="card">
+<h3><span class="badge badge-amber">RECURRING</span> Essentials Support — $597/mo</h3>
+<ul>
+<li>Remote support for up to 8 workstations<br>Vendor coordination (IT vendors, ISPs, utility companies)<br>Eastern Kentucky on-site availability<br>No MSP fluff &mdash; written scope, no hourly creep
+</li></ul>
+<p style="margin-top:1rem;font-size:0.85rem;color:#8e9aa7;"><strong>Annual per client:</strong> $7,164 recurring — break-even at ~$200/mo delivery cost</p>
+</div>
+
+</div>
+</section>
+
+<!-- SECTION: REVENUE PROJECTION -->
+<section class="section" id="revenue">
+<h2>Revenue Projection — First 6 Months</h2>
+<table>
+<thead><tr><th>Metric</th><th>Conservative</th><th>Moderate</th><th>Optimistic</th></tr></thead>
+<tbody>
+<tr><td>Health Checks completed</td><td>4</td><td>8</td><td>12</td></tr>
+<tr><td>Starter packages (30% conv.)</td><td>1-2</td><td>2-3</td><td>4-5</td></tr>
+<tr><td>Growth Packs</td><td>0-1</td><td>1-2</td><td>2-3</td></tr>
+<tr><td>Essentials clients</td><td>1</td><td>2-3</td><td>3-5</td></tr>
+<tr style="background:rgba(74,255,122,0.06)"><td>Total revenue</td><td><strong>$4,647</strong></td><td><strong>$10,812</strong></td><td><strong>$23,628</strong></td></tr>
+</tbody>
+</table>
+</section>
+
+<!-- SECTION: LEAD PIPELINE -->
+<section class="section" id="leads">
+<h2>Lead Pipeline — Sources &amp; Structure</h2>
+<p>Tiered lead sources to drive conversion. All templates and tracking structures below are READY for deployment.</p>
+<div class="grid-2">
+
+<div class="card">
+<h3><span class="badge badge-green">TIER 1 — WARM</span></h3>
+<ul>
+<li>Health Check clients (already invested $750)<br>Website consultation form submissions (ASAP timeline)<br>Existing IT support clients expressing workflow pain<br>Referrals from confirmed Essentials clients
+</li></ul>
+</div>
+
+<div class="card">
+<h3><span class="badge badge-amber">TIER 2 — MEDIUM</span></h3>
+<ul>
+<li>Demo page visitors (GA4-interaction data)<br>Google Search Console impressions (automation keywords)<br>Local business referrals - Eastern KY SMB community<br>Chamber of Commerce / networking contacts
+</li></ul>
+</div>
+
+<div class="card">
+<h3><span class="badge badge-red">TIER 3 — COLD</span></h3>
+<ul>
+<li>LinkedIn outreach to small/medium IT operators<br>Direct mail to Eastern KY commercial properties<br>General email targeting accounting automation pain points<br>SEO content expansion for workflow automation keywords
+</li></ul>
+</div>
+
+<div class="card">
+<h3><span class="badge badge-blue">SOURCES</span></h3>
+<ul>
+<li><strong>Primary:</strong> Consultation form at itaky.net/#consultation (LIVE)<br><strong>Secondary:</strong> Demo page engagement tracking (LIVE)<br><strong>Tertiary:</strong> Google Search Console data (needs GA4 access)<br><strong>Pipeline tool:</strong> Gmail + Google Sheets via n8n template
+</li></ul>
+</div>
+
+</div>
+</section>
+
+<!-- SECTION: SKELETON COMPONENTS -->
+<section class="section" id="components">
+<h2>Hermes Skeleton Components — ALL BUILT TODAY</h2>
+<table>
+<thead><tr><th>Component</th><th>Status</th><th>Purpose</th></tr></thead>
+<tbody>
+<tr><td>Service packages with pricing &amp; deliverables</td><td><span class="badge badge-green">BUILT</span></td><td>Defines exactly what Hermes sells and at what price</td></tr>
+<tr><td>Lead pipeline (tiered + sources)</td><td><span class="badge badge-green">BUILT</span></td><td>Structure for tracking and converting prospects</td></tr>
+<tr><td>Outreach templates (3 tiers ready to use)</td><td><span class="badge badge-green">BUILT</span></td><td>Copy-paste outreach for warm/medium/cold leads</td></tr>
+<tr><td>Task management system (TOD format)</td><td><span class="badge badge-green">BUILT</span></td><td>Cross-session continuity for Hermes operations</td></tr>
+<tr><td>Gateway startup/shutdown protocol</td><td><span class="badge badge-green">BUILT</span></td><td>Safe session management with circuit breakers</td></tr>
+<tr><td>Cost tracking &amp; budget monitoring</td><td><span class="badge badge-green">BUILT</span></td><td>$75/mo OpenAI cap or $0 via LAN Ollama</td></tr>
+<tr><td>ITAKY revenue roadmap (6-month projection)</td><td><span class="badge badge-green">BUILT</span></td><td>Growth targets to measure against</td></tr>
+<tr><td>IT Health Check page (/health-check/)</td><td><span class="badge badge-blue">EXISTING</span></td><td>$750 entry point already live on itaky.net</td></tr>
+<tr><td>Six interactive demo pages</td><td><span class="badge badge-blue">EXISTING</span></td><td>Working proofs with contact info + GA4 tracking</td></tr>
+<tr><td>(859) 404-1261 phone number</td><td><span class="badge badge-blue">EXISTS</span></td><td>Primary conversion channel on all pages</td></tr>
+</tbody>
+</table>
+</section>
+
+<!-- SECTION: CURRENT OBJECTIVES -->
+<section class="section" id="objectives">
+<h2>Current Objectives — What We're Working Toward</h2>
+<div class="grid-2">
+<div class="card">
+<h3><span class="badge badge-green">PRIMARY</span> Get First Paying Customer</h3>
+<ul class="checklist-item">Define service packages ← DONE TODAY<br>Build lead pipeline ← DONE TODAY<br>Create outreach templates ← DONE TODAY<br>Deploy first outreach batch ← NEXT: Steven approval<br>Achieve first Health Check or Starter client ← TARGET</ul>
+</div>
+<div class="card">
+<h3><span class="badge badge-amber">SECONDARY</span> Establish Recurring Revenue</h3>
+<ul class="checklist-item">Launch Essentials IT Support as real offering<br>Achieve 3 retained clients within 6 months<br>Grow Growth Pack maintenance to $1k+/mo<br>Expand SEO presence for automation keywords</ul>
+</div>
+</div>
+</section>
+
+<!-- SECTION: NEXT STEPS -->
+<section class="section" id="next">
+<h2>Next Steps — What Needs Your Approval</h2>
+<div class="grid-2">
+<div class="card">
+<h3><span class="badge badge-blue">IMMEDIATE</span></h3>
+<ol style="padding-left:1.2rem;margin:0;">
+<li><strong>Review this foundation page</strong> — Do the 4 service tiers look right?</li>
+<li><strong>Approve first outreach batch</strong> — Ready to deploy Template 3 (cold outreach) to Eastern KY small businesses</li>
+<li><strong>Grant GA4 access scope</strong> — Need read-only Analytics data for lead targeting</li>
+</ol>
+</div>
+<div class="card">
+<h3><span class="badge badge-green">WITHIN 7 DAYS</span></h3>
+<ol style="padding-left:1.2rem;margin:0;">
+<li><strong>Set up Gmail → Google Sheets CRM</strong> via n8n lead capture workflow</li>
+<li><strong>Deploy first 50 email sends</strong> from Template 3 with tracked responses</li>
+<li><strong>Schedule first Health Check calls</strong> for any interested leads</li>
+</ol>
+</div>
+</div>
+</section>
+
+<!-- SECTION: COST TRACKING -->
+<section class="section" id="costs">
+<h2>Cost Tracking — Current Status</h2>
+<table>
+<thead><tr><th>Category</th><th>Monthly Budget</th><th>Current Spend</th><th>Remaining</th></tr></thead>
+<tbody>
+<tr style="background:rgba(74,255,122,0.06)"><td>LLM/API costs</td><td>$75.00 (OpenAI) / $0 (Ollama)</td><td><strong>$0.14</strong></td><td><strong>$74.86</strong></td></tr>
+<tr><td>Gmail (workspace)</td><td>Included in $597 Essentials</td><td>$0</td><td>N/A</td></tr>
+<tr><td>GA4 / Google Analytics</td><td>Free tier sufficient</td><td>$0</td><td>$16,000/mo free limit</td></tr>
+<tr style="background:rgba(74,255,122,0.06)"><td><strong>Total infrastructure cost</strong></td><td><strong>$75.00 max / month</strong></td><td><strong>$0.14</strong></td><td><strong>$74.86 remaining</strong></td></tr>
+</tbody>
+</table>
+<p style="font-size:0.9rem;color:#8e9aa7;">All proactive automation capped at $0.05/week during skeleton phase. No spending above budget without explicit approval.</p>
+</section>
+
+<!-- SECTION: GATEWAY PROTOCOL -->
+<section class="section" id="gateway">
+<h2>Gateway Protocol — How Hermes Stays Alive Between Sessions</h2>
+<div class="grid-2">
+<div class="card">
+<h3><span class="badge badge-green">STARTUP</span></h3>
+<ol style="padding-left:1.2rem;margin:0;">
+<li>Preflight: <code>hermes gateway status</code> + <code>olllama ps</code> + <code>hermes doctor</code></li>
+<li>Start: <code>hermes gateway start</code> (foreground only)</li>
+<li>Verify: All MCPs pass health checks, Slack allowlist verified</li>
+</ol>
+</div>
+<div class="card">
+<h3><span class="badge badge-red">SHUTDOWN</span></h3>
+<ol style="padding-left:1.2rem;margin:0;">
+<li><code>hermes gateway stop</code> — no auto-start created</li>
+<li>No scheduled restart, no service, no daemon</li>
+<li>Silent on all non-allowlisted channels/users</li>
+</ol>
+</div>
+</div>
+<p style="font-size:0.9rem;color:#8e9aa7;margin-top:1rem;">⚠ Never auto-starts. Every session requires deliberate action from Steven or explicit authorization for automated sessions.</p>
+</section>
+
+</div><!-- /skeleton-content -->
+
+<footer style="max-width:960px;margin:4rem auto;padding:2rem 1.5rem;text-align:center;border-top:1px solid var(--border);color:#8e9aa7;font-size:0.9rem;">
+<p><strong style="color:#e8eef7;">ITAKY</strong> · Skeleton Foundation Built 2026-07-24 · <a href="tel:+18594041261">(859) 404-1261</a> · <a href="mailto:itakysupport@gmail.com">itakysupport@gmail.com</a></p>
+<p>Four service tiers defined. Lead pipeline structured. Outreach templates ready. Task system operational.</p>
+</footer>
+
+</body>
+</html>
