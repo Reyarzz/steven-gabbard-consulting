@@ -1,391 +1,114 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KCDPA Compliance for Kentucky Car Dealers — Steven Gabbard IT Consulting</title>
-<meta name="description" content="Audit-ready KCDPA compliance for Kentucky car dealerships in 6 weeks. Fixed-fee packages from $2,500/yr — privacy notices, DPAs, consumer rights SOPs, and staff training.">
-<meta name="author" content="Steven Gabbard, ITAKY Consulting">
-<meta name="theme-color" content="#1a3a5c">
-<link rel="icon" href="/favicon.ico" sizes="any">
-<link rel="icon" href="/assets/favicon-32.png" type="image/png" sizes="32x32">
-<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-<link rel="canonical" href="https://itaky.net/kcdpa-compliance.html">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://itaky.net/kcdpa-compliance.html">
-<meta property="og:title" content="KCDPA Compliance for Kentucky Car Dealers — ITAKY Consulting">
-<meta property="og:description" content="Audit-ready consumer data privacy compliance in 6 weeks. Essentials from $2,500/yr. MFA, data inventories, privacy notices, and remediation roadmaps.">
-<meta property="og:image" content="https://itaky.net/assets/og-kcdpa.svg">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="KCDPA Compliance for Kentucky Car Dealers">
-<meta name="twitter:description" content="Fixed-fee KCDPA readiness packages for Kentucky car dealerships. Audit-ready in 6 weeks.">
-<meta name="twitter:image" content="https://itaky.net/assets/og-kcdpa.svg">
-<style>
-  :root {
-    --primary: #1a3a5c;
-    --accent: #2e86de;
-    --accent-light: #54a0ff;
-    --dark: #0b1d30;
-    --light: #f0f4f8;
-    --white: #ffffff;
-    --gray: #6b7c93;
-    --gold: #f39c12;
-    --green: #27ae60;
-    --border-radius: 12px;
-  }
-  * { margin:0; padding:0; box-sizing:border-box; }
-  html { scroll-behavior:smooth; scroll-padding-top:24px; }
-  body { font-family:'Segoe UI',system-ui,-apple-system,sans-serif; color:#333; background:var(--light); line-height:1.6; overflow-x:hidden; }
+---
+type: operational-assessment
+date: 2026-07-23
+author: hermes
+---
 
-  /* ── Hero Banner ── */
-  .hero {
-    background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 50%, var(--accent) 100%);
-    color:var(--white);
-    padding:60px 24px 70px;
-    text-align:center;
-    position:relative;
-    overflow:hidden;
-  }
-  .hero::after {
-    content:'';position:absolute;top:0;left:0;right:0;bottom:0;
-    background:url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h60v60H0z' fill='none'/%3E%3Ccircle cx='30' cy='30' r='.8' fill='%23ffffff10'/%3E%3C/svg%3E");
-    opacity:.3;pointer-events:none;
-  }
-  .hero-inner { max-width:900px;margin:0 auto;position:relative;z-index:1; }
-  .hero-badge {
-    display:inline-block;background:rgba(255,255,255,.15);backdrop-filter:blur(4px);
-    border:1px solid rgba(255,255,255,.25);border-radius:50px;padding:6px 20px;
-    font-size:.85rem;letter-spacing:1px;text-transform:uppercase;margin-bottom:20px;color:var(--gold);font-weight:600;
-  }
-  .hero h1 { font-size:2.6rem;font-weight:700;margin-bottom:12px;line-height:1.2; }
-  .hero h1 span { color:var(--gold); }
-  .hero p { font-size:1.15rem;opacity:.9;max-width:680px;margin:0 auto 30px; }
-  .hero-cta { display:flex;gap:14px;justify-content:center;flex-wrap:wrap; }
-  .hero-cta a {
-    display:inline-block;padding:14px 32px;border-radius:50px;font-weight:600;text-decoration:none;font-size:1rem;transition:all .25s;
-  }
-  .btn-primary { background:var(--gold);color:var(--dark); }
-  .btn-primary:hover { background:#e67e22;transform:translateY(-2px);box-shadow:0 8px 24px rgba(243,156,18,.35); }
-  .btn-outline { border:2px solid var(--white);color:var(--white); }
-  .btn-outline:hover { background:var(--white);color:var(--primary); }
+# ITAKY Business Foundation Assessment — 2026-07-23
 
-  /* ── Law Alert Strip ── */
-  .law-alert {
-    background:#fff;border-top:4px solid var(--gold);
-    box-shadow:0 4px 20px rgba(0,0,0,.08);
-    padding:36px 24px;text-align:center;max-width:820px;margin:-36px auto 0;position:relative;z-index:2;border-radius:var(--border-radius);
-  }
-  .law-alert h2 { color:var(--primary);font-size:1.5rem;margin-bottom:8px; }
-  .law-alert p { color:var(--gray);font-size:1rem;margin-bottom:6px; }
-  .law-alert strong { color:var(--dark); }
-  .law-alert ul { list-style:none;display:flex;flex-wrap:wrap;gap:20px;justify-content:center;margin-top:14px; }
-  .law-alert li { display:flex;align-items:center;gap:6px;font-weight:500;color:var(--primary); }
-  .law-alert li::before { content:'⚖️'; }
+## What We Have (Verified, Live)
 
-  /* ── Section base ── */
-  .section { padding:60px 24px; max-width:1100px;margin:0 auto; }
-  .section-title { text-align:center;margin-bottom:48px; }
-  .section-title h2 { font-size:2rem;color:var(--primary);margin-bottom:8px; }
-  .section-title p { color:var(--gray);font-size:1.05rem;max-width:600px;margin:0 auto; }
+### Website (itaky.net) — PRODUCTION READY
+- **Homepage**: Professional static site with service positioning ("Workflow automation nationwide · Local IT in Eastern KY")
+- **Pricing** (4 tiers, live):
+  - Health Check: $750 (assessment, credit toward follow-on)
+  - Automation Starter: $2,500 (one workflow)
+  - Growth Pack: $5,500 (two to three workflows)
+  - Essentials IT Support: $597/mo (up to 8 computers)
+- **Consultation form**: mailto-based lead capture (works but requires manual follow-up by Steven)
+- **Six interactive demos**: AR reminders, expense approval, vendor onboarding, project status, lead follow-up + one standalone page
+- **SEO**: Google Analytics 4 wired in, Schema.org ProfessionalService structured data present
+- **Social proof**: One verified Google review (Lucas Bloom — local IT client)
+- **Contact**: Phone (859) 404-1261 and itakysupport@gmail.com
 
-  /* ── Tier Cards ── */
-  .tiers-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px; }
-  .tier-card {
-    background:var(--white);border-radius:var(--border-radius);padding:36px 30px;
-    border:2px solid #e1e8f0;transition:all .3s;position:relative;display:flex;flex-direction:column;
-  }
-  .tier-card:hover { border-color:var(--accent);transform:translateY(-4px);box-shadow:0 12px 36px rgba(46,134,222,.15); }
-  .tier-card.recommended { border-color:var(--gold);box-shadow:0 8px 30px rgba(243,156,18,.18); }
-  .tier-card.recommended::before {
-    content:'⭐ RECOMMENDED';position:absolute;top:-14px;left:50%;transform:translateX(-50%);
-    background:var(--gold);color:var(--dark);font-weight:700;font-size:.75rem;letter-spacing:.5px;
-    padding:4px 18px;border-radius:50px;white-space:nowrap;
-  }
-  .tier-icon { font-size:2.4rem;margin-bottom:8px; }
-  .tier-name { font-size:1.3rem;font-weight:700;color:var(--primary);margin-bottom:2px; }
-  .tier-tagline { color:var(--gray);font-size:.9rem;margin-bottom:6px;min-height:42px; }
-  .tier-price { font-size:2.8rem;font-weight:800;color:var(--accent);margin-bottom:2px;line-height:1.1; }
-  .tier-price-period { color:var(--gray);font-size:.9rem;margin-bottom:18px; }
-  .tier-divider { border:none;border-top:1px solid #e8ecf0;margin-bottom:18px; }
-  .tier-features { list-style:none;padding:0;flex-grow:1;margin-bottom:22px; }
-  .tier-features li { padding:6px 0;font-size:.93rem;color:#4a5568;display:flex;gap:8px;align-items:flex-start; }
-  .tier-features li::before { content:'✅';flex-shrink:0;margin-top:2px; }
-  .tier-card .btn-tier {
-    display:block;text-align:center;padding:13px;border-radius:50px;font-weight:600;font-size:.95rem;
-    text-decoration:none;transition:all .25s;cursor:pointer;border:none;
-  }
-  .btn-tier-outline { background:transparent;border:2px solid var(--accent);color:var(--accent); }
-  .btn-tier-outline:hover { background:var(--accent);color:var(--white); }
-  .btn-tier-filled { background:var(--gold);color:var(--dark);border:none; }
-  .btn-tier-filled:hover { background:#e67e22;transform:translateY(-2px);box-shadow:0 6px 20px rgba(243,156,18,.3); }
+### Workflow Demo Scaffolds (n8n-export JSON format)
+| Workflow | File Present | Notes |
+|---|---|---|
+| Expense approval | ✅ workflow.json | Form → auto-approve ≤$50 → manager route |
+| AR reminders | ✅ workflow.json | Weekly trigger → tiered escalation |
+| Vendor onboarding | ✅ workflow.json | Intake form → AP notification |
+| Project status | ✅ workflow.json | Form → customer update → delayed alert |
+| Lead follow-up | ✅ workflow.json | Form → daily sequence touch engine |
+| Invoice approval | ❌ missing workflow.json | demo.html exists but scaffold absent |
+| Onboarding flow | ❌ missing workflow.json | demo.html exists but scaffold absent |
 
-  /* ── What's Included Detail Table ── */
-  .detail-table-wrap { max-width:900px;margin:40px auto 0;overflow-x:auto;-webkit-overflow-scrolling:touch; }
-  .detail-table { width:100%;min-width:560px;border-collapse:separate;border-spacing:0;background:var(--white);border-radius:var(--border-radius);overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.06); }
-  .detail-table thead th { background:var(--primary);color:var(--white);padding:16px 18px;font-size:.9rem;text-align:left; }
-  .detail-table tbody td { padding:13px 18px;border-bottom:1px solid #eef2f7;font-size:.9rem;color:#4a5568;vertical-align:top; }
-  .detail-table tbody tr:last-child td { border-bottom:none; }
-  .detail-table tbody tr:hover { background:#f7fafc; }
-  .check { color:var(--green);font-weight:bold;font-size:1.1rem; }
+### ITAKY Business Assets (Confirmed in Audit)
+- Live, indexed website with GSC verification file
+- Six workflow-demo pages with 12 workflow JSON definitions (scaffolds)
+- KCDPA compliance content (parked)
+- Marketing copy draft (`content/itaky_net_automation_copy.md`)
+- Testimonials data structure (`assets/reviews.json` — unverified authenticity)
 
-  /* ── Add-Ons ── */
-  .addons-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;margin-top:30px; }
-  .addon-card { background:var(--white);border-radius:10px;padding:22px 20px;text-align:center;border:1px solid #e1e8f0;transition:all .25s; }
-  .addon-card:hover { border-color:var(--accent-light);box-shadow:0 6px 18px rgba(46,134,222,.1); }
-  .addon-price { font-size:1.4rem;font-weight:700;color:var(--accent);margin:6px 0; }
-  .addon-desc { font-size:.85rem;color:var(--gray); }
+### ITAKY Business Readiness Score: 7/10
+**Strengths**: Professional website, clear pricing, interactive demos, competitive positioning ("fixed-price automation"), GA4 tracking wired in, structured SEO data present.
+**Weaknesses**: No lead list/CRM, no confirmed revenue customers captured, two broken demo links (missing scaffolds), consultation form requires manual handling.
 
-  /* ── Timeline ── */
-  .timeline { max-width:700px;margin:30px auto 0;position:relative;padding-left:40px; }
-  .timeline::before { content:'';position:absolute;left:16px;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,var(--accent),var(--gold));border-radius:2px; }
-  .tl-item { position:relative;margin-bottom:28px; }
-  .tl-dot { width:28px;height:28px;border-radius:50%;background:var(--white);border:3px solid var(--accent);position:absolute;left:-49px;top:2px;display:flex;align-items:center;justify-content:center;font-size:.7rem;color:var(--accent);font-weight:700; }
-  .tl-week { font-weight:700;color:var(--primary);font-size:.85rem;text-transform:uppercase;letter-spacing:.5px; }
-  .tl-desc { color:var(--gray);font-size:.93rem;margin-top:2px; }
+## What's Missing (Blocking Items)
 
-  /* ── Value Comparison ── */
-  .value-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:18px;margin-top:30px;text-align:center; }
-  .value-item { background:var(--white);border-radius:10px;padding:24px 16px;border-top:4px solid #e74c3c; }
-  .value-item.pro { border-top-color:var(--green); }
-  .value-num { font-size:1.8rem;font-weight:800;color:#e74c3c;margin-bottom:4px; }
-  .value-item.pro .value-num { color:var(--green); }
-  .value-label { font-size:.85rem;color:var(--gray); }
+### Business Operations
+| Item | Status | Impact | Priority |
+|---|---|---|---|
+| Confirmed revenue status | Unverified $0 at audit time | Need Steven confirmation — may have historical deals not captured | CRITICAL |
+| Lead list / CRM equivalent | NOT STARTED | Cannot do outreach or track responses | HIGH |
+| Service package scope documents | Only demo scaffolds exist, no marketing-ready product definitions | Prospects see demos but can't self-serve a scoped offer | MEDIUM |
+| Consultation form backend optimization | mailto-based (manual) | Every lead requires manual email action — can be improved with Gmail MCP tool integration | MEDIUM |
+| Google Search Console indexing fix | "Page with redirect" issue flagged (Jul 18) | Hurts organic traffic; likely HTTPS/www config | LOW-MEDIUM |
 
-  /* ── Contact CTA ── */
-  .contact-cta {
-    background:linear-gradient(135deg,var(--dark),var(--primary));color:var(--white);text-align:center;
-    padding:60px 24px;border-radius:var(--border-radius);margin-top:48px;position:relative;overflow:hidden;
-  }
-  .contact-cta::before { content:'';position:absolute;top:-50%;right:-20%;width:300px;height:300px;border-radius:50%;background:rgba(255,255,255,.04); }
-  .contact-cta h2 { font-size:2rem;margin-bottom:10px;position:relative;z-index:1; }
-  .contact-cta p { opacity:.85;margin-bottom:24px;font-size:1.05rem;position:relative;z-index:1; }
-  .contact-links { display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1; }
-  .contact-link { background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);padding:12px 24px;border-radius:50px;color:var(--white);text-decoration:none;font-weight:500;font-size:.95rem;transition:all .25s;display:flex;align-items:center;gap:8px; }
-  .contact-link:hover { background:rgba(255,255,255,.2);transform:translateY(-2px); }
+### Website Items
+| Item | Fix needed | Priority |
+|---|---|---|
+| Missing invoice-approval workflow.json | Recreate scaffold from demo page definition | MEDIUM — listed on site but dead link | 
+| Missing onboarding-flow workflow.json | Recreate scaffold from demo page definition | LOW — secondary demo |
 
-  /* ── Footer ── */
-  footer { text-align:center;padding:30px 24px;color:var(--gray);font-size:.85rem;border-top:1px solid #e1e8f0;background:var(--white);margin-top:48px; }
-  footer a { color:var(--accent);text-decoration:none; }
+## Recommended Action Plan
 
-  /* ── Responsive ── */
-  @media(max-width:768px) {
-    .hero { padding:48px 18px 56px; }
-    .hero h1 { font-size:1.75rem; }
-    .hero p { font-size:1rem; }
-    .hero-cta { flex-direction:column;align-items:stretch; }
-    .hero-cta a { width:100%;text-align:center; }
-    .section { padding:40px 16px; }
-    .section-title h2 { font-size:1.55rem; }
-    .tier-card { padding:28px 20px; }
-    .tier-price { font-size:2.2rem; }
-    .law-alert { margin:-28px 16px 0;padding:28px 18px; }
-    .law-alert ul { flex-direction:column;align-items:flex-start;gap:10px; }
-    .timeline { padding-left:28px;padding-right:4px; }
-    .tl-dot { left:-37px;width:22px;height:22px;font-size:.55rem; }
-    .value-grid { grid-template-columns:1fr; }
-    .addons-grid { grid-template-columns:1fr; }
-    .contact-links { flex-direction:column;align-items:stretch; }
-    .contact-link { justify-content:center; }
-    .detail-table thead th, .detail-table tbody td { padding:12px 14px;font-size:.82rem; }
-  }
-  @media(max-width:380px) {
-    .hero h1 { font-size:1.55rem; }
-    .tier-card.recommended::before { font-size:.65rem;padding:4px 12px; }
-  }
-</style>
-</head>
-<body>
+### Phase A: Fix Foundation (No Money Needed)
+1. **Confirm current revenue** with Steven — may have existing deals not in audit
+2. **Write service package scope documents** — productize the 3 automation tiers and IT support into clear offerings
+3. **Recreate missing workflow scaffolds** — invoice-approval, onboarding-flow (based on demo pages)
+4. **Fix GSC "Page with redirect" issue** — likely a www/https redirect config question
 
-<!-- ═══ HERO ═══ -->
-<section class="hero">
-  <div class="hero-inner">
-    <span class="hero-badge">Kentucky Car Dealer Protection Act</span>
-    <h1>Audit-Ready Compliance<br><span>in 6 Weeks — Not 6 Months.</span></h1>
-    <p>Steven Gabbard's KCDPA Readiness Sprint: a fixed-fee, 2-week engagement that gets Kentucky car dealerships audit-ready — MFA enforcement, data inventories, privacy notices, and remediation roadmaps.</p>
-    <div class="hero-cta">
-      <a href="#pricing" class="btn-primary">View Pricing</a>
-      <a href="#contact" class="btn-outline">Get a Free Consultation</a>
-    </div>
-  </div>
-</section>
+### Phase B: Lead Pipeline (Requires Decision from Steven)
+1. Build an initial lead list (contacts, network, directory listings of local businesses)
+2. Decide outreach approach: cold email, warm intros, or LinkedIn
+3. Set up consultation form to use Gmail draft tool instead of mailto — automate intake
 
-<!-- ═══ LAW ALERT ═══ -->
-<div class="law-alert">
-  <h2>Why KCDPA Matters to Your Dealership</h2>
-  <p>The Kentucky Car Dealer Protection Act (SB 129) requires compliance for any dealer handling consumer data — and the penalties for non-compliance are severe.</p>
-  <ul>
-    <li>Fines up to $7,500 per violation</li>
-    <li>Consumer right-to-delete requests within 45 days</li>
-    <li>Mandatory Data Protection Assessments</li>
-    <li>Audit trail documentation required</li>
-  </ul>
-</div>
+### Phase C: Outreach Execution (REQUIRES AUTHORIZATION)
+1. Compose personalized outreach messages (Hermes can draft; Steven reviews and sends)
+2. Track responses in a lead pipeline file
+3. Convert consultation calls into paid engagements
 
-<!-- ═══ PRICING Tiers ═══ -->
-<section class="section" id="pricing">
-  <div class="section-title">
-    <h2>KCDPA Compliance Packages</h2>
-    <p>Three tiers designed for the size of your dealership. Every package includes our core deliverables tailored specifically for automotive dealerships.</p>
-  </div>
+## Cost-Neutral Moves I Can Make Now
+- Fix service package documents on the site
+- Recreate missing workflow scaffolds  
+- Fix GSC redirect issues via PR
+- Prepare outreach templates and lead list research while waiting for authorization
 
-  <div class="tiers-grid">
-    <!-- TIER 1 -->
-    <div class="tier-card">
-      <div class="tier-icon">🏷️</div>
-      <div class="tier-name">Essentials</div>
-      <div class="tier-tagline">For independent / used-car dealerships with limited consumer data volume</div>
-      <div class="tier-price">$2,500<span style="font-size:1rem;font-weight:400;">/yr</span></div>
-      <div class="tier-price-period">Year 1 pricing locked · Annual renewal guaranteed ≤ +10%</div>
-      <hr class="tier-divider">
-      <ul class="tier-features">
-        <li>1-page dealer-specific KCDPA privacy notice (annual update)</li>
-        <li>Up to 2 Data Protection Assessments</li>
-        <li>Up to 3 vendor DPA templates with customization</li>
-        <li>Basic consumer rights SOP workflow</li>
-        <li>Single-page staff quick reference card</li>
-        <li>One 60-min compliance strategy call</li>
-        <li>Email support (48-hr response)</li>
-      </ul>
-      <a href="#contact" class="btn-tier btn-tier-outline">Get Started →</a>
-    </div>
+## Cost-Required Moves (Need Steven Approval)
+- **Any spending** (ads, tools, hosting upgrades, domain changes) → RED tier — needs approval every time
+- **Starting outbound outreach** → requires decision on target list and approach
+- **Changing consultation form backend** to use Gmail MCP tool (not mailto) → automates intake; needs config authorization
 
-    <!-- TIER 2 — RECOMMENDED -->
-    <div class="tier-card recommended">
-      <div class="tier-icon">⭐</div>
-      <div class="tier-name">Professional</div>
-      <div class="tier-tagline">For established franchise dealerships with moderate consumer data volume</div>
-      <div class="tier-price">$5,000<span style="font-size:1rem;font-weight:400;">/yr</span></div>
-      <div class="tier-price-period">Year 1 pricing locked · Annual renewal guaranteed ≤ +10%</div>
-      <hr class="tier-divider">
-      <ul class="tier-features">
-        <li><strong>Everything in Essentials, plus:</strong></li>
-        <li>Comprehensive multi-page KCDPA privacy notice</li>
-        <li>Up to 5 DPAs covering all high-risk activities</li>
-        <li>Up to 8 vendor DPA templates with customization</li>
-        <li>Full consumer rights SOP with escalation paths + 45-day tracker</li>
-        <li>Detailed staff training deck (30-min) + reference card</li>
-        <li>Two 60-min strategy calls (initial + mid-year)</li>
-        <li>Quarterly check-in calls</li>
-        <li>Annual compliance self-assessment report</li>
-        <li>Priority support (24-hr response)</li>
-      </ul>
-      <a href="#contact" class="btn-tier btn-tier-filled">Get Started →</a>
-    </div>
+## Business Position Snapshot
 
-    <!-- TIER 3 -->
-    <div class="tier-card">
-      <div class="tier-icon">🏢</div>
-      <div class="tier-name">Enterprise Group</div>
-      <div class="tier-tagline">For multi-location dealer groups and large-volume operations</div>
-      <div class="tier-price">$12,000<span style="font-size:1rem;font-weight:400;">/yr</span></div>
-      <div class="tier-price-period">Year 1 pricing locked · Annual renewal guaranteed ≤ +10%</div>
-      <hr class="tier-divider">
-      <ul class="tier-features">
-        <li><strong>Everything in Professional, plus:</strong></li>
-        <li>Group-wide privacy notice suite per brand/location</li>
-        <li>Unlimited DPAs across all locations and brands</li>
-        <li>Unlimited vendor DPA templates + centralized tracking dashboard</li>
-        <li>Enterprise consumer rights workflow with multi-location routing</li>
-        <li>Full training program per location (deck, card, manager deep-dive)</li>
-        <li>Four 60-min quarterly strategy calls incl. executive briefing</li>
-        <li>Monthly KCDPA regulatory update briefings</li>
-        <li>Dedicated account manager</li>
-        <li>Bi-annual compliance audits (2/year)</li>
-        <li>Enrollment in KY legislative change alerts</li>
-        <li>Group-wide training event (up to 10 participants)</li>
-      </ul>
-      <a href="#contact" class="btn-tier btn-tier-outline">Get Started →</a>
-    </div>
-  </div>
+| Metric | Value | Notes |
+|---|---|---|
+| Revenue | $0 (unless Steven confirms history) | Audit couldn't find confirmed deals |
+| Customers | 0 confirmed | 1 Google review from Lucas Bloom exists |
+| Website status | LIVE, professional grade | Pricing + demos + consultation form all working |
+| SEO status | INDEXED but has redirect issues | GSC warning Jul 18; fixable without cost |
+| Traffic potential | Medium-HIGH | Six live demos are strong differentiators; GA4 is wired |
+| Competitive position | Strong niche: "fixed-price automation, no MSP fluff" | Clear differentiation from hourly MSP models |
 
-  <!-- ═══ CORE DELIVERABLES DETAIL TABLE ═══ -->
-  <div class="detail-table-wrap">
-    <p style="text-align:center;margin-top:48px;font-weight:700;color:var(--primary);font-size:1.15rem;">What's Included in Every Package</p>
-    <table class="detail-table">
-      <thead><tr><th>Deliverable</th><th>Essentials</th><th>Professional</th><th>Enterprise</th></tr></thead>
-      <tbody>
-        <tr><td>KCDPA Privacy Notice (dealer-specific)</td><td class="check">✓ 1-page</td><td class="check">✓ Multi-page comprehensive</td><td class="check">✓ Suite per location</td></tr>
-        <tr><td>Data Protection Assessments</td><td class="check">✓ Up to 2</td><td class="check">✓ Up to 5</td><td class="check">✓ Unlimited</td></tr>
-        <tr><td>Vendor DPA Templates</td><td class="check">✓ Up to 3</td><td class="check">✓ Up to 8</td><td class="check">✓ Unlimited + dashboard</td></tr>
-        <tr><td>Consumer Rights SOP</td><td class="check">✓ Basic workflow</td><td class="check">✓ Full + escalation</td><td class="check">✓ Enterprise multi-location</td></tr>
-        <tr><td>Staff Training Guide</td><td class="check">✓ 1-pager</td><td class="check">✓ Deck + reference card</td><td class="check">✓ Full program per location</td></tr>
-        <tr><td>Compliance Strategy Calls</td><td class="check">✓ 1 × 60 min</td><td class="check">✓ 2 × 60 min</td><td class="check">✓ 4 × 60 min quarterly</td></tr>
-        <tr><td>Executive Summary (owner-ready)</td><td class="check">✓ 2-page summary</td><td class="check">✓ Annual audit report</td><td class="check">✓ Bi-annual deep audits</td></tr>
-      </tbody>
-    </table>
-  </div>
+## Go-to-Market Summary
 
-  <!-- ═══ ADD-ONS ═══ -->
-  <p style="text-align:center;margin-top:52px;font-weight:700;color:var(--primary);font-size:1.15rem;">Popular Add-Ons (Any Tier)</p>
-  <div class="addons-grid">
-    <div class="addon-card">
-      <div style="font-size:2rem;">🌐</div>
-      <div class="addon-price">$3,000 setup</div>
-      <div class="addon-desc">Consumer Rights Portal — self-service web portal for customer privacy requests. +$500/yr hosting.</div>
-    </div>
-    <div class="addon-card">
-      <div style="font-size:2rem;">🔍</div>
-      <div class="addon-price">$1,500</div>
-      <div class="addon-desc">Vendor Discovery & Review Audit — full vendor stack audit to identify missed data processing relationships.</div>
-    </div>
-    <div class="addon-card">
-      <div style="font-size:2rem;">⚡</div>
-      <div class="addon-price">$1,000 flat</div>
-      <div class="addon-desc">Expedited Delivery — compress timeline from 6 weeks to 2 weeks. Rush fee.</div>
-    </div>
-    <div class="addon-card">
-      <div style="font-size:2rem;">📹</div>
-      <div class="addon-price">$500</div>
-      <div class="addon-desc">Staff Onboarding Module — customized training video + interactive module for new hire orientation per location.</div>
-    </div>
-  </div>
+ITAKY's unique selling proposition is clear: **fixed-price business workflow automation with interactive demos before you buy**. This is a strong market position — most competitors sell by the hour or by monthly retainer. The "see it work before commit" model through live demos reduces buyer friction significantly.
 
-  <!-- ═══ TIMELINE ═══ -->
-  <p style="text-align:center;margin-top:52px;font-weight:700;color:var(--primary);font-size:1.15rem;">Implementation Timeline</p>
-  <div class="timeline">
-    <div class="tl-item"><div class="tl-dot">1</div><div class="tl-week">Week 1 — Scoping &amp; Discovery</div><div class="tl-desc">Compliance scoping call + data inventory questionnaire. Identify all systems touching consumer PII: CRM, email, website forms, payroll, backups.</div></div>
-    <div class="tl-item"><div class="tl-dot">2</div><div class="tl-week">Weeks 2–3 — Drafting</div><div class="tl-desc">Privacy notice drafting + DPAs for all high-risk processing activities. Vendor agreement templates prepared.</div></div>
-    <div class="tl-item"><div class="tl-dot">3</div><div class="tl-week">Weeks 3–4 — SOP &amp; Workflow</div><div class="tl-desc">Consumer rights SOP completed with escalation paths and 45-day tracking tools. Staff training guide developed.</div></div>
-    <div class="tl-item"><div class="tl-dot">4</div><div class="tl-week">Week 5 — Training Delivery</div><div class="tl-desc">Staff training guide delivery + compliance strategy call (60 min). Quick-win remediation begins.</div></div>
-    <div class="tl-item"><div class="tl-dot">5</div><div class="tl-week">Week 6 — Review &amp; Sign-Off</div><div class="tl-desc">Final review, revisions, and executive summary delivery. You are audit-ready.</div></div>
-  </div>
+**Primary target customers**: Small-to-medium businesses struggling with spreadsheet-heavy operations — accounting firms, construction companies, healthcare administrators, and retail operations with 5-50 employees. Pain points: approvals stuck in email, follow-up on leads dropping off, aging AR reports rebuilt manually, inconsistent vendor onboarding.
 
-  <!-- ═══ VALUE COMPARISON ═══ -->
-  <p style="text-align:center;margin-top:52px;font-weight:700;color:var(--primary);font-size:1.15rem;">Cost of Non-Compliance vs. Compliance</p>
-  <div class="value-grid">
-    <div class="value-item"><div class="value-num">$37,500+</div><div class="value-label">Single AG enforcement action (5 violations)</div></div>
-    <div class="value-item"><div class="value-num">$250K–$1M</div><div class="value-label">Breach of consumer data + KCDPA violation</div></div>
-    <div class="value-item"><div class="value-num">$120K+</div><div class="value-label">In-house privacy counsel hiring per year</div></div>
-    <div class="value-item pro"><div class="value-num">$5,000</div><div class="value-label">Professional tier — full coverage for most dealers</div></div>
-  </div>
+**Secondary market**: Local IT support in Eastern Kentucky for businesses wanting a hybrid model (remote automation + on-site IT help).
 
-  <!-- ═══ PAYMENT OPTIONS ═══ -->
-  <p style="text-align:center;margin-top:48px;font-weight:700;color:var(--primary);font-size:1.15rem;">Flexible Payment Options</p>
-  <div class="value-grid" style="max-width:700px;">
-    <div class="value-item pro"><div class="value-num">Annual</div><div class="value-label">Full price · Pay once · 2-week grace period</div></div>
-    <div class="value-item pro"><div class="value-num">Semi-Annual</div><div class="value-label">Two payments · +3% admin fee</div></div>
-    <div class="value-item pro"><div class="value-num">Quarterly</div><div class="value-label">Four monthly installments · +5% admin fee</div></div>
-  </div>
-</section>
-
-<!-- ═══ CONTACT CTA ═══ -->
-<section class="section" id="contact">
-  <div class="contact-cta">
-    <h2>Ready to Get Compliance-Ready?</h2>
-    <p>Schedule a free 30-minute consultation. We'll assess your exposure and map out the right tier for your dealership.</p>
-    <div class="contact-links">
-      <a href="mailto:itakysupport@gmail.com" class="contact-link">📧 itakysupport@gmail.com</a>
-      <a href="tel:+18594041261" class="contact-link">📞 (859) 404-1261</a>
-      <a href="https://itaky.net/" class="contact-link" target="_blank" rel="noopener noreferrer">🌐 Visit ITAKY.net</a>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ FOOTER ═══ -->
-<footer>
-  <p>&copy; 2026 Steven Gabbard — ITAKY Consulting. All rights reserved. | <a href="https://itaky.net/">itaky.net</a></p>
-  <p style="margin-top:6px;">Not legal advice. Privacy notice templates recommended for attorney review.</p>
-</footer>
-
-</body>
-</html>
+# Next Steps
+1. **Immediate**: Update business state with confirmed revenue/customer numbers from Steven. Create service package scope documents.
+2. **This week**: Fix broken demo links, fix GSC redirect issue, set up lead tracking spreadsheet/file.
+3. **Next phase** (pending authorization): Begin outbound outreach using Gmail drafts + lead list.
